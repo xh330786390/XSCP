@@ -24,3 +24,84 @@
 </Root>
 
 <!--Post:{"msg":"","reslist":[{"bk":"","bkn":0,"issue":"0405期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"2,6,8,7,0","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0404期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"7,2,6,8,9","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0403期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"7,4,7,2,5","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0402期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"3,1,6,5,6","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0401期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"7,3,4,7,0","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0400期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"3,4,0,6,9","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0399期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"7,6,6,3,3","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0398期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"0,2,0,3,4","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0397期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"3,3,6,6,5","winnumberarr":[]},{"bk":"","bkn":0,"issue":"0396期","l":"","ln":0,"lotteryid":0,"lotteryname":"","opentime":"","qk":"","qkn":0,"sk":"","skn":0,"t":"","tn":0,"winnumber":"0,2,5,3,7","winnumberarr":[]}]}-->
+
+<!--POST http://www.xs8cp.com/UserService.aspx?flag=UIWinOpenNumberBean HTTP/1.1
+Host: www.xs8cp.com
+Connection: keep-alive
+Content-Length: 37
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: http://www.xs8cp.com
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: http://www.xs8cp.com/page/WORecord.html?id=15&num=10
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: JSESSIONID=189B2B6A440B34D1B2BD966889A63620; sessionId=189B2B6A440B34D1B2BD966889A63620; pagesrc=/game/ssccs.html
+
+flag=UIWinOpenNumberBean&id=15&num=10-->
+
+<!--POST http://www.xs6868.com/UserService.aspx?flag=UIWinOpenNumberBean HTTP/1.1
+Host: www.xs6868.com
+Connection: keep-alive
+Content-Length: 37
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: http://www.xs6868.com
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: http://www.xs6868.com/page/WORecord.html?id=15&num=10
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: JSESSIONID=312E07E86476046E980FF867F37F5F47; sessionId=312E07E86476046E980FF867F37F5F47; pagesrc=/game/ssccs.html
+
+flag=UIWinOpenNumberBean&id=15&num=10-->
+
+
+<!--POST http://www.xs8cp.info/UserService.aspx?flag=UIWinOpenNumberBean HTTP/1.1
+Host: www.xs8cp.info
+Connection: keep-alive
+Content-Length: 37
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: http://www.xs8cp.info
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: http://www.xs8cp.info/page/WORecord.html?id=15&num=10
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: JSESSIONID=DDF7B00BD9754285670234E49501B7CD; sessionId=DDF7B00BD9754285670234E49501B7CD; pagesrc=/game/ssccs.html
+
+flag=UIWinOpenNumberBean&id=15&num=10
+
+--><!--POST http://www.xs8cp.net/UserService.aspx?flag=UIWinOpenNumberBean HTTP/1.1
+Host: www.xs8cp.net
+Connection: keep-alive
+Content-Length: 37
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: http://www.xs8cp.net
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: http://www.xs8cp.net/page/WORecord.html?id=15&num=10
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: JSESSIONID=E82EFC4A9255DAEC1DFB0C992BD91D69; sessionId=E82EFC4A9255DAEC1DFB0C992BD91D69; pagesrc=/game/ssccs.html
+
+flag=UIWinOpenNumberBean&id=15&num=10--><!--
+
+
+GET http://www.yes88.co/page/WORecord.shtml?id=15&num=10 HTTP/1.1
+Host: www.yes88.co
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Referer: http://www.yes88.co/ssccs.shtml
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: JSESSIONID=72F9EE3360C06F1CE43A9DFF31B1D5C8; incap_ses_627_880232=yWNbQpuRqCfBvAttc42zCF5JjVkAAAAApf38lrTEQ5BhdgyuMO9E4A==; visid_incap_880232=N8qdPitNRa2x9tByqH4vePDch1kAAAAAQUIPAAAAAACyIN7FhKPQ6xdOhnEHJoMI; incap_ses_572_880232=Q20TPB0xZ1TCJSifXifwBzBQjVkAAAAAYjKCnIjpeVvUI/s6TsgqjQ==
+
+
+
+JSESSIONID=B21828EBD9EC5FAEA140B053C48754E3; sessionId=B21828EBD9EC5FAEA140B053C48754E3; pagesrc=/game/ssccs.html-->
