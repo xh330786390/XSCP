@@ -43,6 +43,8 @@ namespace XSCP.Common.Extend
 
         public static List<string> GetHtml(this string strResult)
         {
+            //http://regexr.com/
+            //http://tools.jb51.net/regex/create_reg
             List<string> list = new List<string>();
             string pattern = @"<table class=[\s\S]*<\/table>";
             var match = Regex.Match(strResult, pattern);
