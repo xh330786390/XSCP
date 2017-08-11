@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace XSCP.Common.Extend
 {
@@ -36,6 +39,37 @@ namespace XSCP.Common.Extend
             }
             catch { }
             return null;
+        }
+
+        public static List<string> GetHtml(this string strResult)
+        {
+            List<string> list = new List<string>();
+            string pattern = @"<table class=[\s\S]*<\/table>";
+            var match = Regex.Match(strResult, pattern);
+            if (!string.IsNullOrEmpty(match.Value))
+            {
+                string tr_pattern = @"<tr>[\s\S]*?<\/tr>";
+                var matchs = Regex.Matches(match.Value, tr_pattern);
+                foreach (Match item in matchs)
+                {
+                    string strItem = item.Value;
+
+                    string key_parttern = @"<td [\S]*<\/td>";
+                    var match_key = Regex.Match(strItem, key_parttern);
+                    if (!string.IsNullOrEmpty(match_key.Value))
+                    {
+                        string key = match_key.Value.Replace("<td class=\"first\">", "").Replace("&#26399;</td>", "");
+
+                        string value_parttern = @"<td>[\s\S]*<\/td>";
+                        var match_value = Regex.Match(strItem, value_parttern);
+                        string value = match_value.Value.Replace("<td>", "").Replace("</td>", "").Replace("\n", "").Replace("\t", "");
+
+                        list.Add(key + "," + value);
+                    }
+                }
+            }
+
+            return list;
         }
     }
 }

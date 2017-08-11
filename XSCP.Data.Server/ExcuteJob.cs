@@ -62,6 +62,7 @@ namespace XSCP.Data.Server
                     if (pinfo.Method == ProtocolMethod.Get)
                     {
                         resultData = WebHelper.Get(pinfo.Url);
+                        ltData = resultData.GetHtml();
 
                     }
                     else
@@ -91,7 +92,7 @@ namespace XSCP.Data.Server
                     }
                 }
 
-                if (ltData.Count > 0)
+                if (ltData != null && ltData.Count > 0)
                 {
                     bool bl = XscpBLL.Update(currentDate, ltData);
                     if (bl)
