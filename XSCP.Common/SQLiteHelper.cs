@@ -14,7 +14,16 @@ namespace XSCP.Common
         /// <summary>
         /// 数据库文件路径
         /// </summary>
-        public static string DbPath = null;// @"E:\sqlite\XS2017.db3";
+
+        public static string DbPath
+        {
+            get
+            {
+                string dbBasePath = AppSettingsHelper.GetStringValue("DbPath");
+                string dbName = "XS" + DateTime.Now.ToString("yyyyMM") + ".db3";
+                return Path.Combine(dbBasePath, dbName);
+            }
+        }
 
         /// <summary>
         /// Google Cookie存储路径
@@ -43,7 +52,6 @@ namespace XSCP.Common
 
         static SQLiteHelper()
         {
-            DbPath = AppSettingsHelper.GetStringValue("DbPath");
             CookiePath = AppSettingsHelper.GetStringValue("CookiePath");
 
             //@1.建库

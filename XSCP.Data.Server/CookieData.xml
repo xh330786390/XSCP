@@ -5,7 +5,7 @@
     <num>10</num>
   </node-ffcp>
   <!--Post-->
-  <!--<cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=B21828EBD9EC5FAEA140B053C48754E3; sessionId=B21828EBD9EC5FAEA140B053C48754E3; pagesrc=/game/ssccs.html" cookie-path="/"  />-->
+  <cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=CE482510A674301DFE74F8EAB221E1B5; sessionId=CE482510A674301DFE74F8EAB221E1B5; pagesrc=/game/ssccs.html" cookie-path="/"  />
 
   <!--<cookie url="http://www.xs8cp.info" domain-name="www.xs8cp.info" method="post" cookies="JSESSIONID=DDF7B00BD9754285670234E49501B7CD; sessionId=DDF7B00BD9754285670234E49501B7CD; pagesrc=/game/ssccs.html" cookie-path="/"  />
 
@@ -16,7 +16,7 @@
   <!--Get-->
   <!--<cookie url="http://www.goxs.co" domain-name="www.goxs.co" method="get" cookies="JSESSIONID=A28DC59AE5BE0FAC6FC006A3F98BAAF8" cookie-path="/"/>-->
 
-  <cookie url="http://www.yes88.co" domain-name="www.yes88.co" method="get" cookies=" JSESSIONID=72F9EE3360C06F1CE43A9DFF31B1D5C8; incap_ses_627_880232=yWNbQpuRqCfBvAttc42zCF5JjVkAAAAApf38lrTEQ5BhdgyuMO9E4A==; visid_incap_880232=N8qdPitNRa2x9tByqH4vePDch1kAAAAAQUIPAAAAAACyIN7FhKPQ6xdOhnEHJoMI; incap_ses_572_880232=Q20TPB0xZ1TCJSifXifwBzBQjVkAAAAAYjKCnIjpeVvUI/s6TsgqjQ==" cookie-path="/"  />
+  <!--<cookie url="http://www.yes88.co" domain-name="www.yes88.co" method="get" cookies=" JSESSIONID=72F9EE3360C06F1CE43A9DFF31B1D5C8; incap_ses_627_880232=yWNbQpuRqCfBvAttc42zCF5JjVkAAAAApf38lrTEQ5BhdgyuMO9E4A==; visid_incap_880232=N8qdPitNRa2x9tByqH4vePDch1kAAAAAQUIPAAAAAACyIN7FhKPQ6xdOhnEHJoMI; incap_ses_572_880232=Q20TPB0xZ1TCJSifXifwBzBQjVkAAAAAYjKCnIjpeVvUI/s6TsgqjQ==" cookie-path="/"  />-->
 
   <!--www.run88.co-->
   <!--www.xsgo8.com  转链接-->
@@ -73,7 +73,8 @@ Cookie: JSESSIONID=DDF7B00BD9754285670234E49501B7CD; sessionId=DDF7B00BD97542856
 
 flag=UIWinOpenNumberBean&id=15&num=10
 
---><!--POST http://www.xs8cp.net/UserService.aspx?flag=UIWinOpenNumberBean HTTP/1.1
+-->
+<!--POST http://www.xs8cp.net/UserService.aspx?flag=UIWinOpenNumberBean HTTP/1.1
 Host: www.xs8cp.net
 Connection: keep-alive
 Content-Length: 37
@@ -87,7 +88,8 @@ Accept-Encoding: gzip, deflate
 Accept-Language: zh-CN,zh;q=0.8
 Cookie: JSESSIONID=E82EFC4A9255DAEC1DFB0C992BD91D69; sessionId=E82EFC4A9255DAEC1DFB0C992BD91D69; pagesrc=/game/ssccs.html
 
-flag=UIWinOpenNumberBean&id=15&num=10--><!--
+flag=UIWinOpenNumberBean&id=15&num=10-->
+<!--
 
 
 GET http://www.yes88.co/page/WORecord.shtml?id=15&num=10 HTTP/1.1
