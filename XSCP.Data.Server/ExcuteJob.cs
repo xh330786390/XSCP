@@ -40,13 +40,13 @@ namespace XSCP.Data.Server
                 return;
             }
 
-            //DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "08:01:00");
-            //TimeSpan timeSpan = startTime - DateTime.Now;
-            //if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 60)
-            //{
-            //    _logger.InfoFormat("正在停牌");
-            //    return;
-            //}
+            DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "08:01:00");
+            TimeSpan timeSpan = startTime - DateTime.Now;
+            if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 60)
+            {
+                _logger.InfoFormat("正在停牌");
+                return;
+            }
 
             Action action = () =>
             {
