@@ -1,0 +1,575 @@
+﻿@using XSCP.Common.Model;
+@{
+    Layout = null;
+}
+
+@{
+    List<LotteryModel> lotterys = ViewBag.Lotterys;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+    <style>
+        .bet_con_ground {
+            background: url(../Source/image/bg.jpg) no-repeat;
+            padding-bottom: 100px;
+            padding-top: 20px;
+        }
+
+        #id_time li {
+            background: url(../Source/image/bg02.png) no-repeat center top;
+            list-style: none;
+            float: left;
+            width: 45px;
+            height: 84px;
+            line-height: 39px;
+            text-align: center;
+            font-size: 24px;
+            font-family: "微软雅黑";
+            color: white;
+            font-weight: bold;
+            align-content: center;
+            background-size: 36px 46px;
+        }
+
+        #id_lottery li {
+            background: url(../Source/image/bg03.png) no-repeat center top;
+            list-style: none;
+            float: left;
+            width: 60px;
+            height: 62px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 40px;
+            font-family: "微软雅黑";
+            color: #3D4375;
+            font-weight: bold;
+            align-content: center;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var count = 0;
+        var lotterType;
+        var bl = false;
+        $(function () {
+            var curDate = new Date();
+            if (curDate.getHours() < 8) {
+                curDate.setDate(curDate.getDate() - 1);//获取AddDayCount天后的日期
+                $("#id_date").val(setDate(curDate));
+            }
+            else {
+                $("#id_date").val(setDate(curDate));
+            }
+
+            request_post(1);
+            request_post(2);
+
+            setInterval(downtime, 1000);
+            var bl = false;
+            function downtime() {
+                var date = new Date();
+                if (date.getHours() >= 8 && date.getMinutes() <= 1) {
+                    $("#id_date").val(setDate(date));
+                }
+
+                var downSeconds = 60 - date.getSeconds();
+                var timeResult = String(downSeconds);
+                if (downSeconds < 10) {
+                    timeResult = "0" + timeResult;
+                }
+
+                $("#id_time_1").html("0");
+                $("#id_time_2").html("0");
+                $("#id_time_3").html(timeResult.substring(0, 1));
+                $("#id_time_4").html(timeResult.substring(1, 2));
+
+                if (!bl && downSeconds > 35 && downSeconds < 44) {
+                    request_post(1);
+                    request_post(2);
+                    bl = true;
+                } else if (downSeconds <= 35 || downSeconds >= 44) {
+                    bl = false;
+                }
+            }
+        });
+
+        function setDate(date) {
+            var curr_year = date.getFullYear();
+            var curr_month = date.getMonth() + 1;
+            var curr_date = date.getDate();
+            String(date.getMonth()).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
+            String(curr_date).length < 2 ? (curr_date = "0" + curr_date) : curr_date;
+            var yyyyMMdd = date.getFullYear() + "" + curr_month + "" + curr_date;
+            return yyyyMMdd;
+        }
+
+        //Get方式
+        function request_data(type) {
+            $.get("Xscp/PostLoadData?type=" + type + "&num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
+                function (response, state) {
+                    if (type == 1) {
+                        initData("#id_tbody_before", response)
+                    } else {
+                        initData("#id_tbody_after", response)
+                    }
+                });
+        }
+
+        //Post方式
+        function request_post(type) {
+            if (type == 1) {
+                $("#id_tbody_before").empty();
+            }
+            else {
+                $("#id_tbody_after").empty();
+            }
+
+            ///最大值
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostLoadMaxData",
+                data: {
+                    type: type,
+                    date: $("#id_date").val(),
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (type == 1) {
+                        initMaxData("#id_tbody_before", data)
+                    }
+                    else {
+                        initMaxData("#id_tbody_after", data)
+                    }
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+
+            ///定位胆
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostDwdData",
+                data: {
+                    type: type,
+                    date: $("#id_date").val(),
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (type == 1) {
+                        initDwdData("#id_tbody_before", data)
+                    }
+                    else {
+                        initDwdData("#id_tbody_after", data)
+                    }
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+
+            ///走势
+            $.ajax({
+                type: 'post',
+                //type: 'GET',
+                url: "/Xscp/PostLoadData",
+                data: {
+                    type: type,
+                    num: $("#id_num").val(),
+                    date: $("#id_date").val(),
+                },
+                async: true,
+                dataType: "json",
+                success: function (data) {
+                    if (type == 1) {
+                        initData("#id_tbody_before", data)
+                    }
+                    else {
+                        initData("#id_tbody_after", data)
+                    }
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+
+            //$.post("Xscp/PostLoadData",
+            //    {
+            //        type: type,
+            //        num: $("#id_num").val(),
+            //        date: $("#id_date").val()
+            //    },
+            //    function (response, state) {
+            //        alter(state);
+            //        //if (type == 1) {
+            //        //    initData("#id_tbody_before", response)
+            //        //} else {
+            //        //    initData("#id_tbody_after", response)
+            //        //}
+            //    });
+        }
+
+        function getBgcolor(i, val) {
+            var strResult = "<td align='center'";
+            if (val == 0) {
+                strResult = strResult + "bgcolor='#B0C4DE'  style='font-size:16px;font-weight:bold;'"
+            }
+            else if (val > 35) {
+                strResult = strResult + "bgcolor='#9932CC'"
+            }
+            else if (val > 25) {
+                strResult = strResult + "bgcolor='#FF0000'"
+            }
+            else if (val > 15) {
+                strResult = strResult + "bgcolor='#FFD700'"
+            }
+            else if (val > 8) {
+                strResult = strResult + "bgcolor='#00FF00'"
+            }
+            strResult = strResult + ">" + val + "</td>";
+            return strResult;
+        }
+
+        function getDwdBgcolor(val) {
+            var strResult = "<td align='center'";
+            if (val == "0|0") {
+                strResult = strResult + "bgcolor='#B0C4DE'  style='font-size:16px;font-weight:bold;'"
+            }
+            strResult = strResult + ">" + val + "</td>";
+            return strResult;
+        }
+
+        function getMaxBgcolor(val) {
+            var strResult = "<td align='center'";
+            strResult = strResult + ">" + val + "</td>";
+            return strResult;
+        }
+
+        function initMaxData(type, data) {
+            var strResult = "<tr bgcolor='#FFE4B5'>";
+            strResult += "<td>" + data.Sno + "</td>";
+            strResult += "<td align='center'>-</td>";
+            strResult += getMaxBgcolor(data.Big);
+            strResult += getMaxBgcolor(data.Small);
+            strResult += getMaxBgcolor(data.BigSmall);
+            strResult += getMaxBgcolor(data.SmallBig);
+            strResult += "<td bgcolor='#3D4375'></td>";
+            strResult += getMaxBgcolor(data.Odd);
+            strResult += getMaxBgcolor(data.Pair);
+            strResult += getMaxBgcolor(data.OddPair);
+            strResult += getMaxBgcolor(data.PairOdd);
+            strResult += "<td bgcolor='#3D4375'></td>";
+            strResult += getMaxBgcolor(data.Dbl);
+            strResult += "<td align='center'>-</td>";
+            strResult += "</tr>";
+            $(type).append(strResult);
+        }
+
+        function initDwdData(type, data) {
+            $("#id_lottery1").html(data.Lottery.substring(0, 1));
+            $("#id_lottery2").html(data.Lottery.substring(2, 3));
+            $("#id_lottery3").html(data.Lottery.substring(4, 5));
+            $("#id_lottery4").html(data.Lottery.substring(6, 7));
+            $("#id_lottery5").html(data.Lottery.substring(8, 9));
+
+            var strResult = "<tr height=40px bgcolor='#FFFF77'>";
+            strResult += "<td>" + data.Sno + "</td>";
+            strResult += "<td align='center'>-</td>";
+            strResult += getDwdBgcolor(data.Big);
+            strResult += getDwdBgcolor(data.Small);
+            strResult += getDwdBgcolor(data.BigSmall);
+            strResult += getDwdBgcolor(data.SmallBig);
+            strResult += "<td bgcolor='#3D4375'></td>";
+            strResult += getDwdBgcolor(data.Odd);
+            strResult += getDwdBgcolor(data.Pair);
+            strResult += getDwdBgcolor(data.OddPair);
+            strResult += getDwdBgcolor(data.PairOdd);
+            strResult += "<td bgcolor='#3D4375'></td>";
+            strResult += "<td align='center'>-</td>";
+            strResult += "<td>" + data.Dtime.substring(6, 11) + "</td>";
+            strResult += "</tr>";
+            $(type).append(strResult);
+        }
+
+        function initData(type, data) {
+            var strResult;
+            $.each(data, function (i, item) {
+                if (i == 0)
+                    strResult += "<tr bgcolor='#87CEFA' style='font-size:18px;font-weight:bold;'>";
+                else
+                    strResult += "<tr>";
+                strResult += "<td>" + item.Sno + "</td>";
+
+                if (type == "#id_tbody_before") {
+                    strResult += "<td><span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(0, 3) + "</span>" + item.Lottery.substring(3, 9) + "</td>";
+                }
+                else {
+                    strResult += "<td>" + item.Lottery.substring(0, 6) + "<span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(6, 9) + "</span></td>";
+                }
+
+                strResult += getBgcolor(i, item.Big);
+                strResult += getBgcolor(i, item.Small);
+                strResult += getBgcolor(i, item.BigSmall);
+                strResult += getBgcolor(i, item.SmallBig);
+                strResult += "<td bgcolor='#3D4375'></td>";
+                strResult += getBgcolor(i, item.Odd);
+                strResult += getBgcolor(i, item.Pair);
+                strResult += getBgcolor(i, item.OddPair);
+                strResult += getBgcolor(i, item.PairOdd);
+                strResult += "<td bgcolor='#3D4375'></td>";
+                strResult += getBgcolor(i, item.Dbl);
+                strResult += "<td>" + item.Dtime.substring(6, 11) + "</td>";
+                strResult += "</tr>";
+            });
+
+            $(type).append(strResult);
+        }
+
+        ///Post方式
+        $(document).ready(function () {
+            $("#id_btn").click(function () {
+                request_post(1);
+                request_post(2);
+                //$.ajax({
+                //    type: 'post',
+                //    //type: 'GET',
+                //    url: "/Xscp/PostLoadData",
+                //    data: {
+                //        type: $("#id_type").val(),
+                //        num: $("#id_num").val(),
+                //        date: $("#id_date").val(),
+                //    },
+                //    async: true,
+                //    dataType: "json",
+                //    success: function (data) {
+                //        if ($("#id_type").val() == 1) {
+                //            initData("#id_tbody_before", data)
+                //        }
+                //        else {
+                //            initData("#id_tbody_after", data)
+                //        }
+                //    },
+                //    error: function () {
+                //        $("#myPnl").html("失败");
+                //    }
+                //});
+            });
+
+            $("#id_1234").click(function () {
+                $.ajax({
+                    type: 'post',
+                    //type: 'GET',
+                    url: "/Xscp/PostLoadData",
+                    data: {
+                        num: $("#id_num").val(),
+                        date: $("#id_date").val(),
+                    },
+                    async: true,
+                    dataType: "json",
+                    success: function (data) {
+                        $("#id_tbody").empty();
+                        $.each(data, function (i, item) {
+                            $("#id_tbody").append("");
+                        });
+                    },
+                    error: function () {
+                        $("#myPnl").html("失败");
+                    }
+                });
+            });
+
+            //Get方式
+            $("#id_get").click(function () {
+                $.get("Xscp/LoadData?num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
+                    function (response, state) {
+                        alert("加载完毕")
+
+                        $("#myPnl").html(response);
+                    })
+            });
+
+            //Post方式
+            $("#id_post").click(function () {
+                $.post("Xscp/LoadData",
+                    {
+                        num: $("#id_num").val(),
+                        date: $("#id_date").val()
+                    },
+                    function (response, state) {
+                        $("#myPnl").html(response);
+                    })
+            });
+        });
+
+        //Get方式
+        function Get_Method() {
+            $.get("Xscp/LoadData?num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
+                function (response, state) {
+                    alert("Get_Method");
+                    $("#myPnl").html(response);
+                });
+        }
+
+        //Post方式
+        function Post_Method() {
+            $.post("Xscp/LoadData",
+            {
+                num: $("#id_num").val(),
+                date: $("#id_date").val()
+            },
+            function (response, state) {
+                $("#myPnl").html(response);
+            });
+        }
+
+    </script>
+</head>
+<body>
+    @*<div style="background-color:#3D4375;">
+            <div style="margin-left:20%">
+                <label>日期：</label>
+                <input id="id_date" type="text" value="20170526" style="width:80px;" />
+                <label>类型：</label>
+                <input id="id_type" type="text" value="1" />
+                <label>期数：</label>
+                <input id="id_num" type="text" value="30" style="width:40px;" />
+                <button id="id_btn" style="width:50px;">刷新</button>
+            </div>
+
+        </div>*@
+    @*<div style="align-content:center;"><p id="id_time" style="color:red;font-size:30px;align-content :center;font-weight:bold;"></p></div>*@
+
+    @*<div id="Layer1" style="background-image: url(../Source/image/bg.jpg); position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; ">*@
+
+    <div class="bet_con_ground">
+        <div style="float:left;margin-top:25px;">
+            <label style="color:white;">日期：</label>
+            <input id="id_date" type="text" value="20170526" style="width:80px;" />
+            @*<label>类型：</label>
+                <input id="id_type" type="text" value="1" />*@
+            <label style="color:white;">期数：</label>
+            <input id="id_num" type="text" value="15" style="width:40px;" />
+            <button id="id_btn" style="width:50px;">刷新</button>
+        </div>
+
+        <div style="">
+            <ul id="id_time" @*style="margin-left:400px;margin-top:50px;"*@>
+                @*<li>0</li>
+                    <li>0</li>*@
+                <li>0</li>
+                <li>0</li>
+                <li id="id_time_3">2</li>
+                <li id="id_time_4">9</li>
+            </ul>
+        </div>
+
+        <div @*style="clear:both;"*@>
+            <ul id="id_lottery" @*style="margin-left:400px;margin-top:20px;"*@>
+                <li id="id_lottery1">0</li>
+                <li id="id_lottery2">2</li>
+                <li id="id_lottery3">3</li>
+                <li id="id_lottery4">7</li>
+                <li id="id_lottery5">0</li>
+            </ul>
+        </div>
+    </div>
+    @*<div>
+            <div style=" width: 35px; height: 50px; background-color: green; border-radius: 10px; float: left; margin-right: 10px;">
+                <span id="id_time_1" style="height:60px; line-height:50px; display:block; font-size:30px;color:#FFF; text-align:center">0</span>
+            </div>
+            <div style=" width: 35px; height: 50px; background-color: green; border-radius: 10px; float: left; margin-right: 10px;">
+                <span id="id_time_2" style="height:60px; line-height:50px; display:block; font-size:30px;color:#FFF; text-align:center">0</span>
+            </div>
+            <div style="width: 35px; height: 50px; background-color: green; border-radius: 10px; float: left; margin-right: 10px;">
+                <span id="id_time_3" style="height:60px; line-height:50px; display:block; font-size:30px;color:#FFF; text-align:center">0</span>
+            </div>
+            <div style=" width: 35px; height: 50px; background-color: green; border-radius: 10px; float: left; margin-right: 10px;">
+                <span id="id_time_4" style="height:50px; line-height:50px; display:block; font-size:30px;color:#FFF; text-align:center">0</span>
+            </div>
+        </div>*@
+
+    @*<a href="#" id="id_get">提交(Get)</a>
+        <a href="#" id="id_post">提交(Post)</a>
+        <a href="#" onclick="return request_post(1)" id="id_post">Post_Method</a>
+        <div style="align-content:center;"><p id="id_time" style="color:red;font-size:24px;align-content :center;font-weight:bold;"></p></div>
+        <div id="myPnl" style="width: 300px; height: 30px; border: 1px dotted silver;"></div>*@
+
+    <div>
+        @*<table border="1" cellpadding="5" cellspacing="0" id="auto_add_table">
+                <tbody>
+                    @for (var i = 0; i < lotterys.Count; i++)
+                    {
+                        LotteryModel lottery = lotterys[i];
+                        <tr>
+                            <td><span>@lottery.Ymd</span></td>
+                            <td><span>@lottery.Sno</span></td>
+                            <td><span>@lottery.Lottery</span></td>
+                            <td><span>@lottery.Dtime</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>*@
+
+        <table>
+            <tr>
+                <td>
+                    <table border="1" cellpadding="2" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="20">期数</th>
+                                <th width="40">奖号</th>
+                                <th width="40">大大</th>
+                                <th width="40">小小</th>
+                                <th width="40">大小</th>
+                                <th width="40">小大</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="40">奇奇</th>
+                                <th width="40">偶偶</th>
+                                <th width="40">奇偶</th>
+                                <th width="40">偶奇</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="40">重重</th>
+                                <th width="50">时间</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="id_tbody_before"></tbody>
+                    </table>
+                </td>
+                <td width="20" bgcolor="#3D4375"></td>
+                <td>
+                    <table border="1" cellpadding="2" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="20">期数</th>
+                                <th width="40">奖号</th>
+                                <th width="40">大大</th>
+                                <th width="40">小小</th>
+                                <th width="40">大小</th>
+                                <th width="40">小大</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="40">奇奇</th>
+                                <th width="40">偶偶</th>
+                                <th width="40">奇偶</th>
+                                <th width="40">偶奇</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="40">重重</th>
+                                <th width="50">时间</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="id_tbody_after"></tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

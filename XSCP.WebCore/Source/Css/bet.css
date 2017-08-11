@@ -1,0 +1,294 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body{
+	font-family: "微软雅黑";
+}
+#bet_con{ background:url(/images/bet/bg.jpg) no-repeat center top; padding-bottom: 30px; padding-top:27px;}
+#tabbar-div-s3{
+   background: #f5f1e6;
+    padding: 12px 0px 4px 0px;
+}
+.bet_in{ width:1100px; margin:0 auto;}
+.bet_div01{ width:1080px; padding-left:20px; overflow:hidden; position:relative;}
+.bet_div01 div{ float:left; background:url(/images/bet/bg01.png) no-repeat right center; padding-right:40px;}
+.bet_div01 .one{ background:url(/images/bet/bg01.png) no-repeat right center; padding-right:60px;}
+.bet_div01 .one .p01{ border-bottom:1px solid #d6cb9c; padding-bottom:7px; margin-bottom:7px;}
+.white{ color:#fff;}
+.bet_div01 .two{ font-size:14px; padding-left:40px;}
+.two{
+	width:255px;
+}
+.three {
+    width: 300px;
+    height:86px;
+}
+.bet_div01 .two p{ background:url(/images/bet/ico01.png) no-repeat left center; padding-left:30px; margin-bottom:10px; line-height:30px; }
+.bet_ul01 li{ color:#fff; float:left; margin-right:15px;}
+.bet_ul01 li span{ display:block; background:url(/images/bet/bg02.png) no-repeat left top; width:30px; height:46px; font-size:30px; line-height:40px; text-align:center; font-family:"微软雅黑"; float:left; margin-right:3px;}
+.bet_div01 .three p{ background:none; padding:0px; margin:0px; text-align:center;}
+.bet_ul02 li{background: url(/images/bet/bg03.png) no-repeat center top; width:60px; height:62px; float:left; line-height:50px; text-align:center; font-size:40px; font-family:"微软雅黑"; color:#3D4375; font-weight: bold; }
+.bet_div01 .four p{ width:75px; height:25px;  line-height:25px; background:#44416c url(/images/bet/ico02.png) no-repeat 5px center; padding-left:25px; margin-top:20px;}
+.bet_div01 .four p:hover{ background:#984b4f url(/images/bet/ico02.png) no-repeat 5px center;}
+.bet_div01 .four{ padding:0px; padding-left:40px; background:none;}
+.bet_div01 .four .p02{ background-image:url(/images/bet/ico03.png); margin-top:5px; }
+.bet_div01 .four .p02:hover{ background:#984b4f url(/images/bet/ico03.png) no-repeat 5px center;}
+.bet_div02{ width:1100px; margin:0 auto; overflow:hidden; background:#f8f8ff; color:#32365e;}
+.bet_div02 a:link,.bet_div02 a:visited{ color:#000;}
+.bet_ul03{ height:40px; overflow:hidden;background:rgba(53,57,94,0.5); margin-top:40px;}
+.bet_ul03 li{ float: left;}
+.bet_ul03 li a{ display:block;  height:40px; padding:0 22px; line-height:40px; float:left; color:#fff;font-size:14px;}
+.bet_ul03 .on a:link,.bet_ul03 .on a:visited{ background:#f5f1e6; color:#171735;}
+.bet_ul03 li a:hover{ background:#f9f9f9; color:#171735; text-decoration:none;}
+.bet_ul03 .last{ float:right;}
+.bet_ul03 .last a:hover{ background:none;}
+.bet_con01{ width:1060px;  overflow:hidden; }
+.bet_con01_l{ width:810px; float:left; font-size:13px;}
+.bet_dl01{ height: 35px;line-height: 23px;padding:5px 0px 5px 30px;background:#f5f1e6;}
+.bet_dl01 dt{ float:left;height: 30px;width:64px;line-height: 30px;color: #797ead;}
+.bet_dl01 dd{ float:left;}
+.bet_dl01 dd a{     display: block;
+    padding: 3px 14px;
+    height: 23px;
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    text-align: center;
+    float: left;
+    margin-right: 10px;
+    border-radius: 3px;}
+.bet_dl01 dd .on:link,.bet_dl01 dd .on:visited{background:#ea5635; color:#fff;}
+.bet_dl01 dd a:hover{ background:#ea5635; color:#fff; border:1px solid #ea5635; text-decoration:none;}
+.bet_con01_l .p01{ background:url(/images/bet/ico04.png) no-repeat left 2px; padding-left:30px;  padding-bottom:10px; margin-top:10px;}
+.bet_num{ height:45px; border-bottom:1px solid #e5e5e5; padding-top:10px; line-height:38px;} 
+.bet_num h4{ float:left; font-size:14px; font-weight:100; width:65px;}
+.bet_num ul{ float:left;}
+.num_ul01 li a{ display:block; height:38px; width:38px; border-radius:19px; border:1px solid #c9c9c9; background:#fff; text-align:center; line-height:38px; font-size:24px; margin-right:6px;overflow: hidden;cursor: pointer;}
+.num_ul01 .on a,.num_ul01 .on a:visited{  border:1px solid #ea5635; color:#fff;
+
+ box-shadow: 0px 3px 2px #cccccc;
+      background: -webkit-linear-gradient(#ec380c, #861A01); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ec380c, #861A01); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ec380c, #861A01); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ec380c, #861A01); /* 标准的语法 */
+}
+.num_ul01 li a:hover{  border:1px solid #ea5635; color:#fff; text-decoration:none;
+ box-shadow: 0px 3px 2px #cccccc;
+      background: -webkit-linear-gradient(#ec380c, #861A01); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ec380c, #861A01); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ec380c, #861A01); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ec380c, #861A01); /* 标准的语法 */
+
+}
+.bet_num ul li{ float:left;}
+.num_ul02{ margin-left:20px;}
+.num_ul02 li{ margin-top:5px; overflow:hidden;}
+.num_ul02 li a{ display:block; width:26px; height:25px; background:#fff; border:1px solid #c9c9c9; border-radius:3px; text-align:center; line-height:25px; margin-right:10px; float:left;cursor: pointer;}
+.num_ul02 .on a,.num_ul02 .on a:visited{  border:1px solid #ea5635; color:#fff;
+ box-shadow: 0px 3px 2px #cccccc;
+      background: -webkit-linear-gradient(#ec380c, #861A01); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ec380c, #861A01); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ec380c, #861A01); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ec380c, #861A01); /* 标准的语法 */
+
+}
+.num_ul02 li a:hover{ border:1px solid #ea5635; color:#fff; text-decoration:none;
+ box-shadow: 0px 3px 2px #cccccc;
+      background: -webkit-linear-gradient(#ec380c, #861A01); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ec380c, #861A01); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ec380c, #861A01); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ec380c, #861A01); /* 标准的语法 */
+}
+.bet_con01_r{ width:240px; float:right;}
+.bonus{ width:238px; height:32px; border:1px solid #e6e0c4; line-height:32px; text-align:center; font-size:14px; margin-top:13px;} 
+.bonus span{ color:#ea5635; font-size:16px; padding:0 5px;}
+.bet_con01_r .number{ width:238px; height:347px; border:1px solid #e6e0c4; margin-top:10px;}
+.num_dl01{ width:238px; height:28px; text-align:center; line-height:28px; border-bottom:1px solid #e5e5e5; background:#f4f1e5;}
+.num_dl01 dt{ width:96px; float:left; height:28px; border-right:1px solid #e5e5e5;  }
+.num_dl01 dd{ width:141px; float:left;  height:28px;}
+.num_dl02{ background:#f8f8ff;}
+.bet_con01_r .top dd{ padding-left:5px; width:136px;}
+.bet_con01_r .top span{ float:left; display:block; width:20px; height:20px; border-radius:10px; background:#ea5635; text-align:center; line-height:20px; color:#fff; margin-left:5px; margin-top:3px;  padding:0 ;}
+.num_dl02 dd{ color:#ea5635; font-size:14px;}
+.num_dl02 dd span{ padding:0 3px;}
+.bet_con01_r .more dt{ width:238px; text-align:center; }
+.bet_con01_r .more a:link,.bet_con01_r .more a:visited{ color:#3d4475; text-decoration:underline;}
+.red{ color:#ea5635;}
+.bet_div03{ background:#f8f8ff; overflow:hidden; padding:20px 30px;}
+.bet_div03_l{ width:700px; float:left;}
+.bet_ul04{ margin-bottom:10px; overflow:hidden; line-height:21px;} 
+.bet_ul04 li{ float:left; color:#4C4C4C; margin-right:22px;}
+.bet_ul04 li .txt01{ width:46px; height:21px; border:1px solid #c9c9c9; text-align: center;}
+.bet_ul04 li .span01{ display:block; width:20px; height:21px; border:1px solid #c9c9c9; text-align:center; font-size:18px; line-height:18px; cursor: pointer;}
+.bet_ul04 .li02 label{ float:left;}
+.bet_ul04 .li02 span{ float:left;}
+.bet_ul04 .li02 input{ float:left;}
+.bet_ul04 .select01{ width:45px; height:21px;border:1px solid #c9c9c9;}
+.bet_ul04 .select01{ width:100px;}
+.bet_table{ border:1px solid #e5e5e5; color:#988740; text-align:center;}
+.bet_table .tr01 td{ border-right:1px solid #e5e5e5;}
+
+.bet_div03_r{ width:290px; float:left;  float:right;}
+.bet_ul05 { overflow:hidden;}
+.bet_ul05 li{ width:132px; height:42px; float:left; background:#f4f1e5;  margin-bottom:10px; line-height:40px; text-align:center; font-size:15px;
+     background: -webkit-linear-gradient(#ffffff, #f4f1e5); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ffffff, #f4f1e5); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ffffff, #f4f1e5); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ffffff, #f4f1e5); /* 标准的语法 */
+}
+/* .bet_ul05 .li01{ margin-right:26px;} */
+.bet_ul05 .li03{ margin-right:26px;}
+.bet_ul05 li a{ display:block; width:90px; height:40px; float:left; border:1px solid #e5e5e5;  border-radius:6px; background:url(/images/bet/ico07.png) no-repeat 20px center; padding-left:40px;  box-shadow: 0px 2px 6px #cccccc;}
+.bet_ul05 .li02 a{ background-image:url(/images/bet/ico08.png);}
+.bet_ul05 .li03 a{ background-image:url(/images/bet/ico09.png);}
+.bet_ul05 .li04 a{ background-image:url(/images/bet/ico10.png);}
+.bet_ul05 li a:link,.bet_ul05 li a:visited{ color:#404775;}
+.bet_ul05 li:hover{
+	 border-radius:7px;
+	 background: -webkit-linear-gradient(#ec380c, #861A01); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ec380c, #861A01); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ec380c, #861A01); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ec380c, #861A01); /* 标准的语法 */
+}
+.bet_ul05 li a:hover{ color:#fff; text-decoration:none; background: url(/images/bet/ico11.png) no-repeat 20px center;}
+
+.bet_ul05 .li01{width:132px; height:42px; float:left; background:#ea5532;  margin-bottom:10px; line-height:40px; text-align:center; font-size:15px;
+background: -webkit-linear-gradient(#ec380c, #861A01); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ea5532, #da2900  ); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ea5532, #da2900  ); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ea5532, #da2900  ); /* 标准的语法 */
+	  border-radius:7px;
+	  margin-right:26px;}
+.bet_ul05 .li01 a:link,.bet_ul05 .li01 a:visited{ color:#fff;}
+.bet_ul05 .li01 a{ color:#fff; text-decoration:none; background: url(/images/bet/ico11.png) no-repeat 20px center;}
+.bet_ul05 .li01:hover{ background:#a82000;text-decoration:none;}
+
+.bet_ul05 .li02 a:hover{ background-image:url(/images/bet/ico12.png);}
+.bet_ul05 .li03 a:hover{ background-image:url(/images/bet/ico13.png);}
+.bet_ul05 .li04 a:hover{ background-image:url(/images/bet/ico14.png);}
+.bet_div03_r  p{ font-size:14px; color:#272636;}
+.bet_div03_r  .btn{margin-top:10px;}
+.bet_div03_r  .btn a{ display:block; width:290px; height:60px; line-height:60px; font-size:36px; text-align:center; background:#ea3a11; border-radius:6px; color:#fff;  box-shadow: 0px 4px 2px #cccccc;
+background: -webkit-linear-gradient(#ec380c, #861A01); /* Safari 5.1 - 6.0 */
+	  background: -o-linear-gradient(#ea5532, #da2900  ); /* Opera 11.1 - 12.0 */
+	  background: -moz-linear-gradient(#ea5532, #da2900  ); /* Firefox 3.6 - 15 */
+	  background: linear-gradient(#ea5532, #da2900  ); /* 标准的语法 */
+
+}
+.bet_div03_r  .btn a:hover{ background:#a82000;text-decoration:none;}
+.bet_div04{ background:#f8f8ff;  padding-bottom:6px;}
+.bet_div04 h3{ text-align:center; line-height:25px; width:1040px; border:1px solid #e5e5e5; margin:0 auto; border-bottom:0px; color:#404775; font-size:14px; font-weight:100;}
+.bet_div04 .no_lottery{ color:#CCBB73;}
+
+
+#lt_sel_dyprize{ border:1px solid #cccccc;}
+.td01 {
+    cursor: pointer;
+}
+.td02 {
+    cursor: pointer;
+}
+.td03 {
+    cursor: pointer;
+}
+.td04 {
+    cursor: pointer;
+}
+.td05 {
+    cursor: pointer;
+}
+.td06 {
+    cursor: pointer;
+}
+.to_pointer{
+	cursor: pointer;
+}
+.to_pointer:hover{
+	cursor: pointer;
+	color:#1E1E1E;
+	font-size:14px;
+}
+.wfts{
+
+position:relative;
+margin-left:35px;
+
+border-bottom: 1px solid #e4e4e4;
+
+height: 40px;
+}
+.wfts .p01{
+	cursor: pointer;
+	float: left;
+	height: 31px;
+	display: inline-grid;
+}
+.wfts-text{
+	display:none;
+	overflow:hidden;
+	width:390px;
+	position:absolute;
+	background:url("/images/bet/a001.png") no-repeat 40px top;
+	padding-top:8px;
+	top: 31px;
+}
+
+.wftx-text-in{
+	padding:5px 15px;
+	color:#ffffff;
+	border-radius:5px;
+	background:url(/images/bet/a002.png);
+}
+#lt_selector{
+	margin-left:30px;
+}
+#trace_ul_id:hover{
+	cursor: pointer;
+}
+.tr_to_pointer:hover{
+	font-size:14px;
+	color:#1E1E1E;
+	curcor:pointer;
+}
+.bet_family{
+	border-bottom: 1px solid #e5e5e5;
+}
+.bet_family .bet_family_item{
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
+    padding: 8px 15px;
+    text-align: center;
+    display: inline-block;
+    background: #ebe7fe;
+    margin: 7px 15px 7px 0px;
+    width: 128px;
+    border-radius: 4px;
+    font-size: 16px;
+    border: 1px solid #c9c9c9;
+}
+.bet_family .bet_family_item.on{
+    border: 1px solid #ea5635;
+    color: #fff;
+    box-shadow: 0px 3px 2px #cccccc;
+    background: -webkit-linear-gradient(#ec380c, #861A01);
+    background: -o-linear-gradient(#ec380c, #861A01);
+    background: -moz-linear-gradient(#ec380c, #861A01);
+    background: linear-gradient(#ec380c, #861A01);
+}
+.family_tip{
+	position: absolute;
+}
+.family_tip .arrow{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 7px 10px 7px;
+	border-color: transparent transparent #fa643f transparent;
+}
+.family_tip .text{
+	margin-left: -70px;
+	color:white;
+	background: #fa643f ;
+	padding: 10px;
+	border-radius: 5px;
+}

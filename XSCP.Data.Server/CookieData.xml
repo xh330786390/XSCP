@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <node-ffcp>
+    <id>15</id>
+    <num>1000</num>
+  </node-ffcp>
+  <!--<cookie url="http://xs8cp.info" domain-name="xs8cp.info" cookie-name="JSESSIONID" cookie-value="09AAA5747C8B15E27AC5C7FF7D723825" cookie-path="/"/>
+  <cookie url="http://xs8cp.info" domain-name="xs8cp.info" cookie-name="sessionId" cookie-value="09AAA5747C8B15E27AC5C7FF7D723825" cookie-path="/"/>
+  <cookie url="http://xs8cp.info" domain-name="xs8cp.info" cookie-name="pagesrc" cookie-value="/game/ssccs.html" cookie-path="/"/>-->
+  <cookie url="http://www.xs6868.com" domain-name="www.xs6868.com" cookie-name="JSESSIONID" cookie-value="sessionId=F8F8AB3819F5CD5A75E9653680CDC23E" cookie-path="/" method="post"/>
+  <cookie url="http://www.xs6868.com" domain-name="www.xs6868.com" cookie-name="sessionId" cookie-value="sessionId=F8F8AB3819F5CD5A75E9653680CDC23E" cookie-path="/"  method="post"/>
+  <cookie url="http://www.xs6868.com" domain-name="www.xs6868.com" cookie-name="pagesrc" cookie-value="/game/ssccs.html" cookie-path="/"  method="post"/>
+</Root>
+

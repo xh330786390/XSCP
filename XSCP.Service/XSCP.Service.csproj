@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{14401AC8-6883-48F9-A49B-3166591E28D5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XSCP.Service</RootNamespace>
+    <AssemblyName>XSCP.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>References\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Xscp3D.cs" />
+    <Compile Include="BLL\Xscpff.cs" />
+    <Compile Include="Common\ExecuteServiceCall.cs" />
+    <Compile Include="Common\HttpDataRequest.cs" />
+    <Compile Include="Common\Reflection.cs" />
+    <Compile Include="Common\RequestMethod.cs" />
+    <Compile Include="Common\WebException.cs" />
+    <Compile Include="Controllers\AnalyzeTendency.cs" />
+    <Compile Include="Controllers\AnalyzeTendencyUnit.cs" />
+    <Compile Include="Controllers\CoreMethod.cs" />
+    <Compile Include="Controllers\CurrentTendency.cs" />
+    <Compile Include="Controllers\DataTableExtension.cs" />
+    <Compile Include="Controllers\DgvController.cs" />
+    <Compile Include="Controllers\DwdTendency.cs" />
+    <Compile Include="Controllers\Lottery.cs" />
+    <Compile Include="Controllers\Lottery3D.cs" />
+    <Compile Include="Controllers\LotteryFF.cs" />
+    <Compile Include="Controllers\Tendency.cs" />
+    <Compile Include="Controllers\UnitTendency.cs" />
+    <Compile Include="Controllers\XscpWarning.cs" />
+    <Compile Include="Controllers\AnalyzeDwdTendency.cs" />
+    <Compile Include="FormTendencyDwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTendencyDwd.Designer.cs">
+      <DependentUpon>FormTendencyDwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormServieStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormServieStatistic.Designer.cs">
+      <DependentUpon>FormServieStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormServieFF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormServieFF.Designer.cs">
+      <DependentUpon>FormServieFF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Xscpff.cs" />
+    <Compile Include="Dbole\DbHelperOleDb.cs" />
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormServie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormServie.Designer.cs">
+      <DependentUpon>FormServie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSystemSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSystemSet.Designer.cs">
+      <DependentUpon>FormSystemSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTendency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTendency.Designer.cs">
+      <DependentUpon>FormTendency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AllForecastMode.cs" />
+    <Compile Include="Model\FieldValueModel.cs" />
+    <Compile Include="Model\EnumNumberType.cs" />
+    <Compile Include="Model\EnumSelectType.cs" />
+    <Compile Include="Model\TendencyType.cs" />
+    <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\CurrentTendencyModel.cs" />
+    <Compile Include="Model\DwdTendencyModel.cs" />
+    <Compile Include="Model\ForecastModel.cs" />
+    <Compile Include="Model\LotteryModel.cs" />
+    <Compile Include="Model\TendencyModel.cs" />
+    <Compile Include="Controllers\WinLottery.cs" />
+    <Compile Include="Model\TendencyUnitModel.cs" />
+    <Compile Include="Model\WinLotteryModel.cs" />
+    <Compile Include="Param.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\TransService.cs" />
+    <Compile Include="SysConfig.cs" />
+    <Compile Include="URL.Designer.cs">
+      <DependentUpon>URL.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Controllers\XscpControllers.cs" />
+    <Compile Include="FormTj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTj.Designer.cs">
+      <DependentUpon>FormTj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMaxTendency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMaxTendency.Designer.cs">
+      <DependentUpon>FormMaxTendency.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormTendencyDwd.resx">
+      <DependentUpon>FormTendencyDwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormServieStatistic.resx">
+      <DependentUpon>FormServieStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormServieFF.resx">
+      <DependentUpon>FormServieFF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormServie.resx">
+      <DependentUpon>FormServie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSystemSet.resx">
+      <DependentUpon>FormSystemSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTendency.resx">
+      <DependentUpon>FormTendency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="URL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>URL.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTj.resx">
+      <DependentUpon>FormTj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMaxTendency.resx">
+      <DependentUpon>FormMaxTendency.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XSCP.Core\XSCP.Core.csproj">
+      <Project>{58E12038-8C62-4CCF-B393-58D637C08BFC}</Project>
+      <Name>XSCP.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

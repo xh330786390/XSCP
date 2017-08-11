@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{80DB1B7D-AB1C-4621-81D4-760B3CE8E9EB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XscpSys</RootNamespace>
+    <AssemblyName>XscpSys</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Browser, Version=5.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Windows.Browser.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AnalyzeTendency.cs" />
+    <Compile Include="Controllers\AnalyzeTendencyUnit.cs" />
+    <Compile Include="Controllers\Common.cs" />
+    <Compile Include="Controllers\CoreMethod.cs" />
+    <Compile Include="Controllers\DataTableExtension.cs" />
+    <Compile Include="Controllers\DgvController.cs" />
+    <Compile Include="Controllers\Lottery.cs" />
+    <Compile Include="Controllers\LotteryFF.cs" />
+    <Compile Include="Controllers\Reflection.cs" />
+    <Compile Include="Controllers\Tendency.cs" />
+    <Compile Include="Controllers\WinLottery.cs" />
+    <Compile Include="Controllers\XscpWarning.cs" />
+    <Compile Include="Controllers\XsMath.cs" />
+    <Compile Include="CookieHelper.cs" />
+    <Compile Include="FormData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormData.Designer.cs">
+      <DependentUpon>FormData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMainDigit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMainDigit.Designer.cs">
+      <DependentUpon>FormMainDigit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMaxTendency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMaxTendency.Designer.cs">
+      <DependentUpon>FormMaxTendency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTendency2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTendency2.Designer.cs">
+      <DependentUpon>FormTendency2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTendencyDwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTendencyDwd.Designer.cs">
+      <DependentUpon>FormTendencyDwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTj2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTj2.Designer.cs">
+      <DependentUpon>FormTj2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWeb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWeb.Designer.cs">
+      <DependentUpon>FormWeb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CompareTwoModel.cs" />
+    <Compile Include="Model\EnumNumberType.cs" />
+    <Compile Include="Model\EnumSelectType.cs" />
+    <Compile Include="Model\FieldValueModel.cs" />
+    <Compile Include="Model\LotteryModel.cs" />
+    <Compile Include="Model\TendencyModel.cs" />
+    <Compile Include="Model\TendencyType.cs" />
+    <Compile Include="Model\TendencyUnitModel.cs" />
+    <Compile Include="Model\WinLotteryModel.cs" />
+    <Compile Include="Param.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormTendency1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTendency1.Designer.cs">
+      <DependentUpon>FormTendency1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTendency1Dwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTendency1Dwd.Designer.cs">
+      <DependentUpon>FormTendency1Dwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTendency35.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTendency35.Designer.cs">
+      <DependentUpon>FormTendency35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTj35.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTj35.Designer.cs">
+      <DependentUpon>FormTj35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMainAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMainAll.Designer.cs">
+      <DependentUpon>FormMainAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebHelper.cs" />
+    <EmbeddedResource Include="FormData.resx">
+      <DependentUpon>FormData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMainDigit.resx">
+      <DependentUpon>FormMainDigit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMaxTendency.resx">
+      <DependentUpon>FormMaxTendency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTendency2.resx">
+      <DependentUpon>FormTendency2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTendencyDwd.resx">
+      <DependentUpon>FormTendencyDwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTj2.resx">
+      <DependentUpon>FormTj2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWeb.resx">
+      <DependentUpon>FormWeb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="FormTendency1.resx">
+      <DependentUpon>FormTendency1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTendency1Dwd.resx">
+      <DependentUpon>FormTendency1Dwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTendency35.resx">
+      <DependentUpon>FormTendency35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTj35.resx">
+      <DependentUpon>FormTj35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMainAll.resx">
+      <DependentUpon>FormMainAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

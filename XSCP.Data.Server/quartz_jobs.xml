@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+
+    <!--ExcuteJob任务配置-->
+    <job>
+      <name>ExcuteJob</name>
+      <group>JobGroup1</group>
+      <description>Job1</description>
+      <job-type>XSCP.Data.Server.ExcuteJob, XSCP.Data.Server</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>ExcuteJobTrigger</name>
+        <group>TriggerGroup1</group>
+        <job-name>ExcuteJob</job-name>
+        <job-group>JobGroup1</job-group>
+        <start-time>2016-11-18T00:00:00+08:00</start-time>
+        <!--<cron-expression>10 * * * * ? *</cron-expression>-->
+        <cron-expression>15 * * * * ? *</cron-expression>
+      </cron>
+    </trigger>
+
+  </schedule>
+</job-scheduling-data>
