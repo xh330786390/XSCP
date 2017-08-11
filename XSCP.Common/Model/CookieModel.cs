@@ -49,6 +49,9 @@ namespace XSCP.Common.Model
         /// </summary>
         [XmlAttribute("cookie-value")]
         public string CookieValue { get; set; }
+
+        [XmlAttribute("cookies")]
+        public string Cookies { get; set; }
         /// <summary>
         /// 路径
         /// </summary>

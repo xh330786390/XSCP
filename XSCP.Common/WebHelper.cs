@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -56,6 +57,12 @@ namespace XSCP.Common
             return content;
         }
 
+        /// <summary>
+        /// Post方法
+        /// </summary>
+        /// <param name="Url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static string Post(string Url, string data)
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(Url);
@@ -89,53 +96,70 @@ namespace XSCP.Common
         /// 设置Cookie
         /// </summary>
         /// <param name="lt_cookie"></param>
-        public static CookieContainer GetCookies(List<CookieModel> lt_cookie)
+        public static CookieContainer GetCookies(CookieModel cookieMode)
         {
-            CookieContainer cookie = new CookieContainer();
-            CookieCollection lt_cookies = new CookieCollection();
+            CookieContainer cookieContainer = new CookieContainer();
+            CookieCollection cookieCollection = new CookieCollection();
 
-            lt_cookie.ForEach(l =>
+            if (cookieMode != null)
             {
-                lt_cookies.Add(new Cookie(l.CookieName, l.CookieValue, l.CookiePath, l.DomainName));
-            });
+                string strCookies = cookieMode.Cookies.Trim();
+                var lt_cookies = strCookies.Split(';').ToList();
+                lt_cookies.ForEach(item =>
+                {
+                    int index = item.IndexOf('=');
+                    string cookieName = item.Substring(0, index).Trim();
+                    string cookieValue = item.Substring(index + 1).Trim();
+                    try
+                    {
+                        cookieCollection.Add(new Cookie(cookieName, cookieValue, cookieMode.CookiePath, cookieMode.DomainName));
+                    }
+                    catch (Exception er) { }
+                });
+            }
 
-            cookie.Add(lt_cookies);
-            return cookie;
+            cookieContainer.Add(cookieCollection);
+            return cookieContainer;
         }
 
         /// <summary>
-        /// 设置Url
+        /// 获取通信内容
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static string GetUrl(XsConfig config)
+        public static ProtocolInfo GetProtocolInfo(XsConfig config)
         {
-            string url = config.Cookies[0].Url + "/page/WORecord.shtml";
-
-            Dictionary<string, int> param = new Dictionary<string, int>();
-            param["id"] = config.FFCP.Id;
-            param["num"] = config.FFCP.Num;
-
-            if (param != null) //有参数的情况下，拼接url
+            ProtocolInfo pinfo = null;
+            CookieModel cmodel = null;
+            if (config.Cookies.Length > 0)
             {
-                url = url + "?";
-                foreach (var item in param)
+                pinfo = new ProtocolInfo();
+
+                cmodel = config.Cookies[0];
+                pinfo.Url = cmodel.Url;
+
+                string strParam = GetParam(config);
+                if (cmodel.Method.ToUpper() == "POST")
                 {
-                    url = url + item.Key + "=" + item.Value + "&";
+                    pinfo.Method = ProtocolMethod.Post;
+                    pinfo.Url += "/UserService.aspx";
+                    pinfo.Data = "flag=UIWinOpenNumberBean&" + strParam;
                 }
-                url = url.Substring(0, url.Length - 1);
+                else
+                {
+                    pinfo.Method = ProtocolMethod.Get;
+                    pinfo.Url += "/page/WORecord.shtml?" + strParam;
+                }
             }
-            return url;
+            return pinfo;
         }
 
-        public static string GetBaseUrl(XsConfig config)
-        {
-            //string url = config.Cookies[0].Url + "/UserService.aspx?flag=UIWinOpenNumberBean";
-            string url = config.Cookies[0].Url + "/UserService.aspx";
-            return url;
-        }
-
-        public static string GetData(XsConfig config)
+        /// <summary>
+        /// 获取参数
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        private static string GetParam(XsConfig config)
         {
             Dictionary<string, int> param = new Dictionary<string, int>();
             param["id"] = config.FFCP.Id;
@@ -152,5 +176,36 @@ namespace XSCP.Common
             }
             return data;
         }
+    }
+
+    /// <summary>
+    /// 通信内容
+    /// </summary>
+    public class ProtocolInfo
+    {
+        /// <summary>
+        /// 交互方式
+        /// </summary>
+        public ProtocolMethod Method { get; set; }
+        /// <summary>
+        /// 域名地址
+        /// </summary>
+        public string Url { get; set; }
+        /// <summary>
+        /// 数据（只限 Post方法）
+        /// </summary>
+        public string Data { get; set; }
+    }
+
+    public enum ProtocolMethod
+    {
+        /// <summary>
+        /// Get方式
+        /// </summary>
+        Get = 0,
+        /// <summary>
+        /// Post方式
+        /// </summary>
+        Post = 1
     }
 }

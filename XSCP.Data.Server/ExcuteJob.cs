@@ -10,7 +10,7 @@ using XSCP.Common.Model;
 namespace XSCP.Data.Server
 {
     /// <summary>
-    /// 测试任务
+    /// 执行任务
     /// </summary>
     public class ExcuteJob : IJob
     {
@@ -23,71 +23,75 @@ namespace XSCP.Data.Server
             {
                 currentDate = currentDate.AddDays(-1);
             }
-            var result = MySteel.Common.Helper.XmlHelper.LoadXmlFile<XsConfig>(xmlCookiesPath);
-            if (result == null)
+            var config = MySteel.Common.Helper.XmlHelper.LoadXmlFile<XsConfig>(xmlCookiesPath);
+            if (config == null)
             {
                 _logger.ErrorFormat("未读取到【Cookie】文件");
                 return;
             }
-            else if (result.FFCP.Id <= 0 || result.FFCP.Num <= 0)
+            else if (config.FFCP.Id <= 0 || config.FFCP.Num <= 0)
             {
                 _logger.ErrorFormat("没有选择彩种或更新数目");
                 return;
             }
-            else if (result.Cookies == null || result.Cookies.Length == 0)
+            else if (config.Cookies == null || config.Cookies.Length == 0)
             {
                 _logger.ErrorFormat("没有Cookie信息");
                 return;
             }
 
+            DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "08:01:00");
+            TimeSpan timeSpan = startTime - DateTime.Now;
+            if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 60)
+            {
+                _logger.InfoFormat("正在停牌");
+                return;
+            }
+
             Action action = () =>
             {
-                //设置Cookie
-                WebHelper.Cookie = WebHelper.GetCookies(result.Cookies.ToList());
-
-                ///设置Url
-                //WebHelper.Url = WebHelper.GetUrl(result);
-                //string resultData = WebHelper.Get(WebHelper.Url);
-
-                string baseUrl = WebHelper.GetBaseUrl(result);
-                string data = "flag=UIWinOpenNumberBean&" + WebHelper.GetData(result);
                 string resultData = null;
-
-                XscpDataJsonModel objs = null;
-                try
-                {
-                    resultData = WebHelper.Post(baseUrl, data);
-                    objs = Newtonsoft.Json.JsonConvert.DeserializeObject<XscpDataJsonModel>(resultData);
-
-
-                }
-                catch (Exception er)
-                {
-                    Console.WriteLine(er.ToString());
-                }
-
-
-                DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "08:01:00");
-                TimeSpan timeSpan = startTime - DateTime.Now;
-                if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 60)
-                {
-                    _logger.InfoFormat("正在停牌");
-                    return;
-                }
-
-                //List<string> ltData = resultData.TransLottery();
-
                 List<string> ltData = new List<string>();
-                if (objs != null && objs.reslist != null && objs.reslist.Count > 0)
+                if (config.Cookies.Length > 0)
                 {
-                    objs.reslist.ForEach(item =>
+                    //设置Cookie
+                    WebHelper.Cookie = WebHelper.GetCookies(config.Cookies[0]);
+
+                    //获取通信内容
+                    ProtocolInfo pinfo = WebHelper.GetProtocolInfo(config);
+                    if (pinfo.Method == ProtocolMethod.Get)
                     {
-                        ltData.Add(item.issue + item.winnumber);
-                    });
+                        resultData = WebHelper.Get(pinfo.Url);
+
+                    }
+                    else
+                    {
+                        ///Post 通信
+                        resultData = WebHelper.Post(pinfo.Url, pinfo.Data);
+
+                        XscpDataJsonModel objs = null;
+                        try
+                        {
+                            objs = Newtonsoft.Json.JsonConvert.DeserializeObject<XscpDataJsonModel>(resultData);
+                        }
+                        catch (Exception er)
+                        {
+                            Console.WriteLine(er.ToString());
+                            _logger.ErrorFormat("解析数据出错");
+                            return;
+                        }
+
+                        if (objs != null && objs.reslist != null && objs.reslist.Count > 0)
+                        {
+                            objs.reslist.ForEach(item =>
+                            {
+                                ltData.Add(item.issue + item.winnumber);
+                            });
+                        }
+                    }
                 }
 
-
-                if (ltData != null && ltData.Count > 0)
+                if (ltData.Count > 0)
                 {
                     bool bl = XscpBLL.Update(currentDate, ltData);
                     if (bl)
