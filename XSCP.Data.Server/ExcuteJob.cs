@@ -94,7 +94,7 @@ namespace XSCP.Data.Server
 
                 if (ltData != null && ltData.Count > 0)
                 {
-                    bool bl = true;// XscpBLL.Update(currentDate, ltData);
+                    bool bl = XscpBLL.Update(currentDate, ltData);
                     if (bl)
                     {
                         int index = -1;

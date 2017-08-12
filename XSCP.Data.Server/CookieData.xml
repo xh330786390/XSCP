@@ -5,7 +5,7 @@
     <num>10</num>
   </node-ffcp>
   <!--Post-->
-  <!--<cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=CE482510A674301DFE74F8EAB221E1B5; sessionId=CE482510A674301DFE74F8EAB221E1B5; pagesrc=/game/ssccs.html" cookie-path="/"  />-->
+  <cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=CE482510A674301DFE74F8EAB221E1B5; sessionId=CE482510A674301DFE74F8EAB221E1B5; pagesrc=/game/ssccs.html" cookie-path="/"  />
 
   <!--<cookie url="http://www.xs8cp.info" domain-name="www.xs8cp.info" method="post" cookies="JSESSIONID=DDF7B00BD9754285670234E49501B7CD; sessionId=DDF7B00BD9754285670234E49501B7CD; pagesrc=/game/ssccs.html" cookie-path="/"  />
 
@@ -18,7 +18,7 @@
   <!--Get-->
   <!--<cookie url="http://www.goxs.co" domain-name="www.goxs.co" method="get" cookies="JSESSIONID=A28DC59AE5BE0FAC6FC006A3F98BAAF8" cookie-path="/"/>-->
 
-  <cookie url="http://www.yes88.co" domain-name="www.yes88.co" method="get" cookies="JSESSIONID=CAE8D255D35A14FACCDF652400AACACA; visid_incap_880232=YNYuyOzgRM+Q4S7UAi+cBoR0W1kAAAAAQUIPAAAAAABWbw7Ur6JErVD44ONd534o; incap_ses_431_880232=mB9oJYXvnzLN79Z2vjj7Be6AjlkAAAAAElGEmPvPzWzf0IIYRDfL9Q==" cookie-path="/"  />
+  <!--<cookie url="http://www.yes88.co" domain-name="www.yes88.co" method="get" cookies="JSESSIONID=CAE8D255D35A14FACCDF652400AACACA; visid_incap_880232=YNYuyOzgRM+Q4S7UAi+cBoR0W1kAAAAAQUIPAAAAAABWbw7Ur6JErVD44ONd534o; incap_ses_431_880232=mB9oJYXvnzLN79Z2vjj7Be6AjlkAAAAAElGEmPvPzWzf0IIYRDfL9Q==" cookie-path="/"  />-->
 
 
   <!--www.run88.co-->
