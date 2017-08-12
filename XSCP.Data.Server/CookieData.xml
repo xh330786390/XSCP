@@ -5,7 +5,7 @@
     <num>10</num>
   </node-ffcp>
   <!--Post-->
-  <cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=CE482510A674301DFE74F8EAB221E1B5; sessionId=CE482510A674301DFE74F8EAB221E1B5; pagesrc=/game/ssccs.html" cookie-path="/"  />
+  <!--<cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=CE482510A674301DFE74F8EAB221E1B5; sessionId=CE482510A674301DFE74F8EAB221E1B5; pagesrc=/game/ssccs.html" cookie-path="/"  />-->
 
   <!--<cookie url="http://www.xs8cp.info" domain-name="www.xs8cp.info" method="post" cookies="JSESSIONID=DDF7B00BD9754285670234E49501B7CD; sessionId=DDF7B00BD9754285670234E49501B7CD; pagesrc=/game/ssccs.html" cookie-path="/"  />
 
@@ -13,10 +13,13 @@
 
   <cookie url="http://www.xs6868.com" domain-name="www.xs6868.com" method="post" cookies="JSESSIONID=312E07E86476046E980FF867F37F5F47; sessionId=312E07E86476046E980FF867F37F5F47; pagesrc=/game/ssccs.html" cookie-path="/"  />-->
 
+  <!--<cookie url="http://www.run88.co" domain-name="www.run88.co" method="post" cookies="visid_incap_1064974=aF8epxRFRzOqp2JhcHRq5oV0W1kAAAAAQUIPAAAAAAAkzj9ZPSqVU+YqHL5H5imG; incap_ses_431_1064974=cBUzZU8hODzpmsx2vjj7BU5vjlkAAAAAFnIMdEhWYzOSMYTAHDksLQ==; JSESSIONID=A8B967FCAE2E2AD7A54C7E22BC61FF79; pagesrc=/main.html; sessionId=A8B967FCAE2E2AD7A54C7E22BC61FF79" cookie-path="/"  />-->
+
   <!--Get-->
   <!--<cookie url="http://www.goxs.co" domain-name="www.goxs.co" method="get" cookies="JSESSIONID=A28DC59AE5BE0FAC6FC006A3F98BAAF8" cookie-path="/"/>-->
 
-  <!--<cookie url="http://www.yes88.co" domain-name="www.yes88.co" method="get" cookies=" JSESSIONID=72F9EE3360C06F1CE43A9DFF31B1D5C8; incap_ses_627_880232=yWNbQpuRqCfBvAttc42zCF5JjVkAAAAApf38lrTEQ5BhdgyuMO9E4A==; visid_incap_880232=N8qdPitNRa2x9tByqH4vePDch1kAAAAAQUIPAAAAAACyIN7FhKPQ6xdOhnEHJoMI; incap_ses_572_880232=Q20TPB0xZ1TCJSifXifwBzBQjVkAAAAAYjKCnIjpeVvUI/s6TsgqjQ==" cookie-path="/"  />-->
+  <cookie url="http://www.yes88.co" domain-name="www.yes88.co" method="get" cookies="JSESSIONID=CAE8D255D35A14FACCDF652400AACACA; visid_incap_880232=YNYuyOzgRM+Q4S7UAi+cBoR0W1kAAAAAQUIPAAAAAABWbw7Ur6JErVD44ONd534o; incap_ses_431_880232=mB9oJYXvnzLN79Z2vjj7Be6AjlkAAAAAElGEmPvPzWzf0IIYRDfL9Q==" cookie-path="/"  />
+
 
   <!--www.run88.co-->
   <!--www.xsgo8.com  转链接-->
