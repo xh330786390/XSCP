@@ -133,6 +133,12 @@ namespace XSCP.WebCore.Controllers
             tmResult.Dtime = tm1.Dtime;
             return tmResult;
         }
+
+        public ActionResult HightCharts()
+        {
+            ViewBag.Name = "hah";
+            return View();
+        }
     }
 
     /// <summary>
