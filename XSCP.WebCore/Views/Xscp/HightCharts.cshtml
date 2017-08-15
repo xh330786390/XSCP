@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+@ViewBag.Name
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/highcharts.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            function chart1() {
+                $('#container').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'My first Highcharts chart'
+                    },
+                    xAxis: {
+                        categories: ['苹果', '香蕉', '橙子']   //指定x轴分组
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'something'
+                        }
+                    },
+                    series: [{                                //指定数据列
+                        name: '小明',                          //数据列名
+                        data: [1, 0, 4]                        //数据
+                    }, {
+                        name: '小红',
+                        data: [5, 7, 3]
+                    }]
+                });
+            }
+
+            function chart2() {
+                var chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'container',//目标容器
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Fruit Consumption'
+                    },
+                    xAxis: {
+                        categories: ['Apples', 'Bananas', 'Oranges']
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Fruit eaten'
+                        }
+                    },
+                    series: [{
+                        name: 'Jane',
+                        data: [1, 0, 4]
+                    }, {
+                        name: 'John',
+                        data: [5, 7, 3]
+                    }]
+                });
+            }
+
+            function chart3() {
+                var option = new Object();
+                option.chart = new Object();
+                option.chart.type = "bar";
+                option.chart.renderTo = "container";
+
+                option.title = { title: "水果的摄入" };
+
+                option.xAxis = { categories: ['苹果', '香蕉', '桔子'], gridLineWidth: 1 };
+                option.yAxis = { title: { text: "吃水果的量" }, tickInterval: 1 };
+
+                option.series = new Array();
+                option.series[0] = new Object();
+                option.series[0].name = "张三";
+                option.series[0].data = [1, 3, 5];
+
+                option.series[1] = new Object();
+                option.series[1].name = "李四";
+                option.series[1].data = [6, 1, 5.5];
+
+                option.series[2] = new Object();
+                option.series[2].name = "刘能";
+                option.series[2].data = [3, 1, 0.3];
+
+                var chart = new Highcharts.Chart(option);
+            }
+            $(function () {
+                //chart1();
+                chart2();
+                //chart3();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="container" style="min-width:800px;height:400px"></div>
+</body>
+</html>
