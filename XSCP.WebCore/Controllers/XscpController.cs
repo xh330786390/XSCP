@@ -8,6 +8,7 @@ using XSCP.Common;
 using XSCP.Common.Model;
 using XSCP.Common.Extend;
 using XSCP.Forecast;
+using System.Text.RegularExpressions;
 
 namespace XSCP.WebCore.Controllers
 {
@@ -138,6 +139,32 @@ namespace XSCP.WebCore.Controllers
         {
             ViewBag.Name = "hah";
             return View();
+        }
+
+        public JsonResult GetDwdData(int type, string date, int num = 1380)
+        {
+            //List<TendencyModel> lt_tm = new List<TendencyModel>();
+            //Random random = new Random();
+            //for (int i = 1; i < 1381; i++)
+            //{
+            //    lt_tm.Add(new TendencyModel()
+            //    {
+            //        Sno = i.ToString().PadLeft(4, '0'),
+            //        Big = random.Next(0, 25)
+            //    });
+            //}
+
+            List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
+            if (type == 1)
+            {
+                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.Before, date, num);
+            }
+            else
+            {
+                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.After, date, num);
+            }
+            lt_lotterys = lt_lotterys.OrderBy(l => l.Sno).ToList();
+            return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
         }
     }
 
