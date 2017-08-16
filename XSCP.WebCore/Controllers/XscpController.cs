@@ -139,6 +139,157 @@ namespace XSCP.WebCore.Controllers
             ViewBag.Name = "hah";
             return View();
         }
+
+        public JsonResult GetPieData(int type, string date, int num = 1380)
+        {
+            List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
+            if (type == 1)
+            {
+                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.Before, date, num);
+            }
+            else
+            {
+                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.After, date, num);
+            }
+            List<PieData> lt_pie = new List<PieData>();
+
+            PieData big_pie0 = getSomePie(lt_lotterys, 0);
+            lt_pie.Add(big_pie0);
+            PieData big_pie1 = getSomePie(lt_lotterys, 1);
+            lt_pie.Add(big_pie1);
+            PieData big_pie2 = getSomePie(lt_lotterys, 2);
+            lt_pie.Add(big_pie2);
+            PieData big_pie3 = getSomePie(lt_lotterys, 3);
+            lt_pie.Add(big_pie3);
+            PieData big_pie4 = getSomePie(lt_lotterys, 4);
+            lt_pie.Add(big_pie4);
+
+            return Json(lt_pie, JsonRequestBehavior.AllowGet);
+        }
+
+        public PieData getSomePie(List<Tendency2Model> lt_lotterys, int type = 0)
+        {
+            string strType = null;
+            switch (type)
+            {
+                case 0:
+                    strType = "大大";
+                    break;
+                case 1:
+                    strType = "小小";
+                    break;
+                case 2:
+                    strType = "大小";
+                    break;
+                case 3:
+                    strType = "小大";
+                    break;
+                case 4:
+                    strType = "重重";
+                    break;
+            }
+
+            PieData pie = new PieData() { Name = strType };
+            List<Tendency2Model> lt_Result = new List<Tendency2Model>();
+
+            List<Tendency2Model> lt_0 = null;
+
+            switch (type)
+            {
+                case 0:
+                    lt_0 = lt_lotterys.Where(l => l.Big == 0).ToList();
+                    break;
+                case 1:
+                    lt_0 = lt_lotterys.Where(l => l.Small == 0).ToList();
+                    break;
+                case 2:
+                    lt_0 = lt_lotterys.Where(l => l.BigSmall == 0).ToList();
+                    break;
+                case 3:
+                    lt_0 = lt_lotterys.Where(l => l.SmallBig == 0).ToList();
+                    break;
+                case 4:
+                    lt_0 = lt_lotterys.Where(l => l.Dbl == 0).ToList();
+                    break;
+            }
+
+
+            List<string> lt_sno = new List<string>();
+            lt_0.ForEach(item =>
+            {
+                if (int.Parse(item.Sno) > 0)
+                {
+                    lt_sno.Add((int.Parse(item.Sno) - 1).ToString().PadLeft(4, '0'));
+                }
+            });
+
+            lt_sno.ForEach(item =>
+            {
+                var ll = lt_lotterys.Where(l => l.Sno == item).FirstOrDefault();
+                if (ll != null)
+                {
+                    lt_Result.Add(ll);
+                }
+            });
+
+            List<PieDataCount> lt_count = null;
+
+            switch (type)
+            {
+                case 0:
+                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount()
+                    {
+                        Num = l.Key,
+                        Count = l.Count()
+                    })).ToList();
+                    break;
+                case 1:
+                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount()
+                   {
+                       Num = l.Key,
+                       Count = l.Count()
+                   })).ToList();
+                    break;
+                case 2:
+                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount()
+                     {
+                         Num = l.Key,
+                         Count = l.Count()
+                     })).ToList();
+                    break;
+                case 3:
+                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount()
+                     {
+                         Num = l.Key,
+                         Count = l.Count()
+                     })).ToList();
+                    break;
+                case 4:
+                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount()
+                    {
+                        Num = l.Key,
+                        Count = l.Count()
+                    })).ToList();
+                    break;
+            }
+
+            string per = ((lt_0.Count / (double)lt_lotterys.Count) * 100).ToString("f2") + "%";
+            pie.Name = pie.Name + "(max:" + lt_count.Max(l => l.Num) + "   p.c:" + lt_0.Count + "-" + per + ")";
+            pie.List = lt_count.OrderBy(l => l.Num).ToList();
+            return pie;
+        }
+    }
+
+    public class PieData
+    {
+        public string Name { get; set; }
+        public List<PieDataCount> List { get; set; }
+    }
+
+    public class PieDataCount
+    {
+        public int Num { get; set; }
+        public int Count { get; set; }
     }
 
     /// <summary>
