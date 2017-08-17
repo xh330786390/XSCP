@@ -127,7 +127,7 @@ namespace XSCP.Common
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static ProtocolInfo GetProtocolInfo(XsConfig config)
+        public static ProtocolInfo GetProtocolInfo(XsConfig config, bool monitor = false)
         {
             ProtocolInfo pinfo = null;
             CookieModel cmodel = null;
@@ -142,8 +142,16 @@ namespace XSCP.Common
                 if (cmodel.Method.ToUpper() == "POST")
                 {
                     pinfo.Method = ProtocolMethod.Post;
-                    pinfo.Url += "/UserService.aspx";
-                    pinfo.Data = "flag=UIWinOpenNumberBean&" + strParam;
+                    if (monitor)
+                    {
+                        pinfo.Url += "/LotteryService.aspx";
+                        pinfo.Data = "flag=balance";
+                    }
+                    else
+                    {
+                        pinfo.Url += "/UserService.aspx";
+                        pinfo.Data = "flag=UIWinOpenNumberBean&" + strParam;
+                    }
                 }
                 else
                 {

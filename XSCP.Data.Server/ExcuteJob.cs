@@ -40,10 +40,18 @@ namespace XSCP.Data.Server
                 return;
             }
 
+            WebHelper.Cookie = WebHelper.GetCookies(config.Cookies[0]);
+
             DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "08:03:00");
             TimeSpan timeSpan = startTime - DateTime.Now;
             if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 60)
             {
+                ProtocolInfo pinfo = WebHelper.GetProtocolInfo(config, true);
+                if (pinfo.Method == ProtocolMethod.Post)
+                {
+                    ///Post 通信
+                    WebHelper.Post(pinfo.Url, pinfo.Data);
+                }
                 _logger.InfoFormat("正在停牌");
                 return;
             }
@@ -54,16 +62,12 @@ namespace XSCP.Data.Server
                 List<string> ltData = new List<string>();
                 if (config.Cookies.Length > 0)
                 {
-                    //设置Cookie
-                    WebHelper.Cookie = WebHelper.GetCookies(config.Cookies[0]);
-
                     //获取通信内容
                     ProtocolInfo pinfo = WebHelper.GetProtocolInfo(config);
                     if (pinfo.Method == ProtocolMethod.Get)
                     {
                         resultData = WebHelper.Get(pinfo.Url);
                         ltData = resultData.GetHtml();
-
                     }
                     else
                     {
