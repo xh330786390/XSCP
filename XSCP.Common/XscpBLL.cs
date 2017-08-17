@@ -298,6 +298,18 @@ namespace XSCP.Common
         }
 
         /// <summary>
+        /// 通过日期区间查找走势图
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public static List<Tendency2Model> QueryTendency2Range(Tendency2Enum type, string startDate, string endDate)
+        {
+            return SQLiteHelper.QueryTendency2Range(type, startDate, endDate);
+        }
+
+        /// <summary>
         /// 获取二星指定日期最大走势
         /// </summary>
         /// <param name="type"></param>

@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Text.RegularExpressions;
+using HtmlAgilityPack;
 
 namespace XSCP.Common.Extend
 {
@@ -68,6 +69,26 @@ namespace XSCP.Common.Extend
 
                         list.Add(key + "," + value);
                     }
+                }
+            }
+
+            return list;
+        }
+
+        public static List<string> AnalyzeHtml(this string url)
+        {
+            List<string> list = new List<string>();
+            HtmlWeb webClient = new HtmlWeb();
+            HtmlDocument doc = webClient.Load(url);
+
+            HtmlNodeCollection hrefList = doc.DocumentNode.SelectNodes(".//td[@class]");
+
+            if (hrefList != null)
+            {
+                foreach (HtmlNode href in hrefList)
+                {
+                    HtmlAttribute att = href.Attributes["class"];
+                    System.Console.WriteLine(att.Value);
                 }
             }
 

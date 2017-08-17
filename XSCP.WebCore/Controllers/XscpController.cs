@@ -151,41 +151,51 @@ namespace XSCP.WebCore.Controllers
             {
                 lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.After, date, num);
             }
+
             List<PieData> lt_pie = new List<PieData>();
-
-            PieData big_pie0 = getSomePie(lt_lotterys, 0);
-            lt_pie.Add(big_pie0);
-            PieData big_pie1 = getSomePie(lt_lotterys, 1);
-            lt_pie.Add(big_pie1);
-            PieData big_pie2 = getSomePie(lt_lotterys, 2);
-            lt_pie.Add(big_pie2);
-            PieData big_pie3 = getSomePie(lt_lotterys, 3);
-            lt_pie.Add(big_pie3);
-            PieData big_pie4 = getSomePie(lt_lotterys, 4);
-            lt_pie.Add(big_pie4);
-
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.Big));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.Small));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.BigSmall));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.SmallBig));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.Dbl));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.Odd));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.Pair));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.OddPair));
+            lt_pie.Add(getSomePie(lt_lotterys, EnumLotteryPatter.PairOdd));
             return Json(lt_pie, JsonRequestBehavior.AllowGet);
         }
 
-        public PieData getSomePie(List<Tendency2Model> lt_lotterys, int type = 0)
+        private PieData getSomePie(List<Tendency2Model> lt_lotterys, EnumLotteryPatter type = 0)
         {
             string strType = null;
             switch (type)
             {
-                case 0:
+                case EnumLotteryPatter.Big:
                     strType = "大大";
                     break;
-                case 1:
+                case EnumLotteryPatter.Small:
                     strType = "小小";
                     break;
-                case 2:
+                case EnumLotteryPatter.BigSmall:
                     strType = "大小";
                     break;
-                case 3:
+                case EnumLotteryPatter.SmallBig:
                     strType = "小大";
                     break;
-                case 4:
+                case EnumLotteryPatter.Dbl:
                     strType = "重重";
+                    break;
+                case EnumLotteryPatter.Odd:
+                    strType = "奇奇";
+                    break;
+                case EnumLotteryPatter.Pair:
+                    strType = "偶偶";
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    strType = "奇偶";
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    strType = "偶奇";
                     break;
             }
 
@@ -196,23 +206,34 @@ namespace XSCP.WebCore.Controllers
 
             switch (type)
             {
-                case 0:
+                case EnumLotteryPatter.Big:
                     lt_0 = lt_lotterys.Where(l => l.Big == 0).ToList();
                     break;
-                case 1:
+                case EnumLotteryPatter.Small:
                     lt_0 = lt_lotterys.Where(l => l.Small == 0).ToList();
                     break;
-                case 2:
+                case EnumLotteryPatter.BigSmall:
                     lt_0 = lt_lotterys.Where(l => l.BigSmall == 0).ToList();
                     break;
-                case 3:
+                case EnumLotteryPatter.SmallBig:
                     lt_0 = lt_lotterys.Where(l => l.SmallBig == 0).ToList();
                     break;
-                case 4:
+                case EnumLotteryPatter.Dbl:
                     lt_0 = lt_lotterys.Where(l => l.Dbl == 0).ToList();
                     break;
+                case EnumLotteryPatter.Odd:
+                    lt_0 = lt_lotterys.Where(l => l.Odd == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Pair:
+                    lt_0 = lt_lotterys.Where(l => l.Pair == 0).ToList();
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    lt_0 = lt_lotterys.Where(l => l.OddPair == 0).ToList();
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    lt_0 = lt_lotterys.Where(l => l.PairOdd == 0).ToList();
+                    break;
             }
-
 
             List<string> lt_sno = new List<string>();
             lt_0.ForEach(item =>
@@ -236,45 +257,324 @@ namespace XSCP.WebCore.Controllers
 
             switch (type)
             {
-                case 0:
-                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount()
-                    {
-                        Num = l.Key,
-                        Count = l.Count()
-                    })).ToList();
+                case EnumLotteryPatter.Big:
+                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
                     break;
-                case 1:
-                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount()
-                   {
-                       Num = l.Key,
-                       Count = l.Count()
-                   })).ToList();
+                case EnumLotteryPatter.Small:
+                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
                     break;
-                case 2:
-                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount()
-                     {
-                         Num = l.Key,
-                         Count = l.Count()
-                     })).ToList();
+                case EnumLotteryPatter.BigSmall:
+                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
                     break;
-                case 3:
-                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount()
-                     {
-                         Num = l.Key,
-                         Count = l.Count()
-                     })).ToList();
+                case EnumLotteryPatter.SmallBig:
+                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
                     break;
-                case 4:
-                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount()
-                    {
-                        Num = l.Key,
-                        Count = l.Count()
-                    })).ToList();
+                case EnumLotteryPatter.Dbl:
+                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.Odd:
+                    lt_count = lt_Result.GroupBy(l => l.Odd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.Pair:
+                    lt_count = lt_Result.GroupBy(l => l.Pair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    lt_count = lt_Result.GroupBy(l => l.OddPair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    lt_count = lt_Result.GroupBy(l => l.PairOdd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
                     break;
             }
 
             string per = ((lt_0.Count / (double)lt_lotterys.Count) * 100).ToString("f2") + "%";
-            pie.Name = pie.Name + "(max:" + lt_count.Max(l => l.Num) + "   p.c:" + lt_0.Count + "-" + per + ")";
+            pie.Name = pie.Name + "(max:" + lt_count.Max(l => l.Num) + ")";
+
+            pie.SubName = "p.c:" + lt_0.Count + "-" + per;
+            pie.List = lt_count.OrderBy(l => l.Num).ToList();
+            return pie;
+        }
+
+
+        public JsonResult GetPieRangeData(int type, string startDate = "20170501", string endDate = "20170701")
+        {
+            List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
+            if (type == 1)
+            {
+                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.Before, startDate, endDate);
+            }
+            else
+            {
+                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.After, startDate, endDate);
+            }
+
+            List<PieData> lt_pie = new List<PieData>();
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Big));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Small));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.BigSmall));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.SmallBig));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Dbl));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Odd));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Pair));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.OddPair));
+            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.PairOdd));
+            return Json(lt_pie, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 线长分布
+        /// </summary>
+        /// <param name="lt_lotterys"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private PieData getSomeRangePie(List<Tendency2Model> lt_lotterys, EnumLotteryPatter type = 0)
+        {
+            string strType = null;
+            switch (type)
+            {
+                case EnumLotteryPatter.Big:
+                    strType = "大大";
+                    break;
+                case EnumLotteryPatter.Small:
+                    strType = "小小";
+                    break;
+                case EnumLotteryPatter.BigSmall:
+                    strType = "大小";
+                    break;
+                case EnumLotteryPatter.SmallBig:
+                    strType = "小大";
+                    break;
+                case EnumLotteryPatter.Dbl:
+                    strType = "重重";
+                    break;
+                case EnumLotteryPatter.Odd:
+                    strType = "奇奇";
+                    break;
+                case EnumLotteryPatter.Pair:
+                    strType = "偶偶";
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    strType = "奇偶";
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    strType = "偶奇";
+                    break;
+            }
+
+            PieData pie = new PieData() { Name = strType };
+
+
+            List<Tendency2Model> lt_0 = null;
+
+            switch (type)
+            {
+                case EnumLotteryPatter.Big:
+                    lt_0 = lt_lotterys.Where(l => l.Big == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Small:
+                    lt_0 = lt_lotterys.Where(l => l.Small == 0).ToList();
+                    break;
+                case EnumLotteryPatter.BigSmall:
+                    lt_0 = lt_lotterys.Where(l => l.BigSmall == 0).ToList();
+                    break;
+                case EnumLotteryPatter.SmallBig:
+                    lt_0 = lt_lotterys.Where(l => l.SmallBig == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Dbl:
+                    lt_0 = lt_lotterys.Where(l => l.Dbl == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Odd:
+                    lt_0 = lt_lotterys.Where(l => l.Odd == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Pair:
+                    lt_0 = lt_lotterys.Where(l => l.Pair == 0).ToList();
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    lt_0 = lt_lotterys.Where(l => l.OddPair == 0).ToList();
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    lt_0 = lt_lotterys.Where(l => l.PairOdd == 0).ToList();
+                    break;
+            }
+
+            List<Tendency2Model> lt_sno = new List<Tendency2Model>();
+            lt_0.ForEach(item =>
+            {
+                if (int.Parse(item.Sno) > 0)
+                {
+                    lt_sno.Add(new Tendency2Model() { Ymd = item.Ymd, Sno = (int.Parse(item.Sno) - 1).ToString().PadLeft(4, '0') });
+                }
+            });
+
+            //效率高
+            List<Tendency2Model> lt_Result = (from a in lt_lotterys
+                                              join b in lt_sno
+                                              on new { a.Ymd, a.Sno } equals new { b.Ymd, b.Sno }
+                                              select a).ToList();
+            ///效率低
+            //lt_sno.ForEach(item =>
+            //{
+            //    var ll = lt_lotterys.Where(l => l.Ymd == item.Ymd && l.Sno == item.Sno).FirstOrDefault();
+            //    if (ll != null)
+            //    {
+            //        lt_Result.Add(ll);
+            //    }
+            //});
+
+            List<PieDataCount> lt_count = null;
+
+            switch (type)
+            {
+                case EnumLotteryPatter.Big:
+                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.Small:
+                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.BigSmall:
+                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.SmallBig:
+                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.Dbl:
+                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.Odd:
+                    lt_count = lt_Result.GroupBy(l => l.Odd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.Pair:
+                    lt_count = lt_Result.GroupBy(l => l.Pair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    lt_count = lt_Result.GroupBy(l => l.OddPair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    lt_count = lt_Result.GroupBy(l => l.PairOdd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    break;
+            }
+
+            string per = ((lt_0.Count / (double)lt_lotterys.Count) * 100).ToString("f2") + "%";
+            pie.Name = pie.Name + "(max:" + lt_count.Max(l => l.Num) + ")";
+
+            pie.SubName = "p.c: " + lt_0.Count + "/" + lt_lotterys.Count + " = " + per;
+            pie.List = lt_count.OrderBy(l => l.Num).ToList();
+            return pie;
+        }
+
+        public JsonResult GetPieRangeTimeData(int type, string startDate = "20170501", string endDate = "20170701")
+        {
+            List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
+            if (type == 1)
+            {
+                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.Before, startDate, endDate);
+            }
+            else
+            {
+                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.After, startDate, endDate);
+            }
+
+            List<PieData> lt_pie = new List<PieData>();
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.Big));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.Small));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.BigSmall));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.SmallBig));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.Dbl));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.Odd));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.Pair));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.OddPair));
+            lt_pie.Add(getSomeRangeTimePie(lt_lotterys, EnumLotteryPatter.PairOdd));
+            return Json(lt_pie, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 时间分布
+        /// </summary>
+        /// <param name="lt_lotterys"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private PieData getSomeRangeTimePie(List<Tendency2Model> lt_lotterys, EnumLotteryPatter type = 0)
+        {
+            string strType = null;
+            switch (type)
+            {
+                case EnumLotteryPatter.Big:
+                    strType = "大大";
+                    break;
+                case EnumLotteryPatter.Small:
+                    strType = "小小";
+                    break;
+                case EnumLotteryPatter.BigSmall:
+                    strType = "大小";
+                    break;
+                case EnumLotteryPatter.SmallBig:
+                    strType = "小大";
+                    break;
+                case EnumLotteryPatter.Dbl:
+                    strType = "重重";
+                    break;
+                case EnumLotteryPatter.Odd:
+                    strType = "奇奇";
+                    break;
+                case EnumLotteryPatter.Pair:
+                    strType = "偶偶";
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    strType = "奇偶";
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    strType = "偶奇";
+                    break;
+            }
+
+            PieData pie = new PieData() { Name = strType };
+
+
+            List<Tendency2Model> lt_0 = null;
+
+            switch (type)
+            {
+                case EnumLotteryPatter.Big:
+                    lt_0 = lt_lotterys.Where(l => l.Big == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Small:
+                    lt_0 = lt_lotterys.Where(l => l.Small == 0).ToList();
+                    break;
+                case EnumLotteryPatter.BigSmall:
+                    lt_0 = lt_lotterys.Where(l => l.BigSmall == 0).ToList();
+                    break;
+                case EnumLotteryPatter.SmallBig:
+                    lt_0 = lt_lotterys.Where(l => l.SmallBig == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Dbl:
+                    lt_0 = lt_lotterys.Where(l => l.Dbl == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Odd:
+                    lt_0 = lt_lotterys.Where(l => l.Odd == 0).ToList();
+                    break;
+                case EnumLotteryPatter.Pair:
+                    lt_0 = lt_lotterys.Where(l => l.Pair == 0).ToList();
+                    break;
+                case EnumLotteryPatter.OddPair:
+                    lt_0 = lt_lotterys.Where(l => l.OddPair == 0).ToList();
+                    break;
+                case EnumLotteryPatter.PairOdd:
+                    lt_0 = lt_lotterys.Where(l => l.PairOdd == 0).ToList();
+                    break;
+            }
+
+            ///05/24 06:34
+            lt_0.ForEach(item =>
+            {
+                if (!string.IsNullOrEmpty(item.Dtime) && item.Dtime.Length == 11)
+                    item.Dtime = item.Dtime.Substring(6, 2);//取小时
+            });
+
+            List<PieDataCount> lt_count = lt_0.GroupBy(l => l.Dtime).Select(l => (new PieDataCount() { Num = int.Parse(l.Key), Count = l.Count() })).ToList();
+
+            string per = ((lt_0.Count / (double)lt_lotterys.Count) * 100).ToString("f2") + "%";
+            pie.Name = pie.Name + "(max:" + lt_count.Max(l => l.Num) + ")";
+
+            pie.SubName = "p.c: " + lt_0.Count + "/" + lt_lotterys.Count + " = " + per;
             pie.List = lt_count.OrderBy(l => l.Num).ToList();
             return pie;
         }
@@ -283,6 +583,7 @@ namespace XSCP.WebCore.Controllers
     public class PieData
     {
         public string Name { get; set; }
+        public string SubName { get; set; }
         public List<PieDataCount> List { get; set; }
     }
 
@@ -290,61 +591,5 @@ namespace XSCP.WebCore.Controllers
     {
         public int Num { get; set; }
         public int Count { get; set; }
-    }
-
-    /// <summary>
-    /// 定位胆
-    /// </summary>
-    public class TendencyDwdModel
-    {
-        /// <summary>
-        /// 年月日
-        /// </summary>
-        public string Ymd { get; set; }
-        /// <summary>
-        /// 开奖期数
-        /// </summary>
-        public string Sno { get; set; }
-        /// <summary>
-        /// 开奖期数
-        /// </summary>
-        public string Lottery { get; set; }
-        /// <summary>
-        /// 大数
-        /// </summary>
-        public string Big { get; set; }
-        /// <summary>
-        /// 小数
-        /// </summary>
-        public string Small { get; set; }
-        /// <summary>
-        /// 奇数
-        /// </summary>
-        public string Odd { get; set; }
-        /// <summary>
-        /// 偶数
-        /// </summary>
-        public string Pair { get; set; }
-
-        /// <summary>
-        /// 大小数
-        /// </summary>
-        public string BigSmall { get; set; }
-        /// <summary>
-        /// 小大数
-        /// </summary>
-        public string SmallBig { get; set; }
-        /// <summary>
-        /// 奇偶数
-        /// </summary>
-        public string OddPair { get; set; }
-        /// <summary>
-        /// 偶奇数
-        /// </summary>
-        public string PairOdd { get; set; }
-        /// <summary>
-        /// 开奖时间
-        /// </summary>
-        public string Dtime { get; set; }
     }
 }

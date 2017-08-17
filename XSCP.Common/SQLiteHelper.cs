@@ -553,6 +553,23 @@ namespace XSCP.Common
         }
 
         /// <summary>
+        /// 通过日期区间查找走势图
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <param name="topNum">最近期数</param>
+        /// <returns></returns>
+        public static List<Tendency2Model> QueryTendency2Range(Tendency2Enum type, string startDate, string endDate)
+        {
+            string tableName = getTendency2Table(type);
+            using (SQLiteConnection conn = CreateConnection())
+            {
+                string sql = string.Format("select * from {0} where  Ymd  BETWEEN {1}  AND {2} order by ymd,Sno desc", tableName, startDate, endDate);
+                var lt = conn.Query<Tendency2Model>(sql).ToList();
+                return lt;
+            }
+        }
+
+        /// <summary>
         /// 获取二星指定日期最大走势
         /// </summary>
         /// <param name="type"></param>
