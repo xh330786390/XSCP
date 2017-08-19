@@ -80,7 +80,7 @@
 
         function request_piedata() {
             //$.get("xscp/GetPieData?type=2&date=20170815",
-            $.get("xscp/GetPieRangeData?type=1&startDate=" + $("#id_startdate").val() + "&endDate=" + $("#id_enddate").val(),
+            $.get("xscp/GetPieRangeData?type=" + $("#id_type").val() + "&startDate=" + $("#id_startdate").val() + "&endDate=" + $("#id_enddate").val(),
                 function (data, state) {
 
                     $.each(data, function (i, root) {
@@ -303,9 +303,12 @@
     <div style="margin-top:25px;">
         <label style="color:black;">开始日期：</label>
         <input id="id_startdate" type="text" value="20170818" style="width:80px;" />
-        <label style="color: white;">123456</label>
+        <label style="color: white;">123</label>
         <label style="color: black;">     结束日期：</label>
         <input id="id_enddate" type="text" value="20170818" style="width:80px;" />
+        <label style="color: white;">123</label>
+        <label>类型(1:前;2:后)</label>
+        <input id="id_type" type="text" value="1" style="width:30px;" />
         <button id="id_btn" style="width:50px;">刷新</button>
     </div>
 
