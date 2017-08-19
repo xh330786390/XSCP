@@ -7,20 +7,80 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
+    <style>
+        .bet_con_ground {
+            background: url(../Source/image/bg.jpg) no-repeat;
+            padding-bottom: 100px;
+            padding-top: 20px;
+        }
+
+        #id_time li {
+            background: url(../Source/image/bg02.png) no-repeat center top;
+            list-style: none;
+            float: left;
+            width: 45px;
+            height: 84px;
+            line-height: 39px;
+            text-align: center;
+            font-size: 24px;
+            font-family: "微软雅黑";
+            color: white;
+            font-weight: bold;
+            align-content: center;
+            background-size: 36px 46px;
+        }
+
+        #id_lottery li {
+            background: url(../Source/image/bg03.png) no-repeat center top;
+            list-style: none;
+            float: left;
+            width: 60px;
+            height: 62px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 40px;
+            font-family: "微软雅黑";
+            color: #3D4375;
+            font-weight: bold;
+            align-content: center;
+        }
+    </style>
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/highcharts.js"></script>
     @*<script src="~/Scripts/highstock.js"></script>*@
     <script type="text/javascript">
         $(function () {
-            request_piedata();
-            //request_data(1);
+            var curDate = new Date();
+            if (curDate.getHours() < 8) {
+                curDate.setDate(curDate.getDate() - 1);//获取AddDayCount天后的日期
+                $("#id_startdate").val(setDate(curDate));
+                $("#id_enddate").val(setDate(curDate));
+            }
+            else {
+                $("#id_startdate").val(setDate(curDate));
+                $("#id_enddate").val(setDate(curDate));
+            }
 
-            //LoadPieCharts();
+            request_piedata();
+
+            $("#id_btn").click(function () {
+                request_piedata();
+            });
         });
+
+        function setDate(date) {
+            var curr_year = date.getFullYear();
+            var curr_month = date.getMonth() + 1;
+            var curr_date = date.getDate();
+            String(date.getMonth()).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
+            String(curr_date).length < 2 ? (curr_date = "0" + curr_date) : curr_date;
+            var yyyyMMdd = date.getFullYear() + "" + curr_month + "" + curr_date;
+            return yyyyMMdd;
+        }
 
         function request_piedata() {
             //$.get("xscp/GetPieData?type=2&date=20170815",
-            $.get("xscp/GetPieRangeData?type=2",
+            $.get("xscp/GetPieRangeData?type=1&startDate=" + $("#id_startdate").val() + "&endDate=" + $("#id_enddate").val(),
                 function (data, state) {
 
                     $.each(data, function (i, root) {
@@ -240,14 +300,25 @@
     </script>
 </head>
 <body>
-    <div id="container0" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container1" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container2" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container3" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container4" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container5" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container6" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container7" style="min-width: 330px; height: 350px; float: left;"></div>
-    <div id="container8" style="min-width: 330px; height: 350px; float: left;"></div>
+    <div style="margin-top:25px;">
+        <label style="color:black;">开始日期：</label>
+        <input id="id_startdate" type="text" value="20170818" style="width:80px;" />
+        <label style="color: white;">123456</label>
+        <label style="color: black;">     结束日期：</label>
+        <input id="id_enddate" type="text" value="20170818" style="width:80px;" />
+        <button id="id_btn" style="width:50px;">刷新</button>
+    </div>
+
+    <div id="container0" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container1" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container2" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container3" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container4" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container5" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container6" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container7" style="width: 330px; height: 350px; float: left;"></div>
+    <div id="container8" style="width: 330px; height: 350px; float: left;"></div>
+
+
 </body>
 </html>

@@ -88,11 +88,11 @@
                 $("#id_time_3").html(timeResult.substring(0, 1));
                 $("#id_time_4").html(timeResult.substring(1, 2));
 
-                if (!bl && downSeconds > 35 && downSeconds < 44) {
+                if (!bl && downSeconds > 35 && downSeconds < 48) {
                     request_post(1);
                     request_post(2);
                     bl = true;
-                } else if (downSeconds <= 35 || downSeconds >= 44) {
+                } else if (downSeconds <= 35 || downSeconds >= 48) {
                     bl = false;
                 }
             }
@@ -362,6 +362,10 @@
                 //});
             });
 
+            $("#id_pie").click(function () {
+                window.location.href = "/xscp/HightCharts";
+            });
+
             $("#id_1234").click(function () {
                 $.ajax({
                     type: 'post',
@@ -457,6 +461,8 @@
             <label style="color:white;">期数：</label>
             <input id="id_num" type="text" value="15" style="width:40px;" />
             <button id="id_btn" style="width:50px;">刷新</button>
+            <a href="xscp/HightCharts">走势图</a>  
+            @*<button id="id_pie" style="width:70px;">走势图</button>*@
         </div>
 
         <div style="">

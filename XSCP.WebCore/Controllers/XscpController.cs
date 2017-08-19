@@ -295,7 +295,7 @@ namespace XSCP.WebCore.Controllers
         }
 
 
-        public JsonResult GetPieRangeData(int type, string startDate = "20170501", string endDate = "20170701")
+        public JsonResult GetPieRangeData(int type, string startDate = "20170801", string endDate = "20170831")
         {
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
@@ -306,17 +306,20 @@ namespace XSCP.WebCore.Controllers
             {
                 lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.After, startDate, endDate);
             }
-
             List<PieData> lt_pie = new List<PieData>();
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Big));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Small));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.BigSmall));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.SmallBig));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Dbl));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Odd));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Pair));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.OddPair));
-            lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.PairOdd));
+            if (lt_lotterys != null && lt_lotterys.Count > 0)
+            {
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Big));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Small));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.BigSmall));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.SmallBig));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Dbl));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Odd));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Pair));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.OddPair));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.PairOdd));
+            }
+
             return Json(lt_pie, JsonRequestBehavior.AllowGet);
         }
 
@@ -578,6 +581,8 @@ namespace XSCP.WebCore.Controllers
             pie.List = lt_count.OrderBy(l => l.Num).ToList();
             return pie;
         }
+
+
     }
 
     public class PieData
