@@ -2,17 +2,14 @@
 @{
     Layout = null;
 }
-
 @{
     List<LotteryModel> lotterys = ViewBag.Lotterys;
 }
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-
     <style>
         .bet_con_ground {
             background: url(../Source/image/bg.jpg) no-repeat;
@@ -51,7 +48,6 @@
             align-content: center;
         }
     </style>
-
     <script type="text/javascript">
         var count = 0;
         var lotterType;
@@ -110,7 +106,7 @@
 
         //Get方式
         function request_data(type) {
-            $.get("Xscp/PostLoadData?type=" + type + "&num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
+            $.get("/Xscp/PostLoadData?type=" + type + "&num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
                 function (response, state) {
                     if (type == 1) {
                         initData("#id_tbody_before", response)
@@ -362,8 +358,8 @@
                 //});
             });
 
-            $("#id_pie").click(function () {
-                window.location.href = "/xscp/HightCharts";
+            $("#id_btn_pie").click(function () {
+                location.href = "/xscp/HightCharts";
             });
 
             $("#id_1234").click(function () {
@@ -391,7 +387,7 @@
 
             //Get方式
             $("#id_get").click(function () {
-                $.get("Xscp/LoadData?num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
+                $.get("/Xscp/LoadData?num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
                     function (response, state) {
                         alert("加载完毕")
 
@@ -401,7 +397,7 @@
 
             //Post方式
             $("#id_post").click(function () {
-                $.post("Xscp/LoadData",
+                $.post("/Xscp/LoadData",
                     {
                         num: $("#id_num").val(),
                         date: $("#id_date").val()
@@ -414,7 +410,7 @@
 
         //Get方式
         function Get_Method() {
-            $.get("Xscp/LoadData?num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
+            $.get("/Xscp/LoadData?num=" + $("#id_num").val() + "&date=" + $("#id_date").val(),
                 function (response, state) {
                     alert("Get_Method");
                     $("#myPnl").html(response);
@@ -423,7 +419,7 @@
 
         //Post方式
         function Post_Method() {
-            $.post("Xscp/LoadData",
+            $.post("/Xscp/LoadData",
             {
                 num: $("#id_num").val(),
                 date: $("#id_date").val()
@@ -449,9 +445,7 @@
 
         </div>*@
     @*<div style="align-content:center;"><p id="id_time" style="color:red;font-size:30px;align-content :center;font-weight:bold;"></p></div>*@
-
     @*<div id="Layer1" style="background-image: url(../Source/image/bg.jpg); position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; ">*@
-
     <div class="bet_con_ground">
         <div style="float:left;margin-top:25px;">
             <label style="color:white;">日期：</label>
@@ -461,10 +455,10 @@
             <label style="color:white;">期数：</label>
             <input id="id_num" type="text" value="15" style="width:40px;" />
             <button id="id_btn" style="width:50px;">刷新</button>
-            <a href="xscp/HightCharts">走势图</a>  
+            <a href="/xscp/HightCharts">走势图</a>
+            @*<button id="id_btn_pie" style="width:50px;">走势图</button>*@
             @*<button id="id_pie" style="width:70px;">走势图</button>*@
         </div>
-
         <div style="">
             <ul id="id_time" @*style="margin-left:400px;margin-top:50px;"*@>
                 @*<li>0</li>
@@ -475,7 +469,6 @@
                 <li id="id_time_4">9</li>
             </ul>
         </div>
-
         <div @*style="clear:both;"*@>
             <ul id="id_lottery" @*style="margin-left:400px;margin-top:20px;"*@>
                 <li id="id_lottery1">0</li>
@@ -500,13 +493,11 @@
                 <span id="id_time_4" style="height:50px; line-height:50px; display:block; font-size:30px;color:#FFF; text-align:center">0</span>
             </div>
         </div>*@
-
     @*<a href="#" id="id_get">提交(Get)</a>
         <a href="#" id="id_post">提交(Post)</a>
         <a href="#" onclick="return request_post(1)" id="id_post">Post_Method</a>
         <div style="align-content:center;"><p id="id_time" style="color:red;font-size:24px;align-content :center;font-weight:bold;"></p></div>
         <div id="myPnl" style="width: 300px; height: 30px; border: 1px dotted silver;"></div>*@
-
     <div>
         @*<table border="1" cellpadding="5" cellspacing="0" id="auto_add_table">
                 <tbody>
@@ -522,7 +513,6 @@
                     }
                 </tbody>
             </table>*@
-
         <table>
             <tr>
                 <td>
@@ -545,7 +535,6 @@
                                 <th width="50">时间</th>
                             </tr>
                         </thead>
-
                         <tbody id="id_tbody_before"></tbody>
                     </table>
                 </td>
@@ -570,7 +559,6 @@
                                 <th width="50">时间</th>
                             </tr>
                         </thead>
-
                         <tbody id="id_tbody_after"></tbody>
                     </table>
                 </td>

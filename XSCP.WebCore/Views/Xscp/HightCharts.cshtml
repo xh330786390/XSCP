@@ -80,7 +80,7 @@
 
         function request_piedata() {
             //$.get("xscp/GetPieData?type=2&date=20170815",
-            $.get("xscp/GetPieRangeData?type=" + $("#id_type").val() + "&startDate=" + $("#id_startdate").val() + "&endDate=" + $("#id_enddate").val(),
+            $.get("/xscp/GetPieRangeData?type=" + $("#id_type").val() + "&startDate=" + $("#id_startdate").val() + "&endDate=" + $("#id_enddate").val(),
                 function (data, state) {
 
                     $.each(data, function (i, root) {
@@ -100,7 +100,7 @@
 
         //Get方式
         function request_data(type) {
-            $.get("xscp/GetDwdData?type=2&date=20170815",
+            $.get("/xscp/GetDwdData?type=2&date=20170815",
                 function (data, state) {
                     var xdata = [];
                     var bigdata = [];
