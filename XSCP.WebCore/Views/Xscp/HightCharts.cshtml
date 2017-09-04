@@ -61,10 +61,14 @@
                 $("#id_enddate").val(setDate(curDate));
             }
 
-            request_piedata();
+            request_piedata(1);
 
-            $("#id_btn").click(function () {
-                request_piedata();
+            $("#radio1").click(function () {
+                request_piedata(1);
+            });
+
+            $("#radio2").click(function () {
+                request_piedata(2);
             });
         });
 
@@ -78,9 +82,9 @@
             return yyyyMMdd;
         }
 
-        function request_piedata() {
+        function request_piedata(type) {
             //$.get("xscp/GetPieData?type=2&date=20170815",
-            $.get("/xscp/GetPieRangeData?type=" + $("#id_type").val() + "&startDate=" + $("#id_startdate").val() + "&endDate=" + $("#id_enddate").val(),
+            $.get("/xscp/GetPieRangeData?type=" + type + "&startDate=" + $("#id_startdate").val() + "&endDate=" + $("#id_enddate").val(),
                 function (data, state) {
 
                     $.each(data, function (i, root) {
@@ -291,12 +295,6 @@
 
             var chart = new Highcharts.Chart(option);
         }
-        //$(function () {
-        //    //chart1();
-        //    chart2();
-        //    //chart3();
-        //});
-
     </script>
 </head>
 <body>
@@ -306,22 +304,19 @@
         <label style="color: white;">123</label>
         <label style="color: black;">     结束日期：</label>
         <input id="id_enddate" type="text" value="20170818" style="width:80px;" />
-        <label style="color: white;">123</label>
-        <label>类型(1:前;2:后)</label>
-        <input id="id_type" type="text" value="1" style="width:30px;" />
-        <button id="id_btn" style="width:50px;">刷新</button>
+
+        <input type="radio" name="radio" id="radio1" checked="true" />前二
+        <input type="radio" name="radio" id="radio2" />后二
     </div>
 
-    <div id="container0" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container1" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container2" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container3" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container4" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container5" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container6" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container7" style="width: 330px; height: 350px; float: left;"></div>
-    <div id="container8" style="width: 330px; height: 350px; float: left;"></div>
-
-
+    <div id="container0" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container1" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container2" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container3" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container4" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container5" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container6" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container7" style="width: 400px; height: 400px; float: left;"></div>
+    <div id="container8" style="width: 400px; height: 400px; float: left;"></div>
 </body>
 </html>

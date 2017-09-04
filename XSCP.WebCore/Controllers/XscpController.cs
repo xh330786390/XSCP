@@ -289,31 +289,31 @@ namespace XSCP.WebCore.Controllers
             switch (type)
             {
                 case EnumLotteryPatter.Big:
-                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Small:
-                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.BigSmall:
-                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.SmallBig:
-                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Dbl:
-                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Odd:
-                    lt_count = lt_Result.GroupBy(l => l.Odd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Odd).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Pair:
-                    lt_count = lt_Result.GroupBy(l => l.Pair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Pair).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.OddPair:
-                    lt_count = lt_Result.GroupBy(l => l.OddPair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.OddPair).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.PairOdd:
-                    lt_count = lt_Result.GroupBy(l => l.PairOdd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.PairOdd).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
             }
 
@@ -459,33 +459,38 @@ namespace XSCP.WebCore.Controllers
             switch (type)
             {
                 case EnumLotteryPatter.Big:
-                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Big).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Small:
-                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Small).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.BigSmall:
-                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.BigSmall).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.SmallBig:
-                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.SmallBig).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Dbl:
-                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Dbl).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Odd:
-                    lt_count = lt_Result.GroupBy(l => l.Odd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Odd).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.Pair:
-                    lt_count = lt_Result.GroupBy(l => l.Pair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.Pair).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.OddPair:
-                    lt_count = lt_Result.GroupBy(l => l.OddPair).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.OddPair).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
                 case EnumLotteryPatter.PairOdd:
-                    lt_count = lt_Result.GroupBy(l => l.PairOdd).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
+                    lt_count = lt_Result.GroupBy(l => l.PairOdd).Select(l => (new PieDataCount() { Num = l.Key.ToString(), Count = l.Count() })).ToList();
                     break;
             }
+
+            lt_count.ForEach(item =>
+            {
+                item.Num = item.Num.PadLeft(2, '0') + ":" + item.Count.ToString();
+            });
 
             string per = ((lt_0.Count / (double)lt_lotterys.Count) * 100).ToString("f2") + "%";
             pie.Name = pie.Name + "(max:" + lt_count.Max(l => l.Num) + ")";
@@ -603,7 +608,7 @@ namespace XSCP.WebCore.Controllers
                     item.Dtime = item.Dtime.Substring(6, 2);//取小时
             });
 
-            List<PieDataCount> lt_count = lt_0.GroupBy(l => l.Dtime).Select(l => (new PieDataCount() { Num = int.Parse(l.Key), Count = l.Count() })).ToList();
+            List<PieDataCount> lt_count = lt_0.GroupBy(l => l.Dtime).Select(l => (new PieDataCount() { Num = l.Key, Count = l.Count() })).ToList();
 
             string per = ((lt_0.Count / (double)lt_lotterys.Count) * 100).ToString("f2") + "%";
             pie.Name = pie.Name + "(max:" + lt_count.Max(l => l.Num) + ")";
@@ -625,7 +630,7 @@ namespace XSCP.WebCore.Controllers
 
     public class PieDataCount
     {
-        public int Num { get; set; }
+        public string Num { get; set; }
         public int Count { get; set; }
     }
 }
