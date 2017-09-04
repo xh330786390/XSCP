@@ -148,6 +148,29 @@
                 }
             });
 
+            ///定大
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostMaxDwdData",
+                data: {
+                    type: type,
+                    date: $("#id_date").val(),
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (type == 1) {
+                        initMaxData("#id_tbody_before", data)
+                    }
+                    else {
+                        initMaxData("#id_tbody_after", data)
+                    }
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+
             ///定位胆
             $.ajax({
                 type: 'post',
@@ -226,7 +249,7 @@
             else if (val > 15) {
                 strResult = strResult + "bgcolor='#FFD700'"
             }
-            else if (val > 8) {
+            else if (val > 6) {
                 strResult = strResult + "bgcolor='#00FF00'"
             }
             strResult = strResult + ">" + val + "</td>";
@@ -453,7 +476,7 @@
             @*<label>类型：</label>
                 <input id="id_type" type="text" value="1" />*@
             <label style="color:white;">期数：</label>
-            <input id="id_num" type="text" value="15" style="width:40px;" />
+            <input id="id_num" type="text" value="13" style="width:40px;" />
             <button id="id_btn" style="width:50px;">刷新</button>
             <a href="/xscp/HightCharts">走势图</a>
             @*<button id="id_btn_pie" style="width:50px;">走势图</button>*@

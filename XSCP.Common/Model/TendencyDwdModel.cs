@@ -57,6 +57,10 @@ namespace XSCP.Common.Model
         /// </summary>
         public string PairOdd { get; set; }
         /// <summary>
+        /// 重重 
+        /// </summary>
+        public string Dbl { get; set; }
+        /// <summary>
         /// 开奖时间
         /// </summary>
         public string Dtime { get; set; }

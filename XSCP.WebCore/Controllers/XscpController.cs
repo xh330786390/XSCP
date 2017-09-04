@@ -103,6 +103,36 @@ namespace XSCP.WebCore.Controllers
             return Json(tmDwd, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult PostMaxDwdData(int type, string date)
+        {
+            TendencyDwdModel tmDwd = new TendencyDwdModel();
+
+            if (type == 1)
+            {
+                var lt_TenThousand = XscpBLL.QueryMaxTendency1(Tendency1Enum.TenThousand, date);  //万位
+                var lt_Thousand = XscpBLL.QueryMaxTendency1(Tendency1Enum.Thousand, date);        //千位
+                if (lt_TenThousand != null)
+                {
+                    tmDwd = GetTendencyDwdValue(lt_TenThousand, lt_Thousand);
+                }
+                tmDwd.Sno = "定大";
+
+
+            }
+            else
+            {
+                var lt_Ten = XscpBLL.QueryMaxTendency1(Tendency1Enum.Ten, date); //十位
+                var lt_One = XscpBLL.QueryMaxTendency1(Tendency1Enum.One, date); //个位
+                if (lt_Ten != null)
+                {
+                    tmDwd = GetTendencyDwdValue(lt_Ten, lt_One);
+                }
+                tmDwd.Sno = "定大  ";
+            }
+
+            return Json(tmDwd, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult PostLoadData(int type, int num, string date)
         {
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
@@ -130,6 +160,7 @@ namespace XSCP.WebCore.Controllers
             tmResult.Pair = tm1.Pair + "|" + tm2.Pair;
             tmResult.OddPair = tm1.Odd + "|" + tm2.Pair;
             tmResult.PairOdd = tm1.Pair + "|" + tm2.Odd;
+            tmResult.Dbl = "-";
             tmResult.Dtime = tm1.Dtime;
             return tmResult;
         }
@@ -309,15 +340,15 @@ namespace XSCP.WebCore.Controllers
             List<PieData> lt_pie = new List<PieData>();
             if (lt_lotterys != null && lt_lotterys.Count > 0)
             {
-                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Big));
-                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Small));
                 lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.BigSmall));
                 lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.SmallBig));
-                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Dbl));
-                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Odd));
-                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Pair));
                 lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.OddPair));
                 lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.PairOdd));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Big));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Small));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Odd));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Pair));
+                lt_pie.Add(getSomeRangePie(lt_lotterys, EnumLotteryPatter.Dbl));
             }
 
             return Json(lt_pie, JsonRequestBehavior.AllowGet);
