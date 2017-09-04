@@ -18,6 +18,10 @@ namespace XSCP.Data.Server
         private readonly ILog _logger = LogManager.GetLogger(typeof(ExcuteJob));
         public void Execute(IJobExecutionContext context)
         {
+
+            //MysqlHelper.CreateConnection();
+            //return;
+
             DateTime currentDate = DateTime.Now;
             if (DateTime.Now.Hour <= 7)
             {

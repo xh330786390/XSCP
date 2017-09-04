@@ -39,6 +39,9 @@
     <Reference Include="log4net">
       <HintPath>..\Libs\Quartz\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\Libs\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="MySteel.Common.Helper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\MySteel.Common.Helper.dll</HintPath>

@@ -78,7 +78,15 @@ namespace XSCP.Common
 
             try
             {
-                SQLiteHelper.SaveLotteryData(lt_lotterys);
+                if(ConstParam.DbType == DbType.MySql)
+                {
+                    MysqlHelper.SaveLotteryData(lt_lotterys);
+                }
+                else
+                {
+                    SQLiteHelper.SaveLotteryData(lt_lotterys);
+                }
+               
             }
             catch (Exception er)
             {
@@ -122,7 +130,14 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<LotteryModel> QueryLottery(string date, int topNum)
         {
-            return SQLiteHelper.QueryLottery(date, topNum);
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                return MysqlHelper.QueryLottery(date, topNum);
+            }
+            else
+            {
+                return SQLiteHelper.QueryLottery(date, topNum);
+            }
         }
 
         /// <summary>
@@ -132,7 +147,14 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<int> CheckLottery(string date)
         {
-            return SQLiteHelper.CheckLottery(date);
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                return MysqlHelper.CheckLottery(date);
+            }
+            else
+            {
+                return SQLiteHelper.CheckLottery(date);
+            }
         }
         #endregion
 
@@ -155,7 +177,15 @@ namespace XSCP.Common
             int prePperiod = int.Parse(minData.Sno) - 1;
             if (prePperiod > 0)
             {
-                preTendency1 = SQLiteHelper.QueryTendency1(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
+                if (ConstParam.DbType == DbType.MySql)
+                {
+                    preTendency1 = MysqlHelper.QueryTendency1(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
+                }
+                else
+                {
+                    preTendency1 = SQLiteHelper.QueryTendency1(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
+                }
+                
             }
 
             AnalyzeTendency At = new AnalyzeTendency();
@@ -188,7 +218,16 @@ namespace XSCP.Common
                     preTendency1 = tm;
                 }
             }
-            SQLiteHelper.SaveTendency1(type, ltTendency);
+
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                MysqlHelper.SaveTendency1(type, ltTendency);
+            }
+            else
+            {
+                SQLiteHelper.SaveTendency1(type, ltTendency);
+            }
+           
         }
 
         /// <summary>
@@ -200,7 +239,14 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<TendencyModel> QueryTendency1(Tendency1Enum type, string date, int topNum)
         {
-            return SQLiteHelper.QueryTendency1(type, date, topNum);
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                return MysqlHelper.QueryTendency1(type, date, topNum);
+            }
+            else
+            {
+                return SQLiteHelper.QueryTendency1(type, date, topNum);
+            }
         }
 
         /// <summary>
@@ -211,7 +257,14 @@ namespace XSCP.Common
         /// <returns></returns>
         public static TendencyModel QueryMaxTendency1(Tendency1Enum type, string date)
         {
-            return SQLiteHelper.QueryMaxTendency1(type, date);
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                return MysqlHelper.QueryMaxTendency1(type, date);
+            }
+            else
+            {
+                return SQLiteHelper.QueryMaxTendency1(type, date);
+            }
         }
         #endregion
 
@@ -245,7 +298,14 @@ namespace XSCP.Common
             int prePperiod = int.Parse(minData.Sno) - 1;
             if (prePperiod > 0)
             {
-                preTendency2 = SQLiteHelper.QueryTendency2(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
+                if (ConstParam.DbType == DbType.MySql)
+                {
+                    preTendency2 = MysqlHelper.QueryTendency2(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
+                }
+                else
+                {
+                    preTendency2 = SQLiteHelper.QueryTendency2(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
+                }
             }
 
             AnalyzeTendency At = new AnalyzeTendency();
@@ -283,7 +343,16 @@ namespace XSCP.Common
                     preTendency2 = tm;
                 }
             }
-            SQLiteHelper.SaveTendency2(type, ltTendency2);
+           
+
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                MysqlHelper.SaveTendency2(type, ltTendency2);
+            }
+            else
+            {
+                SQLiteHelper.SaveTendency2(type, ltTendency2);
+            }
         }
 
         /// <summary>
@@ -294,7 +363,14 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<Tendency2Model> QueryTendency2(Tendency2Enum type, string date, int topNum)
         {
-            return SQLiteHelper.QueryTendency2(type, date, topNum);
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                return MysqlHelper.QueryTendency2(type, date, topNum);
+            }
+            else
+            {
+                return SQLiteHelper.QueryTendency2(type, date, topNum);
+            }
         }
 
         /// <summary>
@@ -306,7 +382,14 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<Tendency2Model> QueryTendency2Range(Tendency2Enum type, string startDate, string endDate)
         {
-            return SQLiteHelper.QueryTendency2Range(type, startDate, endDate);
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                return MysqlHelper.QueryTendency2Range(type, startDate, endDate);
+            }
+            else
+            {
+                return SQLiteHelper.QueryTendency2Range(type, startDate, endDate);
+            }
         }
 
         /// <summary>
@@ -317,7 +400,14 @@ namespace XSCP.Common
         /// <returns></returns>
         public static Tendency2Model QueryMaxTendency2(Tendency2Enum type, string date)
         {
-            return SQLiteHelper.QueryMaxTendency2(type, date);
+            if (ConstParam.DbType == DbType.MySql)
+            {
+                return MysqlHelper.QueryMaxTendency2(type, date);
+            }
+            else
+            {
+                return SQLiteHelper.QueryMaxTendency2(type, date);
+            }
         }
 
         #endregion

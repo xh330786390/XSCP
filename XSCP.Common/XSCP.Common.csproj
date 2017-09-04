@@ -36,6 +36,9 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\Libs\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\Libs\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="MySteel.Common.Helper">
       <HintPath>..\Libs\MySteel.Common.Helper.dll</HintPath>
     </Reference>
@@ -51,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConstParam.cs" />
     <Compile Include="Extend\DateTimeExtend.cs" />
     <Compile Include="Extend\StringExtend.cs" />
     <Compile Include="Controllers\AnalyzeTendency.cs" />
@@ -85,6 +89,7 @@
     <Compile Include="Model\WinLotteryModel.cs" />
     <Compile Include="Model\XscpDataJsonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MysqlHelper.cs" />
     <Compile Include="SQLiteHelper.cs" />
     <Compile Include="WebHelper.cs" />
     <Compile Include="XscpBLL.cs" />
