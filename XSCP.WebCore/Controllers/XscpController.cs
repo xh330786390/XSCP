@@ -17,8 +17,8 @@ namespace XSCP.WebCore.Controllers
         // GET: /Xscp/
         public ActionResult Index()
         {
-            var lt_lotterys = XscpMysqlBLL.QueryLottery(DateTime.Now.AddDays(-2).ToString("yyyyMMdd"), 5);
-            ViewBag.Lotterys = lt_lotterys;
+            //var lt_lotterys = XscpMysqlBLL.QueryLottery(DateTime.Now.AddDays(-2).ToString("yyyyMMdd"), 5);
+            //ViewBag.Lotterys = lt_lotterys;
             return View();
         }
 

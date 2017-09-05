@@ -142,12 +142,12 @@ namespace XSCP.Common
                     for (int i = lotterys.Count - 1; i >= 0; i--)
                     {
                         LotteryModel lm = lotterys[i];
-                        //int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
-                        //if (count == 0)
-                        //{
-                        string sql = string.Format("insert into {0}(Ymd,Sno,Lottery,Num1,Num2,Num3,Num4,Num5,Dtime) VALUES( @Ymd,@Sno,@Lottery,@Num1,@Num2,@Num3,@Num4,@Num5,@Dtime)", LottoryTbName);
-                        conn.Execute(sql, lm, trans);
-                        //}
+                        int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
+                        if (count == 0)
+                        {
+                            string sql = string.Format("insert into {0}(Ymd,Sno,Lottery,Num1,Num2,Num3,Num4,Num5,Dtime) VALUES( @Ymd,@Sno,@Lottery,@Num1,@Num2,@Num3,@Num4,@Num5,@Dtime)", LottoryTbName);
+                            conn.Execute(sql, lm, trans);
+                        }
                     }
                     trans.Commit();
                 }
@@ -269,38 +269,38 @@ namespace XSCP.Common
                     for (int i = 0; i < tendencys.Count; i++)
                     {
                         TendencyModel lm = tendencys[i];
-                        //int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
-                        //if (count == 0)
-                        //{
-                        ///新增
-                        sql = string.Format("insert into {0}(Ymd      ," +
-                                                                    @"Sno      ," +
-                                                                    @"Lottery  ," +
-                                                                    @"Big      ," +
-                                                                    @"Small    ," +
-                                                                    @"Odd      ," +
-                                                                    @"Pair     ," +
-                                                                    @"Dtime     )" +
-                                                    @" VALUES (" +
-                                                                    @"@Ymd      ," +
-                                                                    @"@Sno      ," +
-                                                                    @"@Lottery  ," +
-                                                                    @"@Big      ," +
-                                                                    @"@Small    ," +
-                                                                    @"@Odd      ," +
-                                                                    @"@Pair     ," +
-                                                                    @"@Dtime     " +
-                                                    @")", tableName);
-                        //}
-                        //else
-                        //{
-                        //    ///修改
-                        //    sql = string.Format("Update {0} set Big       =@Big      ," +
-                        //                                        "Small    =@Small    ," +
-                        //                                        "Odd      =@Odd      ," +
-                        //                                        "Pair     =@Pair     " +
-                        //                                        "where Ymd = @Ymd and Sno=@Sno   ", tableName);
-                        //}
+                        int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
+                        if (count == 0)
+                        {
+                            ///新增
+                            sql = string.Format("insert into {0}(Ymd      ," +
+                                                                        @"Sno      ," +
+                                                                        @"Lottery  ," +
+                                                                        @"Big      ," +
+                                                                        @"Small    ," +
+                                                                        @"Odd      ," +
+                                                                        @"Pair     ," +
+                                                                        @"Dtime     )" +
+                                                        @" VALUES (" +
+                                                                        @"@Ymd      ," +
+                                                                        @"@Sno      ," +
+                                                                        @"@Lottery  ," +
+                                                                        @"@Big      ," +
+                                                                        @"@Small    ," +
+                                                                        @"@Odd      ," +
+                                                                        @"@Pair     ," +
+                                                                        @"@Dtime     " +
+                                                        @")", tableName);
+                        }
+                        else
+                        {
+                            ///修改
+                            sql = string.Format("Update {0} set Big       =@Big      ," +
+                                                                "Small    =@Small    ," +
+                                                                "Odd      =@Odd      ," +
+                                                                "Pair     =@Pair     " +
+                                                                "where Ymd = @Ymd and Sno=@Sno   ", tableName);
+                        }
                         conn.Execute(sql, lm, trans);
                     }
                     trans.Commit();
@@ -422,54 +422,54 @@ namespace XSCP.Common
                     for (int i = 0; i < lotterys.Count; i++)
                     {
                         Tendency2Model lm = lotterys[i];
-                        //int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
-                        //if (count == 0)
-                        //{
-                        ///新增
-                        sql = string.Format("insert into {0}(Ymd      ," +
-                                                                    @"Sno      ," +
-                                                                    @"Lottery  ," +
-                                                                    @"Big      ," +
-                                                                    @"Small    ," +
-                                                                    @"BigSmall ," +
-                                                                    @"SmallBig ," +
-                                                                    @"Odd      ," +
-                                                                    @"Pair     ," +
-                                                                    @"OddPair  ," +
-                                                                    @"PairOdd  ," +
-                                                                    @"Dbl      ," +
-                                                                    @"Dtime     )" +
-                                                    @" VALUES (" +
-                                                                    @"@Ymd      ," +
-                                                                    @"@Sno      ," +
-                                                                    @"@Lottery  ," +
-                                                                    @"@Big      ," +
-                                                                    @"@Small    ," +
-                                                                    @"@BigSmall ," +
-                                                                    @"@SmallBig ," +
-                                                                    @"@Odd      ," +
-                                                                    @"@Pair     ," +
-                                                                    @"@OddPair  ," +
-                                                                    @"@PairOdd  ," +
-                                                                    @"@Dbl      ," +
-                                                                    @"@Dtime     " +
-                                                    @")", tableName);
+                        int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
+                        if (count == 0)
+                        {
+                            ///新增
+                            sql = string.Format("insert into {0}(Ymd      ," +
+                                                                        @"Sno      ," +
+                                                                        @"Lottery  ," +
+                                                                        @"Big      ," +
+                                                                        @"Small    ," +
+                                                                        @"BigSmall ," +
+                                                                        @"SmallBig ," +
+                                                                        @"Odd      ," +
+                                                                        @"Pair     ," +
+                                                                        @"OddPair  ," +
+                                                                        @"PairOdd  ," +
+                                                                        @"Dbl      ," +
+                                                                        @"Dtime     )" +
+                                                        @" VALUES (" +
+                                                                        @"@Ymd      ," +
+                                                                        @"@Sno      ," +
+                                                                        @"@Lottery  ," +
+                                                                        @"@Big      ," +
+                                                                        @"@Small    ," +
+                                                                        @"@BigSmall ," +
+                                                                        @"@SmallBig ," +
+                                                                        @"@Odd      ," +
+                                                                        @"@Pair     ," +
+                                                                        @"@OddPair  ," +
+                                                                        @"@PairOdd  ," +
+                                                                        @"@Dbl      ," +
+                                                                        @"@Dtime     " +
+                                                        @")", tableName);
 
-                        //}
-                        //else
-                        //{
-                        //    ///修改
-                        //    sql = string.Format("Update {0} set Big       =@Big      ," +
-                        //                                        "Small    =@Small    ," +
-                        //                                        "BigSmall =@BigSmall ," +
-                        //                                        "SmallBig =@SmallBig ," +
-                        //                                        "Odd      =@Odd      ," +
-                        //                                        "Pair     =@Pair     ," +
-                        //                                        "OddPair  =@OddPair  ," +
-                        //                                        "PairOdd  =@PairOdd  ," +
-                        //                                        "Dbl      =@Dbl       " +
-                        //                                        "where Ymd = @Ymd and Sno=@Sno   ", tableName);
-                        //}
+                        }
+                        else
+                        {
+                            ///修改
+                            sql = string.Format("Update {0} set Big       =@Big      ," +
+                                                                "Small    =@Small    ," +
+                                                                "BigSmall =@BigSmall ," +
+                                                                "SmallBig =@SmallBig ," +
+                                                                "Odd      =@Odd      ," +
+                                                                "Pair     =@Pair     ," +
+                                                                "OddPair  =@OddPair  ," +
+                                                                "PairOdd  =@PairOdd  ," +
+                                                                "Dbl      =@Dbl       " +
+                                                                "where Ymd = @Ymd and Sno=@Sno   ", tableName);
+                        }
                         conn.Execute(sql, lm, trans);
                     }
                     trans.Commit();
