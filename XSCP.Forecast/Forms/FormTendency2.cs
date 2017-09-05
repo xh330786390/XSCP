@@ -35,7 +35,7 @@ namespace XSCP.Forecast
         /// <param name="e"></param>
         private void btnGet_Click(object sender, EventArgs e)
         {
-            List<Tendency2Model> lt = XscpBLL.QueryTendency2(this.type, this.date, int.Parse(this.textBox3.Text));
+            List<Tendency2Model> lt = XscpMysqlBLL.QueryTendency2(this.type, this.date, int.Parse(this.textBox3.Text));
             LoadData(lt);
         }
 
@@ -115,7 +115,7 @@ namespace XSCP.Forecast
                 count = 1380;
             }
 
-            List<Tendency2Model> lt = XscpBLL.QueryTendency2(this.type, this.date, count);
+            List<Tendency2Model> lt = XscpMysqlBLL.QueryTendency2(this.type, this.date, count);
             LoadData(lt);
         }
     }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSCP.WebCore", "XSCP.WebCor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSCP.Data.Server", "XSCP.Data.Server\XSCP.Data.Server.csproj", "{16AB415B-022A-4E12-8BAF-D3191E7EECF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncData", "SyncData\SyncData.csproj", "{C7C65EBB-92E1-47F2-AE15-1F74631BC541}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,16 @@ Global
 		{16AB415B-022A-4E12-8BAF-D3191E7EECF4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{16AB415B-022A-4E12-8BAF-D3191E7EECF4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{16AB415B-022A-4E12-8BAF-D3191E7EECF4}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C7C65EBB-92E1-47F2-AE15-1F74631BC541}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

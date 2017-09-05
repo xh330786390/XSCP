@@ -13,7 +13,7 @@ namespace XSCP.Common
     ///     2).不连续期数，趋势则从新开始
     /// @3.检测缺失期数
     /// </summary>
-    public class XscpBLL
+    public class XscpMysqlBLL
     {
         /// <summary>
         /// 更新彩票
@@ -26,18 +26,18 @@ namespace XSCP.Common
             try
             {
                 ///新增开奖号码
-                List<LotteryModel> lt_LotteryModel = XscpBLL.SaveLottery(dt, ltData);
+                List<LotteryModel> lt_LotteryModel = XscpMysqlBLL.SaveLottery(dt, ltData);
 
                 ///新增一星走势
-                XscpBLL.SaveTendency1(Tendency1Enum.TenThousand, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.Thousand, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.Hundred, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.Ten, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.One, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.TenThousand, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.Thousand, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.Hundred, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.Ten, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.One, lt_LotteryModel);
 
                 ///新增二星走势
-                XscpBLL.SaveTendency2(Tendency2Enum.Before, lt_LotteryModel);
-                XscpBLL.SaveTendency2(Tendency2Enum.After, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency2(Tendency2Enum.Before, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency2(Tendency2Enum.After, lt_LotteryModel);
                 return true;
             }
             catch (Exception er)
@@ -78,15 +78,7 @@ namespace XSCP.Common
 
             try
             {
-                if(ConstParam.DbType == DbType.MySql)
-                {
-                    MysqlHelper.SaveLotteryData(lt_lotterys);
-                }
-                else
-                {
-                    SQLiteHelper.SaveLotteryData(lt_lotterys);
-                }
-               
+                MysqlHelper.SaveLotteryData(lt_lotterys);
             }
             catch (Exception er)
             {
@@ -130,14 +122,7 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<LotteryModel> QueryLottery(string date, int topNum)
         {
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                return MysqlHelper.QueryLottery(date, topNum);
-            }
-            else
-            {
-                return SQLiteHelper.QueryLottery(date, topNum);
-            }
+            return MysqlHelper.QueryLottery(date, topNum);
         }
 
         /// <summary>
@@ -147,14 +132,7 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<int> CheckLottery(string date)
         {
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                return MysqlHelper.CheckLottery(date);
-            }
-            else
-            {
-                return SQLiteHelper.CheckLottery(date);
-            }
+            return MysqlHelper.CheckLottery(date);
         }
         #endregion
 
@@ -177,15 +155,7 @@ namespace XSCP.Common
             int prePperiod = int.Parse(minData.Sno) - 1;
             if (prePperiod > 0)
             {
-                if (ConstParam.DbType == DbType.MySql)
-                {
-                    preTendency1 = MysqlHelper.QueryTendency1(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
-                }
-                else
-                {
-                    preTendency1 = SQLiteHelper.QueryTendency1(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
-                }
-                
+                preTendency1 = MysqlHelper.QueryTendency1(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
             }
 
             AnalyzeTendency At = new AnalyzeTendency();
@@ -219,15 +189,7 @@ namespace XSCP.Common
                 }
             }
 
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                MysqlHelper.SaveTendency1(type, ltTendency);
-            }
-            else
-            {
-                SQLiteHelper.SaveTendency1(type, ltTendency);
-            }
-           
+            MysqlHelper.SaveTendency1(type, ltTendency);
         }
 
         /// <summary>
@@ -239,14 +201,7 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<TendencyModel> QueryTendency1(Tendency1Enum type, string date, int topNum)
         {
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                return MysqlHelper.QueryTendency1(type, date, topNum);
-            }
-            else
-            {
-                return SQLiteHelper.QueryTendency1(type, date, topNum);
-            }
+            return MysqlHelper.QueryTendency1(type, date, topNum);
         }
 
         /// <summary>
@@ -257,14 +212,7 @@ namespace XSCP.Common
         /// <returns></returns>
         public static TendencyModel QueryMaxTendency1(Tendency1Enum type, string date)
         {
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                return MysqlHelper.QueryMaxTendency1(type, date);
-            }
-            else
-            {
-                return SQLiteHelper.QueryMaxTendency1(type, date);
-            }
+            return MysqlHelper.QueryMaxTendency1(type, date);
         }
         #endregion
 
@@ -298,14 +246,7 @@ namespace XSCP.Common
             int prePperiod = int.Parse(minData.Sno) - 1;
             if (prePperiod > 0)
             {
-                if (ConstParam.DbType == DbType.MySql)
-                {
-                    preTendency2 = MysqlHelper.QueryTendency2(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
-                }
-                else
-                {
-                    preTendency2 = SQLiteHelper.QueryTendency2(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
-                }
+                preTendency2 = MysqlHelper.QueryTendency2(type, minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
             }
 
             AnalyzeTendency At = new AnalyzeTendency();
@@ -343,16 +284,8 @@ namespace XSCP.Common
                     preTendency2 = tm;
                 }
             }
-           
 
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                MysqlHelper.SaveTendency2(type, ltTendency2);
-            }
-            else
-            {
-                SQLiteHelper.SaveTendency2(type, ltTendency2);
-            }
+            MysqlHelper.SaveTendency2(type, ltTendency2);
         }
 
         /// <summary>
@@ -363,14 +296,7 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<Tendency2Model> QueryTendency2(Tendency2Enum type, string date, int topNum)
         {
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                return MysqlHelper.QueryTendency2(type, date, topNum);
-            }
-            else
-            {
-                return SQLiteHelper.QueryTendency2(type, date, topNum);
-            }
+            return MysqlHelper.QueryTendency2(type, date, topNum);
         }
 
         /// <summary>
@@ -382,14 +308,7 @@ namespace XSCP.Common
         /// <returns></returns>
         public static List<Tendency2Model> QueryTendency2Range(Tendency2Enum type, string startDate, string endDate)
         {
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                return MysqlHelper.QueryTendency2Range(type, startDate, endDate);
-            }
-            else
-            {
-                return SQLiteHelper.QueryTendency2Range(type, startDate, endDate);
-            }
+            return MysqlHelper.QueryTendency2Range(type, startDate, endDate);
         }
 
         /// <summary>
@@ -400,38 +319,9 @@ namespace XSCP.Common
         /// <returns></returns>
         public static Tendency2Model QueryMaxTendency2(Tendency2Enum type, string date)
         {
-            if (ConstParam.DbType == DbType.MySql)
-            {
-                return MysqlHelper.QueryMaxTendency2(type, date);
-            }
-            else
-            {
-                return SQLiteHelper.QueryMaxTendency2(type, date);
-            }
+            return MysqlHelper.QueryMaxTendency2(type, date);
         }
 
-        #endregion
-
-        #region [浏览器 Cookies]
-
-        /// <summary>
-        /// 查找所有域名
-        /// </summary>
-        /// <returns></returns>
-        public static List<string> QueryCookieDomain()
-        {
-            return SQLiteHelper.QueryCookieDomain();
-        }
-
-        /// <summary>
-        /// 查找域名下所有 CookieName
-        /// </summary>
-        /// <param name="domain"></param>
-        /// <returns></returns>
-        public static List<CookieModel> QueryCookieKeys(string domain)
-        {
-            return SQLiteHelper.QueryCookieKeys(domain);
-        }
         #endregion
     }
 }

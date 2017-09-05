@@ -124,7 +124,7 @@ namespace XSCP.Forecast
 
         private void FormWeb_Load(object sender, EventArgs e)
         {
-            List<string> lt_alldomain = XSCP.Common.XscpBLL.QueryCookieDomain();
+            List<string> lt_alldomain = XSCP.Common.XscpSqlliteBLL.QueryCookieDomain();
             List<string> lt_ffdomain = new List<string>();
 
             lt_alldomain.ForEach(l =>
@@ -154,7 +154,7 @@ namespace XSCP.Forecast
 
         private void comDomain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<CookieModel> lt_cookie = XSCP.Common.XscpBLL.QueryCookieKeys("'" + this.comDomain.Text + "'");
+            List<CookieModel> lt_cookie = XSCP.Common.XscpSqlliteBLL.QueryCookieKeys("'" + this.comDomain.Text + "'");
             this.dgvDigit.DataSource = lt_cookie;
         }
     }

@@ -92,7 +92,8 @@
     <Compile Include="MysqlHelper.cs" />
     <Compile Include="SQLiteHelper.cs" />
     <Compile Include="WebHelper.cs" />
-    <Compile Include="XscpBLL.cs" />
+    <Compile Include="XscpSqlliteBLL.cs" />
+    <Compile Include="XscpMysqlBLL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

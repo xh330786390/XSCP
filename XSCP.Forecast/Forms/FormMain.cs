@@ -159,7 +159,7 @@ namespace XSCP.Forecast
         private void refreshData()
         {
             //最新开奖号码
-            var lt_lotterys = XscpBLL.QueryLottery(this.date, 1);
+            var lt_lotterys = XscpMysqlBLL.QueryLottery(this.date, 1);
             if (lt_lotterys == null || lt_lotterys.Count == 0) return;
 
             ///加载最新开奖号
@@ -169,12 +169,12 @@ namespace XSCP.Forecast
             List<Tendency2Model> lt_tendency2 = new List<Tendency2Model>();
 
             ///前二星最最大走势
-            Tendency2Model maxBefore = XscpBLL.QueryMaxTendency2(Tendency2Enum.Before, this.date);
+            Tendency2Model maxBefore = XscpMysqlBLL.QueryMaxTendency2(Tendency2Enum.Before, this.date);
             maxBefore.Sno = "前大";
             lt_tendency2.Add(maxBefore);
 
             ///前二星最近走势势
-            var lt_2Before = XscpBLL.QueryTendency2(Tendency2Enum.Before, this.date, 1);
+            var lt_2Before = XscpMysqlBLL.QueryTendency2(Tendency2Enum.Before, this.date, 1);
             if (lt_2Before != null && lt_2Before.Count > 0)
             {
                 lt_2Before[0].Sno = "前二";
@@ -182,7 +182,7 @@ namespace XSCP.Forecast
             }
 
             ///后二星最近走势势
-            var lt_2After = XscpBLL.QueryTendency2(Tendency2Enum.After, this.date, 1);
+            var lt_2After = XscpMysqlBLL.QueryTendency2(Tendency2Enum.After, this.date, 1);
             if (lt_2After != null && lt_2After.Count > 0)
             {
                 lt_2After[0].Sno = "后二";
@@ -190,18 +190,18 @@ namespace XSCP.Forecast
             }
 
             ///后二星最最大走势
-            Tendency2Model maxAfter = XscpBLL.QueryMaxTendency2(Tendency2Enum.After, this.date);
+            Tendency2Model maxAfter = XscpMysqlBLL.QueryMaxTendency2(Tendency2Enum.After, this.date);
             maxAfter.Sno = "后大";
             lt_tendency2.Add(maxAfter);
 
             List<TendencyModel> lt_Tendency = new List<TendencyModel>();
             ///前定二星最近走势势
-            var lt_TenThousand = XscpBLL.QueryTendency1(Tendency1Enum.TenThousand, this.date, 1);  //万位
-            var lt_Thousand = XscpBLL.QueryTendency1(Tendency1Enum.Thousand, this.date, 1);        //千位
+            var lt_TenThousand = XscpMysqlBLL.QueryTendency1(Tendency1Enum.TenThousand, this.date, 1);  //万位
+            var lt_Thousand = XscpMysqlBLL.QueryTendency1(Tendency1Enum.Thousand, this.date, 1);        //千位
 
             ///后定最近走势势
-            var lt_Ten = XscpBLL.QueryTendency1(Tendency1Enum.Ten, this.date, 1); //十位
-            var lt_One = XscpBLL.QueryTendency1(Tendency1Enum.One, this.date, 1); //个位
+            var lt_Ten = XscpMysqlBLL.QueryTendency1(Tendency1Enum.Ten, this.date, 1); //十位
+            var lt_One = XscpMysqlBLL.QueryTendency1(Tendency1Enum.One, this.date, 1); //个位
 
             lt_TenThousand[0].Sno = "前定";
             lt_Thousand[0].Sno = "前定";

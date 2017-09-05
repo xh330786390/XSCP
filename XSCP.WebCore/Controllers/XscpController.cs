@@ -17,7 +17,7 @@ namespace XSCP.WebCore.Controllers
         // GET: /Xscp/
         public ActionResult Index()
         {
-            var lt_lotterys = XscpBLL.QueryLottery(DateTime.Now.AddDays(-2).ToString("yyyyMMdd"), 5);
+            var lt_lotterys = XscpMysqlBLL.QueryLottery(DateTime.Now.AddDays(-2).ToString("yyyyMMdd"), 5);
             ViewBag.Lotterys = lt_lotterys;
             return View();
         }
@@ -59,13 +59,13 @@ namespace XSCP.WebCore.Controllers
             Tendency2Model maxLotery = new Tendency2Model();
             if (type == 1)
             {
-                maxLotery = XscpBLL.QueryMaxTendency2(Common.Model.Tendency2Enum.Before, date);
+                maxLotery = XscpMysqlBLL.QueryMaxTendency2(Common.Model.Tendency2Enum.Before, date);
                 maxLotery.Sno = "前大";
                 maxLotery.Dtime = "-";
             }
             else
             {
-                maxLotery = XscpBLL.QueryMaxTendency2(Common.Model.Tendency2Enum.After, date);
+                maxLotery = XscpMysqlBLL.QueryMaxTendency2(Common.Model.Tendency2Enum.After, date);
                 maxLotery.Sno = "后大";
                 maxLotery.Dtime = "-";
             }
@@ -79,8 +79,8 @@ namespace XSCP.WebCore.Controllers
 
             if (type == 1)
             {
-                var lt_TenThousand = XscpBLL.QueryTendency1(Tendency1Enum.TenThousand, date, 1);  //万位
-                var lt_Thousand = XscpBLL.QueryTendency1(Tendency1Enum.Thousand, date, 1);        //千位
+                var lt_TenThousand = XscpMysqlBLL.QueryTendency1(Tendency1Enum.TenThousand, date, 1);  //万位
+                var lt_Thousand = XscpMysqlBLL.QueryTendency1(Tendency1Enum.Thousand, date, 1);        //千位
                 if (lt_TenThousand != null && lt_TenThousand.Count > 0)
                 {
                     tmDwd = GetTendencyDwdValue(lt_TenThousand[0], lt_Thousand[0]);
@@ -91,8 +91,8 @@ namespace XSCP.WebCore.Controllers
             }
             else
             {
-                var lt_Ten = XscpBLL.QueryTendency1(Tendency1Enum.Ten, date, 1); //十位
-                var lt_One = XscpBLL.QueryTendency1(Tendency1Enum.One, date, 1); //个位
+                var lt_Ten = XscpMysqlBLL.QueryTendency1(Tendency1Enum.Ten, date, 1); //十位
+                var lt_One = XscpMysqlBLL.QueryTendency1(Tendency1Enum.One, date, 1); //个位
                 if (lt_Ten != null && lt_Ten.Count > 0)
                 {
                     tmDwd = GetTendencyDwdValue(lt_Ten[0], lt_One[0]);
@@ -109,8 +109,8 @@ namespace XSCP.WebCore.Controllers
 
             if (type == 1)
             {
-                var lt_TenThousand = XscpBLL.QueryMaxTendency1(Tendency1Enum.TenThousand, date);  //万位
-                var lt_Thousand = XscpBLL.QueryMaxTendency1(Tendency1Enum.Thousand, date);        //千位
+                var lt_TenThousand = XscpMysqlBLL.QueryMaxTendency1(Tendency1Enum.TenThousand, date);  //万位
+                var lt_Thousand = XscpMysqlBLL.QueryMaxTendency1(Tendency1Enum.Thousand, date);        //千位
                 if (lt_TenThousand != null)
                 {
                     tmDwd = GetTendencyDwdValue(lt_TenThousand, lt_Thousand);
@@ -121,8 +121,8 @@ namespace XSCP.WebCore.Controllers
             }
             else
             {
-                var lt_Ten = XscpBLL.QueryMaxTendency1(Tendency1Enum.Ten, date); //十位
-                var lt_One = XscpBLL.QueryMaxTendency1(Tendency1Enum.One, date); //个位
+                var lt_Ten = XscpMysqlBLL.QueryMaxTendency1(Tendency1Enum.Ten, date); //十位
+                var lt_One = XscpMysqlBLL.QueryMaxTendency1(Tendency1Enum.One, date); //个位
                 if (lt_Ten != null)
                 {
                     tmDwd = GetTendencyDwdValue(lt_Ten, lt_One);
@@ -138,11 +138,11 @@ namespace XSCP.WebCore.Controllers
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
-                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.Before, date, num);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2(Common.Model.Tendency2Enum.Before, date, num);
             }
             else
             {
-                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.After, date, num);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2(Common.Model.Tendency2Enum.After, date, num);
             }
             return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
         }
@@ -176,11 +176,11 @@ namespace XSCP.WebCore.Controllers
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
-                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.Before, date, num);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2(Common.Model.Tendency2Enum.Before, date, num);
             }
             else
             {
-                lt_lotterys = XscpBLL.QueryTendency2(Common.Model.Tendency2Enum.After, date, num);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2(Common.Model.Tendency2Enum.After, date, num);
             }
 
             List<PieData> lt_pie = new List<PieData>();
@@ -331,11 +331,11 @@ namespace XSCP.WebCore.Controllers
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
-                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.Before, startDate, endDate);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2Range(Common.Model.Tendency2Enum.Before, startDate, endDate);
             }
             else
             {
-                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.After, startDate, endDate);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2Range(Common.Model.Tendency2Enum.After, startDate, endDate);
             }
             List<PieData> lt_pie = new List<PieData>();
             if (lt_lotterys != null && lt_lotterys.Count > 0)
@@ -505,11 +505,11 @@ namespace XSCP.WebCore.Controllers
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
-                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.Before, startDate, endDate);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2Range(Common.Model.Tendency2Enum.Before, startDate, endDate);
             }
             else
             {
-                lt_lotterys = XscpBLL.QueryTendency2Range(Common.Model.Tendency2Enum.After, startDate, endDate);
+                lt_lotterys = XscpMysqlBLL.QueryTendency2Range(Common.Model.Tendency2Enum.After, startDate, endDate);
             }
 
             List<PieData> lt_pie = new List<PieData>();

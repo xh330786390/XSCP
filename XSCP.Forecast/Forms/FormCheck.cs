@@ -47,7 +47,7 @@ namespace XSCP.Forecast
             int totalMinute = getMinutes();
             if (totalMinute == 0) return;
 
-            List<int> ltData = XscpBLL.CheckLottery(this.date.ToString("yyyyMMdd"));
+            List<int> ltData = XscpMysqlBLL.CheckLottery(this.date.ToString("yyyyMMdd"));
 
             if (ltData == null || ltData.Count == 0)
             {

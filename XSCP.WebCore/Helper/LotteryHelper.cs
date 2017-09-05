@@ -21,18 +21,18 @@ namespace XSCP.Forecast
             try
             {
                 ///新增开奖号码
-                List<LotteryModel> lt_LotteryModel = XscpBLL.SaveLottery(dt, ltData);
+                List<LotteryModel> lt_LotteryModel = XscpMysqlBLL.SaveLottery(dt, ltData);
 
                 ///新增一星走势
-                XscpBLL.SaveTendency1(Tendency1Enum.TenThousand, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.Thousand, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.Hundred, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.Ten, lt_LotteryModel);
-                XscpBLL.SaveTendency1(Tendency1Enum.One, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.TenThousand, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.Thousand, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.Hundred, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.Ten, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency1(Tendency1Enum.One, lt_LotteryModel);
 
                 ///新增二星走势
-                XscpBLL.SaveTendency2(Tendency2Enum.Before, lt_LotteryModel);
-                XscpBLL.SaveTendency2(Tendency2Enum.After, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency2(Tendency2Enum.Before, lt_LotteryModel);
+                XscpMysqlBLL.SaveTendency2(Tendency2Enum.After, lt_LotteryModel);
                 return true;
             }
             catch (Exception)

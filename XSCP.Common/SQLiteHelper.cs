@@ -15,13 +15,19 @@ namespace XSCP.Common
         /// 数据库文件路径
         /// </summary>
 
+        private static string dbPath = null;
         public static string DbPath
         {
             get
             {
-                string dbBasePath = AppSettingsHelper.GetStringValue("DbPath");
-                string dbName = "XS" + DateTime.Now.ToString("yyyyMM") + ".db3";
-                return Path.Combine(dbBasePath, dbName);
+                if (dbPath == null)
+                {
+                    string dbBasePath = AppSettingsHelper.GetStringValue("DbPath");
+                    //string dbName = "XS" + DateTime.Now.ToString("yyyyMM") + ".db3";
+                    string dbName = "XS201709.db3";
+                    dbPath = Path.Combine(dbBasePath, dbName);
+                }
+                return dbPath;
             }
         }
 
@@ -220,6 +226,21 @@ namespace XSCP.Common
             {
                 string sql = string.Format("select * from {0} where Ymd = '{1}' order by Sno desc limit 0,{2}", LottoryTbName, date, topNum);
                 var lt = conn.Query<LotteryModel>(sql).ToList();
+                return lt;
+            }
+        }
+
+        /// <summary>
+        /// 查询日期
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static List<string> QueryDateList()
+        {
+            using (SQLiteConnection conn = CreateConnection())
+            {
+                string sql = string.Format("select ymd from {0} group by ymd", LottoryTbName);
+                var lt = conn.Query<string>(sql).ToList();
                 return lt;
             }
         }
