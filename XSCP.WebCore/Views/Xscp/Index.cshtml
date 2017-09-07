@@ -65,6 +65,8 @@
             request_post(1);
             request_post(2);
 
+            request_digit_post();
+
             setInterval(downtime, 1000);
             var bl = false;
             function downtime() {
@@ -87,6 +89,7 @@
                 if (!bl && downSeconds > 35 && downSeconds < 48) {
                     request_post(1);
                     request_post(2);
+                    request_digit_post();
                     bl = true;
                 } else if (downSeconds <= 35 || downSeconds >= 48) {
                     bl = false;
@@ -235,6 +238,27 @@
             //    });
         }
 
+        function request_digit_post() {
+            $("#id_tbody_digit").empty();
+            ///走势
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostLoadDigitData",
+                data: {
+                    num: $("#id_num").val(),
+                    date: $("#id_date").val(),
+                },
+                async: true,
+                dataType: "json",
+                success: function (data) {
+                    initDigitData("#id_tbody_digit", data)
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+        }
+
         function getBgcolor(i, val) {
             var strResult = "<td align='center'";
             if (val == 0) {
@@ -351,11 +375,39 @@
             $(type).append(strResult);
         }
 
+        function initDigitData(type, data) {
+            var strResult;
+            $.each(data, function (i, item) {
+                if (i == 0)
+                    strResult += "<tr bgcolor='#87CEFA' style='font-size:18px;font-weight:bold;'>";
+                else
+                    strResult += "<tr>";
+                strResult += "<td>" + item.Sno + "</td>";
+
+                strResult += getBgcolor(i, item.Lottery);
+                strResult += getBgcolor(i, item.Num0);
+                strResult += getBgcolor(i, item.Num1);
+                strResult += getBgcolor(i, item.Num2);
+                strResult += getBgcolor(i, item.Num3);
+                strResult += getBgcolor(i, item.Num4);
+                strResult += getBgcolor(i, item.Num5);
+                strResult += getBgcolor(i, item.Num6);
+                strResult += getBgcolor(i, item.Num7);
+                strResult += getBgcolor(i, item.Num8);
+                strResult += getBgcolor(i, item.Num9);
+                strResult += "<td>" + item.Dtime.substring(6, 11) + "</td>";
+                strResult += "</tr>";
+            });
+
+            $(type).append(strResult);
+        }
+
         ///Post方式
         $(document).ready(function () {
             $("#id_btn").click(function () {
                 request_post(1);
                 request_post(2);
+                request_digit_post();
                 //$.ajax({
                 //    type: 'post',
                 //    //type: 'GET',
@@ -476,7 +528,7 @@
             @*<label>类型：</label>
                 <input id="id_type" type="text" value="1" />*@
             <label style="color:white;">期数：</label>
-            <input id="id_num" type="text" value="12" style="width:40px;" />
+            <input id="id_num" type="text" value="6" style="width:40px;" />
             <button id="id_btn" style="width:50px;">刷新</button>
             <a href="/xscp/HightCharts">走势图</a>
             @*<button id="id_btn_pie" style="width:50px;">走势图</button>*@
@@ -586,6 +638,33 @@
                     </table>
                 </td>
             </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <table border="1" cellpadding="2" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="20">期数</th>
+                                <th width="40">奖号</th>
+                                <th width="40">0</th>
+                                <th width="40">1</th>
+                                <th width="40">2</th>
+                                <th width="40">3</th>
+                                <th width="40">4</th>
+                                <th width="40">5</th>
+                                <th width="40">6</th>
+                                <th width="40">7</th>
+                                <th width="40">8</th>
+                                <th width="40">9</th>
+                                <th width="50">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="id_tbody_digit"></tbody>
+                    </table>
+                </td>
         </table>
     </div>
 </body>

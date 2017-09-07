@@ -74,6 +74,7 @@
     <Compile Include="Model\EnumSelectType.cs" />
     <Compile Include="Model\FieldValueModel.cs" />
     <Compile Include="Model\LotteryModel.cs" />
+    <Compile Include="Model\MillionJsonModel.cs" />
     <Compile Include="Model\Tendency1Model.cs" />
     <Compile Include="Model\Tendency2Model.cs" />
     <Compile Include="Model\Tendency3Model.cs" />

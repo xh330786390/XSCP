@@ -147,6 +147,14 @@ namespace XSCP.WebCore.Controllers
             return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult PostLoadDigitData(int num, string date)
+        {
+            List<Tendency1Model> lt_lotterys = new List<Tendency1Model>();
+            lt_lotterys = XscpMysqlBLL.QueryTendencyDigit1(date, num);
+            return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
+        }
+
+
         public static TendencyDwdModel GetTendencyDwdValue(TendencyModel tm1, TendencyModel tm2)
         {
             if (tm1 == null || tm2 == null) return null;

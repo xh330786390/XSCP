@@ -418,5 +418,24 @@ namespace XSCP.Data.Controllers
             return pre - index;
         }
         #endregion
+
+        #region [二星前后包胆]
+        public bool ExistBeforeAfterTwo(LotteryModel lottery, int num)
+        {
+            if (lottery.Num1 == lottery.Num2 && lottery.Num4 == lottery.Num5)
+            {
+                return false;
+            }
+            else if (lottery.Num1 != lottery.Num2 && (lottery.Num1 == num || lottery.Num2 == num))
+            {
+                return true;
+            }
+            else if (lottery.Num4 != lottery.Num5 && (lottery.Num4 == num || lottery.Num5 == num))
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }
