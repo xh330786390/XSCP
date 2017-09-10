@@ -422,11 +422,7 @@ namespace XSCP.Data.Controllers
         #region [二星前后包胆]
         public bool ExistBeforeAfterTwo(LotteryModel lottery, int num)
         {
-            if (lottery.Num1 == lottery.Num2 && lottery.Num4 == lottery.Num5)
-            {
-                return false;
-            }
-            else if (lottery.Num1 != lottery.Num2 && (lottery.Num1 == num || lottery.Num2 == num))
+            if (lottery.Num1 != lottery.Num2 && (lottery.Num1 == num || lottery.Num2 == num))
             {
                 return true;
             }
@@ -434,7 +430,17 @@ namespace XSCP.Data.Controllers
             {
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region [全部数字]
+        public bool ExistDigit(LotteryModel lottery, int num)
+        {
+            return lottery.Lottery.Contains(num.ToString()) ? true : false;
         }
         #endregion
     }

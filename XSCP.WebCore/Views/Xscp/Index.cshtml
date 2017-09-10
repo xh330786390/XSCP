@@ -240,6 +240,25 @@
 
         function request_digit_post() {
             $("#id_tbody_digit").empty();
+
+            ///走势
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostLoadMaxDigit",
+                data: {
+                    date: $("#id_date").val(),
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    initMaxDigitData("#id_tbody_digit", data)
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+            
+
             ///走势
             $.ajax({
                 type: 'post',
@@ -248,10 +267,47 @@
                     num: $("#id_num").val(),
                     date: $("#id_date").val(),
                 },
-                async: true,
+                async: false,
                 dataType: "json",
                 success: function (data) {
                     initDigitData("#id_tbody_digit", data)
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+
+            $("#id_tbody_tendency").empty();
+            ///走势
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostLoadMaxAllDigit",
+                data: {
+                    date: $("#id_date").val(),
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    initMaxDigitData("#id_tbody_tendency", data)
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+
+
+            ///走势
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostLoadDigitAllData",
+                data: {
+                    num: $("#id_num").val(),
+                    date: $("#id_date").val(),
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    initDigitData("#id_tbody_tendency", data)
                 },
                 error: function () {
                     $("#myPnl").html("失败");
@@ -372,6 +428,25 @@
                 strResult += "</tr>";
             });
 
+            $(type).append(strResult);
+        }
+
+        function initMaxDigitData(type, data) {
+            var strResult = "<tr bgcolor='#FFE4B5'>";
+            strResult += "<td>" + data.Sno + "</td>";
+            strResult += "<td align='center'>-</td>";
+            strResult += getMaxBgcolor(data.Num0);
+            strResult += getMaxBgcolor(data.Num1);
+            strResult += getMaxBgcolor(data.Num2);
+            strResult += getMaxBgcolor(data.Num3);
+            strResult += getMaxBgcolor(data.Num4);
+            strResult += getMaxBgcolor(data.Num5);
+            strResult += getMaxBgcolor(data.Num6);
+            strResult += getMaxBgcolor(data.Num7);
+            strResult += getMaxBgcolor(data.Num8);
+            strResult += getMaxBgcolor(data.Num9);
+            strResult += "<td align='center'>-</td>";
+            strResult += "</tr>";
             $(type).append(strResult);
         }
 
@@ -647,22 +722,46 @@
                     <table border="1" cellpadding="2" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width="20">期数</th>
+                                <th width="40">期数</th>
                                 <th width="40">奖号</th>
-                                <th width="40">0</th>
-                                <th width="40">1</th>
-                                <th width="40">2</th>
-                                <th width="40">3</th>
-                                <th width="40">4</th>
-                                <th width="40">5</th>
-                                <th width="40">6</th>
-                                <th width="40">7</th>
-                                <th width="40">8</th>
-                                <th width="40">9</th>
+                                <th width="36">0</th>
+                                <th width="36">1</th>
+                                <th width="36">2</th>
+                                <th width="36">3</th>
+                                <th width="36">4</th>
+                                <th width="36">5</th>
+                                <th width="36">6</th>
+                                <th width="36">7</th>
+                                <th width="36">8</th>
+                                <th width="36">9</th>
                                 <th width="50">时间</th>
                             </tr>
                         </thead>
                         <tbody id="id_tbody_digit"></tbody>
+                    </table>
+                </td>
+
+                <td width="20" bgcolor="#3D4375"></td>
+                <td>
+                    <table border="1" cellpadding="2" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="20">期数</th>
+                                <th width="40">奖号</th>
+                                <th width="36">0</th>
+                                <th width="36">1</th>
+                                <th width="36">2</th>
+                                <th width="36">3</th>
+                                <th width="36">4</th>
+                                <th width="36">5</th>
+                                <th width="36">6</th>
+                                <th width="36">7</th>
+                                <th width="36">8</th>
+                                <th width="36">9</th>
+                                <th width="50">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="id_tbody_tendency"></tbody>
                     </table>
                 </td>
         </table>

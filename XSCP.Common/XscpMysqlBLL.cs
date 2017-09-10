@@ -35,7 +35,11 @@ namespace XSCP.Common
                 XscpMysqlBLL.SaveTendency1(Tendency1Enum.Ten, lt_LotteryModel);
                 XscpMysqlBLL.SaveTendency1(Tendency1Enum.One, lt_LotteryModel);
 
+                ///前二、后二 包胆走势
                 XscpMysqlBLL.SaveTendencyDigit1(lt_LotteryModel);
+
+                ///所有数字走势
+                XscpMysqlBLL.SaveTendencyAllDigit(lt_LotteryModel);
 
                 ///新增二星走势
                 XscpMysqlBLL.SaveTendency2(Tendency2Enum.Before, lt_LotteryModel);
@@ -326,7 +330,7 @@ namespace XSCP.Common
 
         #endregion
 
-        #region [数字趋势]
+        #region [前二、后二 包胆走势]
         public static void SaveTendencyDigit1(List<LotteryModel> ltData)
         {
             LotteryModel minData = ltData[ltData.Count - 1];
@@ -351,6 +355,11 @@ namespace XSCP.Common
                 tm.Ymd = lm.Ymd;
                 tm.Lottery = lm.Lottery;
                 tm.Sno = lm.Sno;
+
+                if (tm.Sno == "0186")
+                {
+                    Console.WriteLine("");
+                }
 
                 tm.Num0 = At.ExistBeforeAfterTwo(lm, 0) ? 0 : preTendency1.Num0 + 1;
                 tm.Num1 = At.ExistBeforeAfterTwo(lm, 1) ? 0 : preTendency1.Num1 + 1;
@@ -379,11 +388,82 @@ namespace XSCP.Common
 
             MysqlHelper.SaveTendencyDigit1(ltTendency);
         }
-        #endregion
 
         public static List<Tendency1Model> QueryTendencyDigit1(string date, int topNum)
         {
             return MysqlHelper.QueryTendencyDigit1(date, topNum);
         }
+
+        public static Tendency1Model QueryMaxTendencyDigit1(string startDate, string endDate)
+        {
+            return MysqlHelper.QueryMaxTendencyDigit1(startDate, endDate);
+        }
+        #endregion
+
+        #region [所有数字]
+
+        public static void SaveTendencyAllDigit(List<LotteryModel> ltData)
+        {
+            LotteryModel minData = ltData[ltData.Count - 1];
+
+            //上一期趋势
+            Tendency1Model preTendency1 = null;
+
+            //本次上一次开奖趋势，除非最后一期
+            int prePperiod = int.Parse(minData.Sno) - 1;
+            if (prePperiod > 0)
+            {
+                preTendency1 = MysqlHelper.QueryAllTendencyDigit1(minData.Ymd, prePperiod.ToString().PadLeft(4, '0'));
+            }
+
+            if (preTendency1 == null) preTendency1 = new Tendency1Model();
+            AnalyzeTendency At = new AnalyzeTendency();
+            List<Tendency1Model> ltTendency = new List<Tendency1Model>();
+            for (int i = ltData.Count - 1; i >= 0; i--)
+            {
+                LotteryModel lm = ltData[i];
+                Tendency1Model tm = new Tendency1Model();
+                tm.Ymd = lm.Ymd;
+                tm.Lottery = lm.Lottery;
+                tm.Sno = lm.Sno;
+
+                tm.Num0 = At.ExistDigit(lm, 0) ? 0 : preTendency1.Num0 + 1;
+                tm.Num1 = At.ExistDigit(lm, 1) ? 0 : preTendency1.Num1 + 1;
+                tm.Num2 = At.ExistDigit(lm, 2) ? 0 : preTendency1.Num2 + 1;
+                tm.Num3 = At.ExistDigit(lm, 3) ? 0 : preTendency1.Num3 + 1;
+                tm.Num4 = At.ExistDigit(lm, 4) ? 0 : preTendency1.Num4 + 1;
+                tm.Num5 = At.ExistDigit(lm, 5) ? 0 : preTendency1.Num5 + 1;
+                tm.Num6 = At.ExistDigit(lm, 6) ? 0 : preTendency1.Num6 + 1;
+                tm.Num7 = At.ExistDigit(lm, 7) ? 0 : preTendency1.Num7 + 1;
+                tm.Num8 = At.ExistDigit(lm, 8) ? 0 : preTendency1.Num8 + 1;
+                tm.Num9 = At.ExistDigit(lm, 9) ? 0 : preTendency1.Num9 + 1;
+
+                tm.Dtime = lm.Dtime;
+                ltTendency.Add(tm);
+
+                prePperiod = int.Parse(lm.Sno);
+                if (prePperiod == 1380)
+                {
+                    preTendency1 = new Tendency1Model();
+                }
+                else
+                {
+                    preTendency1 = tm;
+                }
+            }
+
+            MysqlHelper.SaveAllTendencyDigit1(ltTendency);
+        }
+
+        public static List<Tendency1Model> QueryAllTendencyDigit1(string date, int topNum)
+        {
+            return MysqlHelper.QueryAllTendencyDigit1(date, topNum);
+        }
+
+        public static Tendency1Model QueryAllMaxTendencyDigit1(string startDate, string endDate)
+        {
+            return MysqlHelper.QueryAllMaxTendencyDigit1(startDate, endDate);
+        }
+        #endregion
     }
 }

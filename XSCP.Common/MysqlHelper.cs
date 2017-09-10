@@ -34,7 +34,13 @@ namespace XSCP.Common
         public static string TendencyDigit4TbName = "TendencyDigit4_" + DateTime.Now.Year;   //十
         public static string TendencyDigit5TbName = "TendencyDigit5_" + DateTime.Now.Year;   //个
 
-        public static string Tendency1TbName = "Tendency1_" + DateTime.Now.Year;   //单个数字
+        ///前二后二包胆趋势
+        public static string Tendency1TbName = "Tendency1_" + DateTime.Now.Year;
+
+        /// <summary>
+        /// 所有数字趋势
+        /// </summary>
+        public static string TendencyAllTbName = "TendencyAll_" + DateTime.Now.Year;
 
         /// <summary>
         /// 二星走势
@@ -54,7 +60,11 @@ namespace XSCP.Common
             CreateTendencyDigit1Table(TendencyDigit4TbName);   //十
             CreateTendencyDigit1Table(TendencyDigit5TbName);   //个
 
+            ///前二后二包胆趋势
             CreateTendency1Table(Tendency1TbName);   //单个数字
+
+            ///所有数字
+            CreateAllTendency1Table(TendencyAllTbName);
 
             ///创建二星趋势表
             CreateTendency2Table(TendencyBefore2TbName);
@@ -84,6 +94,19 @@ namespace XSCP.Common
             else
                 tableName = TendencyAfter2TbName;
             return tableName;
+        }
+
+        /// <summary>
+        /// 创建索引
+        /// </summary>
+        /// <param name="tableName"></param>
+        private static void CreateIndex(string tableName)
+        {
+            string sql = string.Format("CREATE UNIQUE INDEX {1}_index  USING BTREE ON {1} (ymd,sno)", tableName, tableName);
+            using (MySqlConnection conn = CreateConnection())
+            {
+                conn.Execute(sql);
+            }
         }
 
         #region [开奖号码]
@@ -124,6 +147,8 @@ namespace XSCP.Common
                                    @"Num5    int             NOT NULL,	     " +
                                    @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
                     conn.Execute(sql);
+
+                    CreateIndex(tableName);
                 }
             }
         }
@@ -248,6 +273,8 @@ namespace XSCP.Common
                                    @"Pair    INT            NOT NULL,	     " +
                                    @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
                     conn.Execute(sql);
+
+                    CreateIndex(tableName);
                 }
             }
         }
@@ -402,6 +429,8 @@ namespace XSCP.Common
                                    @"Dbl    INT            NOT NULL,	     " +
                                    @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
                     conn.Execute(sql);
+
+                    CreateIndex(tableName);
                 }
             }
         }
@@ -580,7 +609,7 @@ namespace XSCP.Common
         }
         #endregion
 
-        #region [数字趋势]
+        #region [前二后二包胆趋势]
         public static void CreateTendency1Table(string tableName)
         {
             string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE table_name ='{0}'", tableName);
@@ -607,6 +636,8 @@ namespace XSCP.Common
                                    @"Num9    INT            NOT NULL,	     " +
                                    @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
                     conn.Execute(sql);
+
+                    CreateIndex(tableName);
                 }
             }
         }
@@ -627,6 +658,7 @@ namespace XSCP.Common
                     for (int i = 0; i < lotterys.Count; i++)
                     {
                         Tendency1Model lm = lotterys[i];
+
                         int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
                         if (count == 0)
                         {
@@ -705,6 +737,174 @@ namespace XSCP.Common
                 string sql = string.Format("select * from {0} where Ymd = '{1}' order by Sno desc limit 0,{2}", Tendency1TbName, date, topNum);
                 var lt = conn.Query<Tendency1Model>(sql).ToList();
                 return lt;
+            }
+        }
+
+        public static Tendency1Model QueryMaxTendencyDigit1(string startDate, string endDate)
+        {
+            using (MySqlConnection conn = CreateConnection())
+            {
+                string sql = string.Format("select  max(Num0) Num0 ," +
+                                                  " max(Num1) Num1 ," +
+                                                  " max(Num2) Num2 ," +
+                                                  " max(Num3) Num3 ," +
+                                                  " max(Num4) Num4 ," +
+                                                  " max(Num5) Num5 ," +
+                                                  " max(Num6) Num6 ," +
+                                                  " max(Num7) Num7 ," +
+                                                  " max(Num8) Num8 ," +
+                                                  " max(Num9) Num9 " +
+                                                  " from {0} where  Ymd  BETWEEN {1}  AND {2}", Tendency1TbName, startDate, endDate);
+                return conn.Query<Tendency1Model>(sql).FirstOrDefault();
+            }
+        }
+        #endregion
+
+        #region [全部数字趋势]
+        public static void CreateAllTendency1Table(string tableName)
+        {
+            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE table_name ='{0}'", tableName);
+
+            using (MySqlConnection conn = CreateConnection())
+            {
+                int count = conn.Query<int>(sql).FirstOrDefault();
+                if (count == 0)
+                {
+                    sql = string.Format("CREATE TABLE {0} ( " +
+                                   @"ID      int  auto_increment not null primary key,     " +
+                                   @"Ymd     CHAR( 8 )      NOT NULL,	     " +
+                                   @"Sno     CHAR( 4 )      NOT NULL,	     " +
+                                   @"Lottery CHAR( 9 )      NOT NULL,	     " +
+                                   @"Num0    INT            NOT NULL,	     " +
+                                   @"Num1    INT            NOT NULL,	     " +
+                                   @"Num2    INT            NOT NULL,	     " +
+                                   @"Num3    INT            NOT NULL,	     " +
+                                   @"Num4    INT            NOT NULL,	     " +
+                                   @"Num5    INT            NOT NULL,	     " +
+                                   @"Num6    INT            NOT NULL,	     " +
+                                   @"Num7    INT            NOT NULL,	     " +
+                                   @"Num8    INT            NOT NULL,	     " +
+                                   @"Num9    INT            NOT NULL,	     " +
+                                   @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
+                    conn.Execute(sql);
+
+                    CreateIndex(tableName);
+                }
+            }
+        }
+
+        public static void SaveAllTendencyDigit1(List<Tendency1Model> lotterys)
+        {
+            using (MySqlConnection conn = CreateConnection())
+            {
+                conn.Open();
+                MySqlTransaction trans = conn.BeginTransaction();
+
+                string sqlCount = string.Format("SELECT count(1) FROM {0} where Ymd = @Ymd and Sno=@Sno", TendencyAllTbName);
+
+                try
+                {
+                    string sql = null;
+                    for (int i = 0; i < lotterys.Count; i++)
+                    {
+                        Tendency1Model lm = lotterys[i];
+                        int count = conn.Query<int>(sqlCount, lm).FirstOrDefault();
+                        if (count == 0)
+                        {
+                            ///新增
+                            sql = string.Format("insert into {0}(Ymd      ," +
+                                                                        @"Sno      ," +
+                                                                        @"Lottery  ," +
+                                                                        @"Num0 ," +
+                                                                        @"Num1 ," +
+                                                                        @"Num2 ," +
+                                                                        @"Num3 ," +
+                                                                        @"Num4 ," +
+                                                                        @"Num5 ," +
+                                                                        @"Num6 ," +
+                                                                        @"Num7 ," +
+                                                                        @"Num8 ," +
+                                                                        @"Num9 ," +
+                                                                        @"Dtime     )" +
+                                                        @" VALUES (" +
+                                                                        @"@Ymd      ," +
+                                                                        @"@Sno      ," +
+                                                                        @"@Lottery  ," +
+                                                                        @"@Num0 ," +
+                                                                        @"@Num1 ," +
+                                                                        @"@Num2 ," +
+                                                                        @"@Num3 ," +
+                                                                        @"@Num4 ," +
+                                                                        @"@Num5 ," +
+                                                                        @"@Num6 ," +
+                                                                        @"@Num7 ," +
+                                                                        @"@Num8 ," +
+                                                                        @"@Num9 ," +
+                                                                        @"@Dtime     " +
+                                                        @")", TendencyAllTbName);
+                        }
+                        else
+                        {
+                            ///修改
+                            sql = string.Format("Update {0} set  Num0  = @Num0 ," +
+                                                                "Num1  = @Num1 ," +
+                                                                "Num2  = @Num2 ," +
+                                                                "Num3  = @Num3 ," +
+                                                                "Num4  = @Num4 ," +
+                                                                "Num5  = @Num5 ," +
+                                                                "Num6  = @Num6 ," +
+                                                                "Num7  = @Num7 ," +
+                                                                "Num8  = @Num8 ," +
+                                                                "Num9  = @Num9 ," +
+                                                                "Dtime = @Dtime " +
+                                                                "where Ymd = @Ymd and Sno=@Sno   ", TendencyAllTbName);
+                        }
+                        conn.Execute(sql, lm, trans);
+                    }
+                    trans.Commit();
+                }
+                catch (Exception er)
+                {
+                    trans.Rollback();
+                }
+            }
+        }
+
+        public static Tendency1Model QueryAllTendencyDigit1(string date, string sno)
+        {
+            using (MySqlConnection conn = CreateConnection())
+            {
+                string sql = string.Format("select * from {0} where Ymd = '{1}' and sno='{2}'", TendencyAllTbName, date, sno);
+                return conn.Query<Tendency1Model>(sql).FirstOrDefault();
+            }
+        }
+
+        public static List<Tendency1Model> QueryAllTendencyDigit1(string date, int topNum)
+        {
+            using (MySqlConnection conn = CreateConnection())
+            {
+                string sql = string.Format("select * from {0} where Ymd = '{1}' order by Sno desc limit 0,{2}", TendencyAllTbName, date, topNum);
+                var lt = conn.Query<Tendency1Model>(sql).ToList();
+                return lt;
+            }
+        }
+
+        public static Tendency1Model QueryAllMaxTendencyDigit1(string startDate, string endDate)
+        {
+            using (MySqlConnection conn = CreateConnection())
+            {
+                string sql = string.Format("select  max(Num0) Num0 ," +
+                                                  " max(Num1) Num1 ," +
+                                                  " max(Num2) Num2 ," +
+                                                  " max(Num3) Num3 ," +
+                                                  " max(Num4) Num4 ," +
+                                                  " max(Num5) Num5 ," +
+                                                  " max(Num6) Num6 ," +
+                                                  " max(Num7) Num7 ," +
+                                                  " max(Num8) Num8 ," +
+                                                  " max(Num9) Num9 " +
+                                                  " from {0} where  Ymd  BETWEEN {1}  AND {2}", TendencyAllTbName, startDate, endDate);
+                return conn.Query<Tendency1Model>(sql).FirstOrDefault();
             }
         }
         #endregion

@@ -73,6 +73,8 @@ namespace XSCP.WebCore.Controllers
             return Json(maxLotery, JsonRequestBehavior.AllowGet);
         }
 
+
+
         public JsonResult PostDwdData(int type, string date)
         {
             TendencyDwdModel tmDwd = new TendencyDwdModel();
@@ -147,13 +149,39 @@ namespace XSCP.WebCore.Controllers
             return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
         }
 
+        #region [前二后二包胆]
+        public JsonResult PostLoadMaxDigit(string date)
+        {
+            Tendency1Model maxLotery = XscpMysqlBLL.QueryMaxTendencyDigit1(date, date);
+            maxLotery.Sno = "最大";
+            maxLotery.Dtime = "-";
+            return Json(maxLotery, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult PostLoadDigitData(int num, string date)
         {
             List<Tendency1Model> lt_lotterys = new List<Tendency1Model>();
             lt_lotterys = XscpMysqlBLL.QueryTendencyDigit1(date, num);
             return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
         }
+        #endregion
 
+        #region [全部数字]
+        public JsonResult PostLoadMaxAllDigit(string date)
+        {
+            Tendency1Model maxLotery = XscpMysqlBLL.QueryAllMaxTendencyDigit1(date, date);
+            maxLotery.Sno = "最大";
+            maxLotery.Dtime = "-";
+            return Json(maxLotery, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult PostLoadDigitAllData(int num, string date)
+        {
+            List<Tendency1Model> lt_lotterys = new List<Tendency1Model>();
+            lt_lotterys = XscpMysqlBLL.QueryAllTendencyDigit1(date, num);
+            return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
 
         public static TendencyDwdModel GetTendencyDwdValue(TendencyModel tm1, TendencyModel tm2)
         {
