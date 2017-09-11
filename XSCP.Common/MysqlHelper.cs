@@ -14,6 +14,7 @@ namespace XSCP.Common
     {
         private static string mysqlConnectString = AppSettingsHelper.GetStringValue("MysqlConnectString");
 
+        private static string DbName = AppSettingsHelper.GetStringValue("DbName");
 
         /// <summary>
         /// Google Cookie存储路径
@@ -192,7 +193,7 @@ namespace XSCP.Common
         /// <param name="conn"></param>
         public static void CreateLotteryTable(string tableName)
         {
-            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE table_name ='{0}'", tableName);
+            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE TABLE_SCHEMA ='{0}' and table_name ='{1}'", DbName, tableName);
 
             using (MySqlConnection conn = CreateConnection())
             {
@@ -320,7 +321,7 @@ namespace XSCP.Common
         /// <param name="tableName"></param>
         public static void CreateTendencyDigit1Table(string tableName)
         {
-            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE table_name ='{0}'", tableName);
+            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE TABLE_SCHEMA ='{0}' and table_name ='{1}'", DbName, tableName);
 
             using (MySqlConnection conn = CreateConnection())
             {
@@ -471,7 +472,7 @@ namespace XSCP.Common
         /// <param name="tableName"></param>
         public static void CreateTendency2Table(string tableName)
         {
-            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE table_name ='{0}'", tableName);
+            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE TABLE_SCHEMA ='{0}' and table_name ='{1}'", DbName, tableName);
 
             using (MySqlConnection conn = CreateConnection())
             {
@@ -677,7 +678,7 @@ namespace XSCP.Common
         #region [前二后二包胆趋势]
         public static void CreateTendency1Table(string tableName)
         {
-            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE table_name ='{0}'", tableName);
+            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE TABLE_SCHEMA ='{0}' and table_name ='{1}'", DbName, tableName);
 
             using (MySqlConnection conn = CreateConnection())
             {
@@ -828,7 +829,7 @@ namespace XSCP.Common
         #region [全部数字趋势]
         public static void CreateAllTendency1Table(string tableName)
         {
-            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE table_name ='{0}'", tableName);
+            string sql = string.Format("SELECT count(1) FROM information_schema.TABLES WHERE TABLE_SCHEMA ='{0}' and table_name ='{1}'", DbName, tableName);
 
             using (MySqlConnection conn = CreateConnection())
             {
