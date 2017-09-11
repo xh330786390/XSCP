@@ -93,6 +93,7 @@
     <Compile Include="MysqlHelper.cs" />
     <Compile Include="SQLiteHelper.cs" />
     <Compile Include="WebHelper.cs" />
+    <Compile Include="WebHelperMillion.cs" />
     <Compile Include="XscpSqlliteBLL.cs" />
     <Compile Include="XscpMysqlBLL.cs" />
   </ItemGroup>

@@ -72,6 +72,71 @@ namespace XSCP.Common
         }
 
         /// <summary>
+        ///  清除重复数据
+        /// </summary>
+        public static void ClearRepeatData()
+        {
+            ClearRepeatData(LottoryTbName);
+
+            ///创建一星趋势表
+            ClearRepeatData(TendencyDigit1TbName);   //万
+            ClearRepeatData(TendencyDigit2TbName);   //千
+            ClearRepeatData(TendencyDigit3TbName);   //百
+            ClearRepeatData(TendencyDigit4TbName);   //十
+            ClearRepeatData(TendencyDigit5TbName);   //个
+
+            ///前二后二包胆趋势
+            ClearRepeatData(Tendency1TbName);   //单个数字
+
+            ///所有数字
+            ClearRepeatData(TendencyAllTbName);
+
+            ///创建二星趋势表
+            ClearRepeatData(TendencyBefore2TbName);
+            ClearRepeatData(TendencyAfter2TbName);
+        }
+
+        /// <summary>
+        /// 清除重复数据
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static void ClearRepeatData(string tableName)
+        {
+            List<TendencyModel> lt = null;
+            string sql = string.Format("SELECT ymd,sno from {0} group by ymd,sno having count(1)>1", tableName);
+            using (MySqlConnection conn = CreateConnection())
+            {
+                lt = conn.Query<TendencyModel>(sql).ToList();
+            }
+
+            if (lt != null && lt.Count > 0)
+            {
+                lt.ForEach(item =>
+                {
+                    List<int> lt_int = new List<int>();
+                    sql = string.Format("SELECT id from {0} where ymd='{1}' and sno ='{2}'", tableName, item.Ymd, item.Sno);
+                    using (MySqlConnection conn = CreateConnection())
+                    {
+                        lt_int = conn.Query<int>(sql).ToList();
+                    }
+
+                    if (lt_int != null && lt_int.Count > 0)
+                    {
+                        for (int i = 1; i < lt_int.Count; i++)
+                        {
+                            sql = string.Format("delete from {0} where id ={1}", tableName, lt_int[i]);
+                            using (MySqlConnection conn = CreateConnection())
+                            {
+                                conn.Execute(sql);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        /// <summary>
         /// 获取二星走势表名
         /// </summary>
         /// <param name="type"></param>

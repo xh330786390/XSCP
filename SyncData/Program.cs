@@ -11,6 +11,9 @@ namespace SyncData
     {
         static void Main(string[] args)
         {
+            MysqlHelper.ClearRepeatData();
+            Console.WriteLine("完成");
+            Console.Read();
             new Export().SqlLiteToMysql();
             Console.Read();
         }
