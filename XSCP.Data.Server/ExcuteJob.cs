@@ -106,7 +106,7 @@ namespace XSCP.Data.Server
                     if (bl)
                     {
                         int index = -1;
-                        string strLottery = null;
+                        string strLottery = "新生娱乐-";
                         if (ltData[0].Contains("期"))
                         {
                             index = ltData[0].IndexOf('期');
