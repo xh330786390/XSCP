@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using XSCP.Common;
 using XSCP.Common.Model;
 using XSCP.Common.Extend;
-using XSCP.Forecast;
 
 namespace XSCP.WebCore.Controllers
 {

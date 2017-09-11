@@ -21,12 +21,12 @@ namespace XSCP.Common
         /// <param name="dt"></param>
         /// <param name="ltData"></param>
         /// <returns></returns>
-        public static bool Update(DateTime dt, List<string> ltData)
+        public static bool Update(CompanyType companyType, DateTime dt, List<string> ltData)
         {
             try
             {
                 ///新增开奖号码
-                List<LotteryModel> lt_LotteryModel = XscpMysqlBLL.SaveLottery(dt, ltData);
+                List<LotteryModel> lt_LotteryModel = XscpMysqlBLL.SaveLottery(companyType, dt, ltData);
 
                 ///新增一星走势
                 XscpMysqlBLL.SaveTendency1(Tendency1Enum.TenThousand, lt_LotteryModel);
@@ -57,7 +57,7 @@ namespace XSCP.Common
         /// 保存奖号
         /// </summary>
         /// <param name="lottery"></param>
-        public static List<LotteryModel> SaveLottery(DateTime dt, List<string> ltData)
+        public static List<LotteryModel> SaveLottery(CompanyType companyType, DateTime dt, List<string> ltData)
         {
             if (ltData == null || ltData.Count == 0) return null;
 
@@ -71,7 +71,7 @@ namespace XSCP.Common
 
             lottery.ForEach(l =>
             {
-                LotteryModel lotteryModel = getLottery(dt, l);
+                LotteryModel lotteryModel = getLottery(companyType, dt, l);
                 lt_lotterys.Add(lotteryModel);
 
                 int sno = int.Parse(lotteryModel.Sno);
@@ -94,7 +94,7 @@ namespace XSCP.Common
             return lt_lotterys;
         }
 
-        private static LotteryModel getLottery(DateTime dt, string lottery)
+        private static LotteryModel getLottery(CompanyType companyType, DateTime dt, string lottery)
         {
             string[] array = lottery.Split(',');
             int[] arrayint = new int[array.Length];
@@ -116,7 +116,7 @@ namespace XSCP.Common
             lotteryModel.Num3 = arrayint[3];
             lotteryModel.Num4 = arrayint[4];
             lotteryModel.Num5 = arrayint[5];
-            lotteryModel.Dtime = dt.ToXscpDateTime(arrayint[0]);
+            lotteryModel.Dtime = dt.ToDateTime(companyType, arrayint[0]);
             return lotteryModel;
         }
 

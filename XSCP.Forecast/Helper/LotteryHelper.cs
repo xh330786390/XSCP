@@ -21,7 +21,7 @@ namespace XSCP.Forecast
             try
             {
                 ///新增开奖号码
-                List<LotteryModel> lt_LotteryModel = XscpMysqlBLL.SaveLottery(dt, ltData);
+                List<LotteryModel> lt_LotteryModel = XscpMysqlBLL.SaveLottery(CompanyType.Xscp, dt, ltData);
 
                 ///新增一星走势
                 XscpMysqlBLL.SaveTendency1(Tendency1Enum.TenThousand, lt_LotteryModel);

@@ -19,10 +19,7 @@ namespace XSCP.Data.Server
         public void Execute(IJobExecutionContext context)
         {
             DateTime currentDate = DateTime.Now;
-            if (DateTime.Now.Hour <= 7)
-            {
-                currentDate = currentDate.AddDays(-1);
-            }
+
             var config = MySteel.Common.Helper.XmlHelper.LoadXmlFile<XsConfig>(xmlCookiesPath);
             if (config == null)
             {
@@ -40,18 +37,21 @@ namespace XSCP.Data.Server
                 return;
             }
 
+            //获取Cookie
             WebHelperMillion.Cookie = WebHelperMillion.GetCookies(config.Cookies[0]);
 
-            DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "08:03:00");
+            DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "05:03:00");
             TimeSpan timeSpan = startTime - DateTime.Now;
-            if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 60)
+            if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 120)
             {
                 ProtocolInfo pinfo = WebHelperMillion.GetProtocolInfo(config, true);
-                if (pinfo.Method == ProtocolMethod.Post)
+
+                if (pinfo.Method == ProtocolMethod.Get)
                 {
-                    ///Post 通信
-                    WebHelperMillion.Post(pinfo.Url, pinfo.Data);
+                    //get 通信
+                    WebHelperMillion.Get(pinfo.Url);
                 }
+
                 _logger.InfoFormat("正在停牌");
                 return;
             }
@@ -67,17 +67,20 @@ namespace XSCP.Data.Server
                     if (pinfo.Method == ProtocolMethod.Get)
                     {
                         resultData = WebHelperMillion.Get(pinfo.Url);
-                        ltData = resultData.GetHtml();
-                    }
-                    else
-                    {
-                        ///Post 通信
-                        resultData = WebHelperMillion.Post(pinfo.Url, pinfo.Data);
 
-                        XscpDataJsonModel objs = null;
+                        MillionJsonModel objs = null;
                         try
                         {
-                            objs = Newtonsoft.Json.JsonConvert.DeserializeObject<XscpDataJsonModel>(resultData);
+                            objs = Newtonsoft.Json.JsonConvert.DeserializeObject<MillionJsonModel>(resultData);
+                            if (objs != null)
+                            {
+                                ltData.Add(objs.period.Substring(9) + "," + objs.ball);
+                                ltData.Add(objs.historyBall.period1.issue.Substring(9) + "," + objs.historyBall.period1.code.Replace(' ', ','));
+                                ltData.Add(objs.historyBall.period2.issue.Substring(9) + "," + objs.historyBall.period2.code.Replace(' ', ','));
+                                ltData.Add(objs.historyBall.period3.issue.Substring(9) + "," + objs.historyBall.period3.code.Replace(' ', ','));
+                                ltData.Add(objs.historyBall.period4.issue.Substring(9) + "," + objs.historyBall.period4.code.Replace(' ', ','));
+                                ltData.Add(objs.historyBall.period5.issue.Substring(9) + "," + objs.historyBall.period5.code.Replace(' ', ','));
+                            }
                         }
                         catch (Exception er)
                         {
@@ -85,20 +88,12 @@ namespace XSCP.Data.Server
                             _logger.ErrorFormat("解析数据出错");
                             return;
                         }
-
-                        if (objs != null && objs.reslist != null && objs.reslist.Count > 0)
-                        {
-                            objs.reslist.ForEach(item =>
-                            {
-                                ltData.Add(item.issue + item.winnumber);
-                            });
-                        }
                     }
                 }
 
                 if (ltData != null && ltData.Count > 0)
                 {
-                    bool bl = XscpMysqlBLL.Update(currentDate, ltData);
+                    bool bl = XscpMysqlBLL.Update(CompanyType.Million, currentDate, ltData);
                     if (bl)
                     {
                         int index = -1;

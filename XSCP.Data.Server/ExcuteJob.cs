@@ -102,7 +102,7 @@ namespace XSCP.Data.Server
 
                 if (ltData != null && ltData.Count > 0)
                 {
-                    bool bl = XscpMysqlBLL.Update(currentDate, ltData);
+                    bool bl = XscpMysqlBLL.Update(CompanyType.Xscp, currentDate, ltData);
                     if (bl)
                     {
                         int index = -1;

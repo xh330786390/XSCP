@@ -71,6 +71,7 @@
     <Compile Include="Controllers\Tendency.cs" />
     <Compile Include="Controllers\WinLottery.cs" />
     <Compile Include="Controllers\XsMath.cs" />
+    <Compile Include="Model\CompanyType.cs" />
     <Compile Include="Model\CompareTwoModel.cs" />
     <Compile Include="Model\CookieModel.cs" />
     <Compile Include="Model\EnumLotteryPatter.cs" />
