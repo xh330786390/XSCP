@@ -40,7 +40,7 @@ namespace XSCP.Data.Server
             //获取Cookie
             WebHelperMillion.Cookie = WebHelperMillion.GetCookies(config.Cookies[0]);
 
-            DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "05:03:00");
+            DateTime startTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd ") + "07:03:00");
             TimeSpan timeSpan = startTime - DateTime.Now;
             if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes <= 120)
             {
