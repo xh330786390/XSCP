@@ -101,13 +101,13 @@ namespace XSCP.Data.Server
                         if (ltData[0].Contains("期"))
                         {
                             index = ltData[0].IndexOf('期');
-                            strLottery = "【" + ltData[0].Substring(0, index + 1) + "】-【" + ltData[0].Substring(index + 1) + "】";
+                            strLottery += "【" + ltData[0].Substring(0, index + 1) + "】-【" + ltData[0].Substring(index + 1) + "】";
                             _logger.InfoFormat(strLottery);
                         }
                         else
                         {
                             index = ltData[0].IndexOf(',');
-                            strLottery = "【" + ltData[0].Substring(0, index) + "期】-【" + ltData[0].Substring(index + 1) + "】";
+                            strLottery += "【" + ltData[0].Substring(0, index) + "期】-【" + ltData[0].Substring(index + 1) + "】";
                             _logger.InfoFormat(strLottery);
                         }
                     }

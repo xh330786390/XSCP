@@ -49,7 +49,7 @@ namespace XSCP.Common
             HttpWebRequest httpReq = WebRequest.Create(url) as HttpWebRequest;//创建请求
             httpReq.Method = "GET"; //请求方法为GET
             httpReq.CookieContainer = Cookie;
-            httpReq.Headers.Add("authority", "millions25.com");
+            //httpReq.Headers.Add("authority", "millions25.com");
             httpReq.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
             httpReq.Headers.Add("Accept-Encoding", "gzip, deflate, sdch, br");
             httpReq.Headers.Add("Accept-Language", "zh-CN,zh;q=0.8");
