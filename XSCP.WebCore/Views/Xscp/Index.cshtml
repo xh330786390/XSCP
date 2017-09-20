@@ -10,6 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/laydate.js"></script>
     <style>
         .bet_con_ground {
             background: url(../Source/image/bg.jpg) no-repeat;
@@ -103,7 +104,7 @@
             var curr_date = date.getDate();
             String(date.getMonth()).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
             String(curr_date).length < 2 ? (curr_date = "0" + curr_date) : curr_date;
-            var yyyyMMdd = date.getFullYear() + "" + curr_month + "" + curr_date;
+            var yyyyMMdd = date.getFullYear() + "-" + curr_month + "-" + curr_date;
             return yyyyMMdd;
         }
 
@@ -599,7 +600,8 @@
     <div class="bet_con_ground">
         <div style="float:left;margin-top:25px;">
             <label style="color:white;">日期：</label>
-            <input id="id_date" type="text" value="20170526" style="width:80px;" />
+            <input id="id_date" style="width:80px;" onclick="laydate()" />
+            @*<input id="id_date" onclick="laydate()">*@
             @*<label>类型：</label>
                 <input id="id_type" type="text" value="1" />*@
             <label style="color:white;">期数：</label>

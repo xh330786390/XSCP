@@ -47,6 +47,7 @@
     </style>
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/highcharts.js"></script>
+    <script src="~/Scripts/laydate.js"></script>
     @*<script src="~/Scripts/highstock.js"></script>*@
     <script type="text/javascript">
         $(function () {
@@ -78,7 +79,7 @@
             var curr_date = date.getDate();
             String(date.getMonth()).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
             String(curr_date).length < 2 ? (curr_date = "0" + curr_date) : curr_date;
-            var yyyyMMdd = date.getFullYear() + "" + curr_month + "" + curr_date;
+            var yyyyMMdd = date.getFullYear() + "-" + curr_month + "-" + curr_date;
             return yyyyMMdd;
         }
 
@@ -300,11 +301,11 @@
 <body>
     <div style="margin-top:25px;">
         <label style="color:black;">开始日期：</label>
-        <input id="id_startdate" type="text" value="20170818" style="width:80px;" />
+        @*<input id="id_startdate" type="text" value="20170818" style="width:80px;" />*@
+        <input id="id_startdate" onclick="laydate()" style="width:80px;" />
         <label style="color: white;">123</label>
         <label style="color: black;">     结束日期：</label>
-        <input id="id_enddate" type="text" value="20170818" style="width:80px;" />
-
+        <input id="id_enddate" onclick="laydate()" style="width:80px;" />
         <input type="radio" name="radio" id="radio1" checked="true" />前二
         <input type="radio" name="radio" id="radio2" />后二
     </div>
@@ -320,3 +321,4 @@
     <div id="container8" style="width: 400px; height: 400px; float: left;"></div>
 </body>
 </html>
+

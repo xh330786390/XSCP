@@ -55,6 +55,7 @@ namespace XSCP.WebCore.Controllers
         /// <returns></returns>
         public JsonResult PostLoadMaxData(int type, string date)
         {
+            date = date.Replace("-", "");
             Tendency2Model maxLotery = new Tendency2Model();
             if (type == 1)
             {
@@ -76,6 +77,7 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult PostDwdData(int type, string date)
         {
+            date = date.Replace("-", "");
             TendencyDwdModel tmDwd = new TendencyDwdModel();
 
             if (type == 1)
@@ -106,6 +108,7 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult PostMaxDwdData(int type, string date)
         {
+            date = date.Replace("-", "");
             TendencyDwdModel tmDwd = new TendencyDwdModel();
 
             if (type == 1)
@@ -136,6 +139,7 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult PostLoadData(int type, int num, string date)
         {
+            date = date.Replace("-", "");
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
@@ -151,6 +155,7 @@ namespace XSCP.WebCore.Controllers
         #region [前二后二包胆]
         public JsonResult PostLoadMaxDigit(string date)
         {
+            date = date.Replace("-", "");
             Tendency1Model maxLotery = XscpMysqlBLL.QueryMaxTendencyDigit1(date, date);
             maxLotery.Sno = "最大";
             maxLotery.Dtime = "-";
@@ -159,6 +164,7 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult PostLoadDigitData(int num, string date)
         {
+            date = date.Replace("-", "");
             List<Tendency1Model> lt_lotterys = new List<Tendency1Model>();
             lt_lotterys = XscpMysqlBLL.QueryTendencyDigit1(date, num);
             return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
@@ -168,6 +174,7 @@ namespace XSCP.WebCore.Controllers
         #region [全部数字]
         public JsonResult PostLoadMaxAllDigit(string date)
         {
+            date = date.Replace("-", "");
             Tendency1Model maxLotery = XscpMysqlBLL.QueryAllMaxTendencyDigit1(date, date);
             maxLotery.Sno = "最大";
             maxLotery.Dtime = "-";
@@ -176,6 +183,7 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult PostLoadDigitAllData(int num, string date)
         {
+            date = date.Replace("-", "");
             List<Tendency1Model> lt_lotterys = new List<Tendency1Model>();
             lt_lotterys = XscpMysqlBLL.QueryAllTendencyDigit1(date, num);
             return Json(lt_lotterys, JsonRequestBehavior.AllowGet);
@@ -208,6 +216,7 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult GetPieData(int type, string date, int num = 1380)
         {
+            date = date.Replace("-", "");
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
@@ -363,6 +372,15 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult GetPieRangeData(int type, string startDate = "20170801", string endDate = "20170831")
         {
+            if(!string.IsNullOrEmpty(startDate))
+            {
+                startDate = startDate.Replace("-", "");
+            }
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                endDate = endDate.Replace("-", "");
+            }
+            
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
@@ -537,6 +555,15 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult GetPieRangeTimeData(int type, string startDate = "20170501", string endDate = "20170701")
         {
+            if (!string.IsNullOrEmpty(startDate))
+            {
+                startDate = startDate.Replace("-", "");
+            }
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                endDate = endDate.Replace("-", "");
+            }
+
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
