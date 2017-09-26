@@ -26,14 +26,11 @@
         <job-name>ExcuteJob</job-name>
         <job-group>JobGroup1</job-group>
         <start-time>2016-11-18T00:00:00+08:00</start-time>
-        -->
-    <!--<cron-expression>10 * * * * ? *</cron-expression>-->
-    <!--
-        <cron-expression>12 * * * * ? *</cron-expression>
+        <cron-expression>* 10 * * * ? *</cron-expression>
       </cron>
     </trigger>-->
 
-    <job>
+    <!--<job>
       <name>ExcuteJobMillon</name>
       <group>JobGroup1</group>
       <description>Job1</description>
@@ -50,7 +47,27 @@
         <start-time>2016-11-18T00:00:00+08:00</start-time>
         <cron-expression>* 10 * * * ? *</cron-expression>
       </cron>
+    </trigger>-->
+
+    <job>
+      <name>ExcuteJobTencent</name>
+      <group>JobGroup1</group>
+      <description>Job1</description>
+      <job-type>XSCP.Data.Server.ExcuteJobTencent, XSCP.Data.Server</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>ExcuteJobTrigger</name>
+        <group>TriggerGroup1</group>
+        <job-name>ExcuteJobTencent</job-name>
+        <job-group>JobGroup1</job-group>
+        <start-time>2016-11-18T00:00:00+08:00</start-time>
+        <cron-expression>16 * * * * ? *</cron-expression>
+      </cron>
     </trigger>
+
 
   </schedule>
 </job-scheduling-data>

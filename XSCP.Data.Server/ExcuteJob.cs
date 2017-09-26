@@ -19,8 +19,22 @@ namespace XSCP.Data.Server
         public void Execute(IJobExecutionContext context)
         {
 
-            //MysqlHelper.CreateConnection();
-            //return;
+            //List<string> ltData1 = new List<string>();
+            //ltData1.Add("0530,5,2,5,1,8");
+            //ltData1.Add("0529,9,4,8,0,7");
+            //ltData1.Add("0528,5,0,8,9,0");
+            //ltData1.Add("0527,9,9,9,0,4");
+            //ltData1.Add("0526,9,2,7,1,8");
+            //ltData1.Add("0525,4,6,1,5,7");
+            //ltData1.Add("0524,3,6,5,7,0");
+            //ltData1.Add("0523,9,7,9,3,3");
+            //ltData1.Add("0522,7,2,9,9,8");
+            //ltData1.Add("0521,2,8,8,3,7");
+
+            //XscpMysqlBLL.Update(CompanyType.Xscp, DateTime.Parse("2017-09-01"), ltData1);
+
+            ////MysqlHelper.CreateConnection();
+            ////return;
 
             DateTime currentDate = DateTime.Now;
             if (DateTime.Now.Hour <= 7)

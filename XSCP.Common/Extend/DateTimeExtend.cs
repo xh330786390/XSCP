@@ -18,9 +18,17 @@ namespace XSCP.Common.Extend
             {
                 return ToXsDateTime(dt, sno);
             }
-            else
+            else if (companyType == CompanyType.Million)
             {
                 return ToMillionDateTime(dt, sno);
+            }
+            else if (companyType == CompanyType.Tencent)
+            {
+                return ToTencentDateTime(dt, sno);
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -80,6 +88,14 @@ namespace XSCP.Common.Extend
                 hour = 2 + hour;
             }
 
+            return md + " " + hour.ToString().PadLeft(2, '0') + ":" + minute.ToString().PadLeft(2, '0');
+        }
+
+        public static string ToTencentDateTime(DateTime dt, int sno)
+        {
+            string md = dt.ToString("MM/dd");
+            int hour = sno / 60;
+            int minute = sno % 60;
             return md + " " + hour.ToString().PadLeft(2, '0') + ":" + minute.ToString().PadLeft(2, '0');
         }
 

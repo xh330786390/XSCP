@@ -93,11 +93,13 @@
     <Compile Include="Model\Tendency2Enum.cs" />
     <Compile Include="Model\TendencyUnitModel.cs" />
     <Compile Include="Model\WinLotteryModel.cs" />
+    <Compile Include="Model\TententDataJsonModel.cs" />
     <Compile Include="Model\XscpDataJsonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MysqlHelper.cs" />
     <Compile Include="SQLiteHelper.cs" />
     <Compile Include="WebHelper.cs" />
+    <Compile Include="WebHelperTencent.cs" />
     <Compile Include="WebHelperMillion.cs" />
     <Compile Include="XscpSqlliteBLL.cs" />
     <Compile Include="XscpMysqlBLL.cs" />

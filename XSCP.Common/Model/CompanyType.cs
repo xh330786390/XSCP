@@ -15,6 +15,10 @@ namespace XSCP.Common.Model
         /// <summary>
         /// 百万发
         /// </summary>
-        Million = 1
+        Million = 1,
+        /// <summary>
+        /// 腾讯分分彩
+        /// </summary>
+        Tencent = 2
     }
 }
