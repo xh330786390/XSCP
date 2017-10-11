@@ -337,6 +337,9 @@ namespace XSCP.Common
                                    @"Small    INT            NOT NULL,	     " +
                                    @"Odd    INT            NOT NULL,	     " +
                                    @"Pair    INT            NOT NULL,	     " +
+                                   @"No_0    INT            NOT NULL,	     " +
+                                   @"No_1    INT            NOT NULL,	     " +
+                                   @"No_2    INT            NOT NULL,	     " +
                                    @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
                     conn.Execute(sql);
 
@@ -377,6 +380,9 @@ namespace XSCP.Common
                                                                         @"Small    ," +
                                                                         @"Odd      ," +
                                                                         @"Pair     ," +
+                                                                        @"No_0    ," +
+                                                                        @"No_1      ," +
+                                                                        @"No_2     ," +
                                                                         @"Dtime     )" +
                                                         @" VALUES (" +
                                                                         @"@Ymd      ," +
@@ -386,6 +392,9 @@ namespace XSCP.Common
                                                                         @"@Small    ," +
                                                                         @"@Odd      ," +
                                                                         @"@Pair     ," +
+                                                                        @"@No_0     ," +
+                                                                        @"@No_1     ," +
+                                                                        @"@No_2     ," +
                                                                         @"@Dtime     " +
                                                         @")", tableName);
                         }
@@ -395,7 +404,10 @@ namespace XSCP.Common
                             sql = string.Format("Update {0} set Big       =@Big      ," +
                                                                 "Small    =@Small    ," +
                                                                 "Odd      =@Odd      ," +
-                                                                "Pair     =@Pair     " +
+                                                                "Pair     =@Pair     ," +
+                                                                "No_0     =@No_0     ," +
+                                                                "No_1     =@No_1     ," +
+                                                                "No_2     =@No_2     " +
                                                                 "where Ymd = @Ymd and Sno=@Sno   ", tableName);
                         }
                         conn.Execute(sql, lm, trans);

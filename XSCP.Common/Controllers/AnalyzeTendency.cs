@@ -94,6 +94,39 @@ namespace XSCP.Data.Controllers
         }
 
         /// <summary>
+        /// 012路
+        /// </summary>
+        /// <param name="lottery"></param>
+        /// <param name="preTendency1"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public int RoadNum012(LotteryModel lottery, TendencyModel preTendency1, int index, int num012)
+        {
+            Value value = GetValue(lottery, index);
+            if (value.v1 % 3 == num012)
+            {
+                return 0;
+            }
+
+            int count = 1;
+            if (preTendency1 == null) preTendency1 = new TendencyModel();
+
+            if (num012 == 0)
+            {
+                count = preTendency1.No_0 + 1;
+            }
+            else if (num012 == 1)
+            {
+                count = preTendency1.No_1 + 1;
+            }
+            else if (num012 == 2)
+            {
+                count = preTendency1.No_2 + 1;
+            }
+            return count;
+        }
+
+        /// <summary>
         /// 奇偶
         /// </summary>
         /// <param name="lottery"></param>

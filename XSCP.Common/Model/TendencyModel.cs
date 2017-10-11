@@ -36,6 +36,18 @@ namespace XSCP.Common.Model
         /// </summary>
         public int Pair { get; set; }
         /// <summary>
+        /// 0路
+        /// </summary>
+        public int No_0 { get; set; }
+        /// <summary>
+        /// 1路
+        /// </summary>
+        public int No_1 { get; set; }
+        /// <summary>
+        /// 2路
+        /// </summary>
+        public int No_2 { get; set; }
+        /// <summary>
         /// 开奖时间
         /// </summary>
         public string Dtime { get; set; }

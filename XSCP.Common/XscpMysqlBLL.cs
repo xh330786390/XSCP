@@ -180,6 +180,10 @@ namespace XSCP.Common
                 tm.Odd = At.OddPairNum(lm, preTendency1, index, 1);//奇奇
                 tm.Pair = At.OddPairNum(lm, preTendency1, index, 0);//偶偶
 
+                tm.No_0 = At.RoadNum012(lm, preTendency1, index, 0);//0路
+                tm.No_1 = At.RoadNum012(lm, preTendency1, index, 1);//1路
+                tm.No_2 = At.RoadNum012(lm, preTendency1, index, 2);//2路
+
                 tm.Dtime = lm.Dtime;
 
                 ltTendency.Add(tm);
