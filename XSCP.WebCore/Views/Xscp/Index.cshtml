@@ -102,7 +102,7 @@
             var curr_year = date.getFullYear();
             var curr_month = date.getMonth() + 1;
             var curr_date = date.getDate();
-            String(date.getMonth()).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
+            String(curr_month).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
             String(curr_date).length < 2 ? (curr_date = "0" + curr_date) : curr_date;
             var yyyyMMdd = date.getFullYear() + "-" + curr_month + "-" + curr_date;
             return yyyyMMdd;
@@ -607,7 +607,8 @@
             <label style="color:white;">期数：</label>
             <input id="id_num" type="text" value="6" style="width:40px;" />
             <button id="id_btn" style="width:50px;">刷新</button>
-            <a href="/xscp/HightCharts"><font color="white">走势饼图</font></a>
+            <a href="/xscp/HightCharts"><font color="white">饼图</font></a>
+            <a href="/xscp/Road012"><font color="white">012</font></a>
             @*<button id="id_btn_pie" style="width:50px;">走势图</button>*@
             @*<button id="id_pie" style="width:70px;">走势图</button>*@
         </div>

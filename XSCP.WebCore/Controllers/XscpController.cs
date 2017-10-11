@@ -74,7 +74,12 @@ namespace XSCP.WebCore.Controllers
         }
 
 
-
+        /// <summary>
+        /// 二星定位胆
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public JsonResult PostDwdData(int type, string date)
         {
             date = date.Replace("-", "");
@@ -120,8 +125,6 @@ namespace XSCP.WebCore.Controllers
                     tmDwd = GetTendencyDwdValue(lt_TenThousand, lt_Thousand);
                 }
                 tmDwd.Sno = "定大";
-
-
             }
             else
             {
@@ -135,6 +138,36 @@ namespace XSCP.WebCore.Controllers
             }
 
             return Json(tmDwd, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 取某一位的，奇、偶、大、小、012路走势
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public JsonResult PostRoadTrendecy(int type, string date, int num)
+        {
+            date = date.Replace("-", "");
+            Tendency1Enum tendency1Enum = (Tendency1Enum)type;
+            var list = XscpMysqlBLL.QueryTendency1(tendency1Enum, date, num);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 取某一位的，奇、偶、大、小、012路 最大走势
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="date"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public JsonResult PostMaxRoadTrendecy(int type, string date)
+        {
+            date = date.Replace("-", "");
+            Tendency1Enum tendency1Enum = (Tendency1Enum)type;
+            TendencyModel tm = XscpMysqlBLL.QueryMaxTendency1(tendency1Enum, date);
+            tm.Sno = "最大";
+            return Json(tm, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult PostLoadData(int type, int num, string date)
@@ -372,7 +405,7 @@ namespace XSCP.WebCore.Controllers
 
         public JsonResult GetPieRangeData(int type, string startDate = "20170801", string endDate = "20170831")
         {
-            if(!string.IsNullOrEmpty(startDate))
+            if (!string.IsNullOrEmpty(startDate))
             {
                 startDate = startDate.Replace("-", "");
             }
@@ -380,7 +413,7 @@ namespace XSCP.WebCore.Controllers
             {
                 endDate = endDate.Replace("-", "");
             }
-            
+
             List<Tendency2Model> lt_lotterys = new List<Tendency2Model>();
             if (type == 1)
             {
@@ -680,7 +713,11 @@ namespace XSCP.WebCore.Controllers
             return pie;
         }
 
-
+        public ActionResult Road012()
+        {
+            ViewBag.Name = "hah";
+            return View();
+        }
     }
 
     public class PieData

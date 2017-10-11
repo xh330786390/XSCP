@@ -236,6 +236,7 @@
     <Content Include="Views\Xscp\Demo.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Xscp\HightCharts.cshtml" />
+    <Content Include="Views\Xscp\Road012.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -77,7 +77,7 @@
             var curr_year = date.getFullYear();
             var curr_month = date.getMonth() + 1;
             var curr_date = date.getDate();
-            String(date.getMonth()).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
+            String(curr_month).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
             String(curr_date).length < 2 ? (curr_date = "0" + curr_date) : curr_date;
             var yyyyMMdd = date.getFullYear() + "-" + curr_month + "-" + curr_date;
             return yyyyMMdd;

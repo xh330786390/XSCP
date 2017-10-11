@@ -1,0 +1,362 @@
+﻿@using XSCP.Common.Model;
+@{
+    Layout = null;
+}
+@{
+    List<LotteryModel> lotterys = ViewBag.Lotterys;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/laydate.js"></script>
+    <style>
+        .bet_con_ground {
+            background: url(../Source/image/bg.jpg) no-repeat;
+            padding-bottom: 83px;
+            padding-top: 20px;
+        }
+
+        #id_time li {
+            background: url(../Source/image/bg02.png) no-repeat center top;
+            list-style: none;
+            float: left;
+            width: 45px;
+            height: 84px;
+            line-height: 39px;
+            text-align: center;
+            font-size: 24px;
+            font-family: "微软雅黑";
+            color: white;
+            font-weight: bold;
+            align-content: center;
+            background-size: 36px 46px;
+        }
+
+        #id_lottery li {
+            background: url(../Source/image/bg03.png) no-repeat center top;
+            list-style: none;
+            float: left;
+            width: 60px;
+            height: 62px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 40px;
+            font-family: "微软雅黑";
+            color: #3D4375;
+            font-weight: bold;
+            align-content: center;
+        }
+    </style>
+    <script type="text/javascript">
+        var count = 0;
+        var lotterType;
+        var bl = false;
+        $(function () {
+            var curDate = new Date();
+            if (curDate.getHours() < 8) {
+                curDate.setDate(curDate.getDate() - 1);//获取AddDayCount天后的日期
+                $("#id_date").val(setDate(curDate));
+            }
+            else {
+                $("#id_date").val(setDate(curDate));
+            }
+
+            request_post(4);
+            request_post(5);
+
+            $("#radio1").click(function () {
+                request_post(1);
+                request_post(2);
+            });
+
+            $("#radio2").click(function () {
+                request_post(4);
+                request_post(5);
+            });
+
+            $("#id_btn").click(function () {
+                var v = $("input[type='radio']:checked").val();
+                if (v == 0) {
+                    request_post(1);
+                    request_post(2);
+                }
+                else {
+                    request_post(4);
+                    request_post(5);
+                }
+            });
+
+            setInterval(downtime, 1000);
+            var bl = false;
+            function downtime() {
+                var date = new Date();
+                if (date.getHours() >= 8 && date.getMinutes() <= 1) {
+                    $("#id_date").val(setDate(date));
+                }
+
+                var downSeconds = 60 - date.getSeconds();
+                var timeResult = String(downSeconds);
+                if (downSeconds < 10) {
+                    timeResult = "0" + timeResult;
+                }
+
+                $("#id_time_1").html("0");
+                $("#id_time_2").html("0");
+                $("#id_time_3").html(timeResult.substring(0, 1));
+                $("#id_time_4").html(timeResult.substring(1, 2));
+
+                if (!bl && downSeconds > 35 && downSeconds < 48) {
+                    request_post(1);
+                    request_post(2);
+                    request_digit_post();
+                    bl = true;
+                } else if (downSeconds <= 35 || downSeconds >= 48) {
+                    bl = false;
+                }
+            }
+        });
+
+        function setDate(date) {
+            var curr_year = date.getFullYear();
+            var curr_month = date.getMonth() + 1;
+            var curr_date = date.getDate();
+            String(curr_month).length < 2 ? (curr_month = "0" + curr_month) : curr_month;
+            String(curr_date).length < 2 ? (curr_date = "0" + curr_date) : curr_date;
+            var yyyyMMdd = date.getFullYear() + "-" + curr_month + "-" + curr_date;
+            return yyyyMMdd;
+        }
+
+        //Post方式
+        function request_post(type) {
+            if (type == 1 || type == 4) {
+                $("#id_tbody_before").empty();
+            }
+            else {
+                $("#id_tbody_after").empty();
+            }
+
+            ///最大值
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostMaxRoadTrendecy",
+                data: {
+                    type: type,
+                    date: $("#id_date").val(),
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (type == 1 || type == 4) {
+                        initMaxData("#id_tbody_before", data)
+                    }
+                    else {
+                        initMaxData("#id_tbody_after", data)
+                    }
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+
+            ///走势
+            $.ajax({
+                type: 'post',
+                url: "/Xscp/PostRoadTrendecy",
+                data: {
+                    type: type,
+                    num: $("#id_num").val(),
+                    date: $("#id_date").val(),
+                },
+                async: true,
+                dataType: "json",
+                success: function (data) {
+                    if (type == 1 || type == 4) {
+                        initData("#id_tbody_before", data)
+                    }
+                    else {
+                        initData("#id_tbody_after", data)
+                    }
+                },
+                error: function () {
+                    $("#myPnl").html("失败");
+                }
+            });
+        }
+
+        function getBgcolor(i, val) {
+            var strResult = "<td align='center'";
+            if (val == 0) {
+                strResult = strResult + "bgcolor='#B0C4DE'  style='font-size:16px;font-weight:bold;'"
+            }
+            else if (val > 15) {
+                strResult = strResult + "bgcolor='#9932CC'"
+            }
+            else if (val > 12) {
+                strResult = strResult + "bgcolor='#FF0000'"
+            }
+            else if (val > 7) {
+                strResult = strResult + "bgcolor='#FFD700'"
+            }
+            else if (val > 3) {
+                strResult = strResult + "bgcolor='#00FF00'"
+            }
+            strResult = strResult + ">" + val + "</td>";
+            return strResult;
+        }
+
+        function getDwdBgcolor(val) {
+            var strResult = "<td align='center'";
+            if (val == "0|0") {
+                strResult = strResult + "bgcolor='#B0C4DE'  style='font-size:16px;font-weight:bold;'"
+            }
+            strResult = strResult + ">" + val + "</td>";
+            return strResult;
+        }
+
+        function getMaxBgcolor(val) {
+            var strResult = "<td align='center'";
+            strResult = strResult + ">" + val + "</td>";
+            return strResult;
+        }
+
+        function initMaxData(type, data) {
+            var strResult = "<tr bgcolor='#FFE4B5'>";
+            strResult += "<td>" + data.Sno + "</td>";
+            strResult += "<td align='center'>-</td>";
+            strResult += getMaxBgcolor(data.Big);
+            strResult += getMaxBgcolor(data.Small);
+            strResult += getMaxBgcolor(data.Odd);
+            strResult += getMaxBgcolor(data.Pair);
+            strResult += "<td bgcolor='#3D4375'></td>";
+            strResult += getMaxBgcolor(data.No_0);
+            strResult += getMaxBgcolor(data.No_1);
+            strResult += getMaxBgcolor(data.No_2);
+            strResult += "<td bgcolor='#3D4375'></td>";
+            strResult += "<td align='center'>-</td>";
+            strResult += "</tr>";
+            $(type).append(strResult);
+        }
+
+        function initData(type, data) {
+            $("#id_lottery1").html(data[0].Lottery.substring(0, 1));
+            $("#id_lottery2").html(data[0].Lottery.substring(2, 3));
+            $("#id_lottery3").html(data[0].Lottery.substring(4, 5));
+            $("#id_lottery4").html(data[0].Lottery.substring(6, 7));
+            $("#id_lottery5").html(data[0].Lottery.substring(8, 9));
+
+            var strResult;
+            $.each(data, function (i, item) {
+                if (i == 0)
+                    strResult += "<tr bgcolor='#87CEFA' style='font-size:18px;font-weight:bold;'>";
+                else
+                    strResult += "<tr>";
+                strResult += "<td>" + item.Sno + "</td>";
+
+                if (type == "#id_tbody_before") {
+                    strResult += "<td><span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(0, 3) + "</span>" + item.Lottery.substring(3, 9) + "</td>";
+                }
+                else {
+                    strResult += "<td>" + item.Lottery.substring(0, 6) + "<span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(6, 9) + "</span></td>";
+                }
+
+                strResult += getBgcolor(i, item.Big);
+                strResult += getBgcolor(i, item.Small);
+                strResult += getBgcolor(i, item.Odd);
+                strResult += getBgcolor(i, item.Pair);
+                strResult += "<td bgcolor='#3D4375'></td>";
+                strResult += getBgcolor(i, item.No_0);
+                strResult += getBgcolor(i, item.No_1);
+                strResult += getBgcolor(i, item.No_2);
+                strResult += "<td bgcolor='#3D4375'></td>";
+                strResult += "<td>" + item.Dtime.substring(6, 11) + "</td>";
+                strResult += "</tr>";
+            });
+
+            $(type).append(strResult);
+        }
+    </script>
+</head>
+<body>
+    <div class="bet_con_ground">
+        <div style="float:left;margin-top:25px;">
+            <label style="color:white;">日期：</label>
+            <input id="id_date" style="width:80px;" onclick="laydate()" />
+            <label style="color:white;">期数：</label>
+            <input id="id_num" type="text" value="10" style="width:40px;" />
+            <button id="id_btn" style="width:50px;">刷新</button>
+            <input type="radio" name="radio" id="radio1" value="0" />万、千
+            <input type="radio" name="radio" id="radio2" checked="true" value="1" />十、个
+        </div>
+        <div style="">
+            <ul id="id_time" @*style="margin-left:400px;margin-top:50px;"*@>
+                @*<li>0</li>
+                    <li>0</li>*@
+                <li>0</li>
+                <li>0</li>
+                <li id="id_time_3">2</li>
+                <li id="id_time_4">9</li>
+            </ul>
+        </div>
+        <div @*style="clear:both;"*@>
+            <ul id="id_lottery" @*style="margin-left:400px;margin-top:20px;"*@>
+                <li id="id_lottery1">0</li>
+                <li id="id_lottery2">2</li>
+                <li id="id_lottery3">3</li>
+                <li id="id_lottery4">7</li>
+                <li id="id_lottery5">0</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <table border="1" cellpadding="2" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="20">期数</th>
+                                <th width="40">奖号</th>
+                                <th width="40">大</th>
+                                <th width="40">小</th>
+                                <th width="40">奇</th>
+                                <th width="40">偶</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="40">0路</th>
+                                <th width="40">1路</th>
+                                <th width="40">2路</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="50">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="id_tbody_before"></tbody>
+                    </table>
+                </td>
+                <td width="20" bgcolor="#3D4375"></td>
+                <td>
+                    <table border="1" cellpadding="2" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="20">期数</th>
+                                <th width="40">奖号</th>
+                                <th width="40">大</th>
+                                <th width="40">小</th>
+                                <th width="40">奇</th>
+                                <th width="40">偶</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="40">0路</th>
+                                <th width="40">1路</th>
+                                <th width="40">2路</th>
+                                <th width="15" bgcolor='#3D4375'></th>
+                                <th width="50">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="id_tbody_after"></tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
