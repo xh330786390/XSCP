@@ -108,9 +108,15 @@
                 $("#id_time_4").html(timeResult.substring(1, 2));
 
                 if (!bl && downSeconds > 35 && downSeconds < 48) {
-                    request_post(1);
-                    request_post(2);
-                    request_digit_post();
+                    var v = $("input[type='radio']:checked").val();
+                    if (v == 0) {
+                        request_post(1);
+                        request_post(2);
+                    }
+                    else {
+                        request_post(4);
+                        request_post(5);
+                    }
                     bl = true;
                 } else if (downSeconds <= 35 || downSeconds >= 48) {
                     bl = false;
@@ -173,10 +179,10 @@
                 dataType: "json",
                 success: function (data) {
                     if (type == 1 || type == 4) {
-                        initData("#id_tbody_before", data)
+                        initData("#id_tbody_before", type, data)
                     }
                     else {
-                        initData("#id_tbody_after", data)
+                        initData("#id_tbody_after", type, data)
                     }
                 },
                 error: function () {
@@ -239,7 +245,7 @@
             $(type).append(strResult);
         }
 
-        function initData(type, data) {
+        function initData(type, position, data) {
             $("#id_lottery1").html(data[0].Lottery.substring(0, 1));
             $("#id_lottery2").html(data[0].Lottery.substring(2, 3));
             $("#id_lottery3").html(data[0].Lottery.substring(4, 5));
@@ -249,16 +255,26 @@
             var strResult;
             $.each(data, function (i, item) {
                 if (i == 0)
-                    strResult += "<tr bgcolor='#87CEFA' style='font-size:18px;font-weight:bold;'>";
+                    strResult += "<tr bgcolor='#87CEFA'>";
                 else
                     strResult += "<tr>";
                 strResult += "<td>" + item.Sno + "</td>";
 
                 if (type == "#id_tbody_before") {
-                    strResult += "<td><span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(0, 3) + "</span>" + item.Lottery.substring(3, 9) + "</td>";
+                    if (position == 1) {
+                        strResult += "<td><span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(0, 1) + "</span>" + item.Lottery.substring(1, 9) + "</td>";
+                    }
+                    else {
+                        strResult += "<td>" + item.Lottery.substring(0, 6) + "<span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(6, 7) + "</span>" + item.Lottery.substring(7, 9) + "</td>";
+                    }
                 }
                 else {
-                    strResult += "<td>" + item.Lottery.substring(0, 6) + "<span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(6, 9) + "</span></td>";
+                    if (position == 2) {
+                        strResult += "<td>" + item.Lottery.substring(0, 2) + "<span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(2, 3) + "</span>" + item.Lottery.substring(3, 9) + "</td>";
+                    }
+                    else {
+                        strResult += "<td>" + item.Lottery.substring(0, 8) + "<span style='color:red;font-weight:bold;font-size: 20px;'>" + item.Lottery.substring(8, 9) + "</span></td>";
+                    }
                 }
 
                 strResult += getBgcolor(i, item.Big);
@@ -286,8 +302,8 @@
             <label style="color:white;">期数：</label>
             <input id="id_num" type="text" value="10" style="width:40px;" />
             <button id="id_btn" style="width:50px;">刷新</button>
-            <input type="radio" name="radio" id="radio1" value="0" />万、千
-            <input type="radio" name="radio" id="radio2" checked="true" value="1" />十、个
+            <input type="radio" name="radio" id="radio1" value="0" /><font color="white">万、千</font>
+            <input type="radio" name="radio" id="radio2" checked="true" value="1" /><font color="white">十、个</font>
         </div>
         <div style="">
             <ul id="id_time" @*style="margin-left:400px;margin-top:50px;"*@>
