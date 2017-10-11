@@ -469,7 +469,10 @@ namespace XSCP.Common
                 string sql = string.Format("select  max(Big) Big,    " +
                                                     "max(Small) Small,       " +
                                                     "max(Odd) Odd,           " +
-                                                    "max(Pair) Pair      " +
+                                                    "max(Pair) Pair,      " +
+                                                    "max(No_0) No_0,      " +
+                                                    "max(No_1) No_1,      " +
+                                                    "max(No_2) No_2      " +
                                                     "from {0} where Ymd = '{1}'", tableName, date);
                 return conn.Query<TendencyModel>(sql).FirstOrDefault();
             }
