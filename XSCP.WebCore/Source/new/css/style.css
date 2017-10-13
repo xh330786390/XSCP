@@ -1,0 +1,354 @@
+@charset "utf-8";
+/*通用样式*/
+* {	margin: 0px;	padding: 0px;}
+body{ padding:0; background:#fff; background-size:100% 100%; color:#000; font-family:"Microsoft YaHei";  font-size:12px; line-height:24px; }
+li{list-style-type:none;}
+
+#news8_c_1 ul li,#news8_c_2 ul li,#news8_c_3 ul li,#news5_c_1 ul li,#news5_c_2 ul li,#news5_c_3 ul li,#news3_c_1 ul li,#news3_c_2 ul li,#news3_c_3 ul li,#news9_c_1 ul li,#news9_c_2 ul li,#news9_c_3 ul li,#news11_c_1 ul li,#news11_c_2 ul li,#news11_c_3 ul li{height: 30px;overflow: hidden;}    
+
+a{color:#333; text-decoration:none}
+i{ font-style:normal}
+table{ border-collapse:collapse;}
+.c_fff{ color:#fff}
+.mr20{ margin-right:15px;}
+.tb_hover tr:hover td{ background:#fafafa}
+
+
+img{ border:0}
+.l{ float:left}
+.r{ float:right}
+.c{ clear:both}
+.blk,.blk img{ display:block}
+.fn{ font-weight:normal}
+.wrap{ width:1002px; overflow:hidden; margin:0 auto}
+.p0-10{ padding:0 10px;}
+
+.w270{ width:270px; overflow:hidden}
+.w242{ width:242px; overflow:hidden}
+.w470{ width:470px; overflow:hidden}
+.w722{ width:722px; overflow:hidden}
+.w772{ width:772px; overflow:hidden}
+.w220{ width:220px; overflow:hidden}
+.w194{ width:194px; overflow:hidden}
+.w198{ width:198px; overflow:hidden}
+.w591{ width:591px; overflow:hidden}
+.w795{ width:795px; overflow:hidden}
+.w421{ width:421px; overflow:hidden}
+.w538{ width:538px; overflow:hidden}
+.w620{ width:620px; overflow:hidden}
+.w372{ width:371px; overflow:hidden}
+.bor_d6d{ border:1px solid #D6D7D9}
+.bg_white{ background:#fff}
+.p10{ padding:10px;}
+.p20-0{ padding:20px 0}
+.mr10{ margin-right:10px;}
+.p5{ padding:5px;}
+.p30{ padding:30px;}
+.ti2em{ text-indent:2em}
+ em{ font-style:normal}
+.c999{ color:#999}
+.c666{ color:#666}
+.f13{ font-size:13px;}
+.f14{ font-size:14px;}
+.f16{ font-size:16px;}
+.f18{ font-size:18px;}
+.f24{ font-size:24px;}
+.line_f2c{ height:1px; background:#f2c266; font-size:0px; line-height:0px; overflow:hidden}
+.h15{ height:15px;}
+.h20{ height:20px;}
+.h25{ height:25px;}
+.h30{ height:30px;}
+.h35{ height:35px;}
+.h8{ height:8px; font-size:0; line-height:0; overflow:hidden}
+.h10{ height:10px; font-size:0; line-height:0; overflow:hidden}
+.h12{ height:12px; font-size:0; line-height:0; overflow:hidden}
+.h5{ height:5px; font-size:0; line-height:0; overflow:hidden}
+.red{ color:#fd2020}
+.c333{ color:#333}
+.cdf0{ color:#df0000}
+.mb18{ margin-bottom:18px;}
+.dash_line{ border-bottom:1px dashed #ccc; height:1px; line-height:0; font-size:0; overflow:hidden}
+dl dt{ float:left}
+dl dd{ float:right}
+.bg_fcf{ background:#fcf5e3}
+.bor_f2c{ border:1px solid #f2c062}
+
+
+
+.more{ color:#999; float:right; font-size:14px;}
+.bor_dc{ border:1px solid #DCDAD4}
+.tit01{ height:35px; line-height:35px; overflow:hidden; border-bottom:1px solid #f2c062;font-size:14px; padding-left:10px;}
+.tit02{ height:34px; line-height:34px; background:#f5f5f5; overflow:hidden; font-size:14px;color:#333; font-weight:normal  }
+.tit02 span{ display:block; height:33px; float:left; width:119px; overflow:hidden; text-align:center;border-bottom:1px solid #DCDAD4; cursor:pointer}
+.tit02 span.tab_2_2{ background:#fff;border-bottom:1px solid #fff;}
+.tit03{ height:36px; line-height:36px; overflow:hidden;font-size:14px; color:#fff; padding:0 10px;}
+
+.notice{ height:350px; overflow:hidden}
+.notice li{ border-bottom:1px solid #f2c062; height:45px; padding:10px 0; overflow:hidden;font-size:14px;}
+.notice li p em{ display:inline-block;width:19px;padding-right:1px;height:22px;line-height:21px;font-weight:700;text-align:center;color:#fff;line-height:21px\9;margin-right:5px;color:#fff;background:url(/new/images/newballs_5aa7bd8.png) no-repeat -47px -38px;font-size:13px}
+.notice li p em.r_blue{background-position: -70px -38px;}
+
+
+.c0d6{ color:#0d64bd; }
+.tit03 a{font-weight:normal; padding:0 5px}
+.tit03 a.blue{color:#0d64bd; font-size:14px}
+.tit03 a.c0d6:hover,.tit03 a.blue:hover{color:#f91d2d; }
+.tit04{color:#fff; background:#c5100c; padding:0 10px; font-size:15px; height:36px; line-height:36px;}
+.tit05{ height:32px; background:#f5f5f5; line-height:32px; overflow:hidden; text-align:center; font-size:14px; border-bottom:1px solid #dbdbdb}
+
+
+
+/*---头部------*/
+.top{ height:32px; line-height:32px; border-bottom:1px solid #dfdfdf; overflow:hidden; background:#f3f3f3}
+.top a:hover{ text-decoration:underline}
+.top ul li{ float:left; margin-left:12px; _display:inline; height:32px; overflow:hidden; color:#b6b6b6}
+.mt10{ margin-top:10px}
+
+/*---logo------*/
+.logo{ }
+.logo h1{ margin-right:84px; margin-top:29px;}
+
+
+
+/*---nav------*/
+.nav{ height:46px;background:#3D4375; line-height:46px;}
+.nav li{ float:left; font-size:15px;}
+.nav li a{ color:#fff; display:block; padding:0 26px; height:46px;}
+/*.nav li a:hover,.nav li.on a{ background:url(../images/hover.png);}*/
+.nav li a:hover,.nav li.on a{ background:white;color:#171735;}
+
+.ns30 li{ height:32px; line-height:32px; overflow:hidden;background:url(../images/dot.gif) 0 center no-repeat; padding-left:10px;}
+.ns30 li a:hover{ color:#f47920; border-bottom:1px solid #f47920}
+
+/*-----下载专区----*/
+.zhuanqu{ background:#df0000; font-size:22px; color:#fff; text-align:center; line-height:30px; letter-spacing:5px}
+.zhuanqu_tab td{ text-align:center; border:1px solid #dbdbdb}
+.zhuanqu_tab td a:hover{ color:#d50001}
+.zhuanqu_tab td .down_app{ display:block; margin:auto; height:24px; line-height:24px; background:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;width:58px;}
+.zhuanqu_tab td .down,.zhuanqu_tab td .down_app:hover{ display:block; margin:auto; height:24px; line-height:24px; background:#9c9c9c; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;color:#fff!important; width:58px; }
+.zhuanqu_tab td .down:hover{ background:#df0000}
+
+/*---重庆时时彩------*/
+.tit05_tabs{ height:36px; line-height:36px; border-bottom:1px solid #dbdbdb; padding-left:6px}
+.tit05_tabs span{ width:58px; height:34px; border-bottom:2px solid #fff; display:block; float:left; text-align:center; cursor:pointer; font-weight:normal; font-size:13px;}
+.tit05_tabs span.tab_2_2{ border-bottom:2px solid #df0000}
+
+.time{ height:36px; line-height:36px; overflow:hidden; margin:0 auto;}
+.cell_wrap{margin-left:-9px;}
+.cell{ width:191px; overflow:hidden; float:left; border:1px solid #dbdbdb; margin-left:9px;}
+.cell ul{ margin:10px; margin-bottom:0; padding-bottom:10px; border-bottom:1px solid #dbdbdb}
+.cell ul li{ height:30px; line-height:30px; font-size:14px; }
+.cell ul li span{ color:#df0000}
+.cell ul li em{ display:block; height:17px; width:17px; text-align:center; float:left; line-height:17px; margin:6px 5px 0 0; font-size:12px; color:#666}
+.cell ul li em.thr{ background:#df0000;color:#fff;border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
+.cell ul li a:hover{ color:#fc9c26; border-bottom:1px solid #fc9c26}
+
+/*---走势图------*/
+.wanfa,.wanfa2{border-top:1px solid #f2c062;border-left:1px solid #f2c062;}
+.wanfa span,.wanfa2 span{ display:block; float:left; border:1px solid #f2c062; border-top:0; border-left:0; height:37px; font-size:13px; color:#666; text-align:center; width:99px; line-height:37px; cursor:pointer}
+.wanfa span.tab_2_2,.wanfa2 span.tab_2_2{ background:#df0000; color:#fff}
+.wanfa2 span.tab_2_2{ background:#8f63c4; }
+
+.tit06{ height:36px; background:#fbf0dd; border:1px solid #f2c062; line-height:36px; overflow:hidden}
+.sch_btn{ background:none; border:0; height:20px; line-height:20px; padding:0 6px; background:#c5100c; color:#fff; font-size:13px; float:left}
+.t_underl{ text-decoration:underline }
+.check1{ height:38px; line-height:38px; background:#f1f1f1; padding:0 10px}
+.txt01{ height:20px; line-height:20px; border:1px solid #ddd; width:100px; }
+.ml10{ margin-left:10px}
+.check1 input{ margin:12px 5px 0 10px; float:left}
+.check1 span{ float:left; display:block}
+
+.bg_fbf{ background:#fbf0dd}
+
+.trend_tab { background:#fffcf5}
+.trend_tab td{ border:1px solid #f2c062; text-align:center; padding:3px 0}
+
+.paixu{ width:27px; float:left; margin-top:4px }
+.issue{ width:45px; margin:auto }
+.qihao{width:15px; line-height:20px}
+.paixu a{ width:10px; height:8px; display:block; float:left; margin-left:3px }
+.paixu a.rise1{ background:url(../images/paixu.png) 0 0;}
+.paixu a.rise2{ background:url(../images/paixu.png) 0 -8px;}
+.paixu a.fall1{ background:url(../images/paixu.png) -13px -8px;}
+.paixu a.fall2{ background:url(../images/paixu.png) 13px 0;}
+.red_r{ width:16px; height:16px; background:url(../images/red_r.png) no-repeat; color:#fff; text-align:center; display:block; line-height:16px; margin:auto; overflow:hidden}
+
+
+/*---个人------*/
+.tit07{ height:36px; line-height:36px; background:#f5f5f5; border-bottom:1px solid #dbdbdb; font-size:14px; padding:0 10px }
+.bor_db{border:1px solid #dbdbdb}
+.tit08{ height:36px; line-height:36px; background:#f5f5f5; border:1px solid #f2c062; font-size:14px; padding:0 10px }
+.mt8{margin-top:8px}
+.tit08 span{ cursor:pointer}
+.plan_tabs{ height:36px; line-height:36px; background:url(../images/plan.png); overflow:hidden; padding:0 15px}
+.plan_tabs span{ display:block; float:left; padding:0 15px; color:#fff; cursor:pointer; font-size:13px}
+.plan_tabs span.tab_2_2 { background:#fff; height:38px; border:1px solid #f2c062; border-bottom:0; border-top:0; color:#000    } 
+.plan_tab td{ border-bottom:1px solid #f2c062; padding:5px 0; text-align:center}
+.li34 li{ line-height:34px;height:34px; border-bottom:1px dashed #ccc}
+.pl20{ padding-left:20px}
+.p20{ padding:20px}
+
+/*---计划发布pk10------*/
+.pk10_tabs{ height:36px; line-height:36px; background:url(../images/plan.png); overflow:hidden; padding:0 15px}
+.pk10_tabs span{ display:block; float:left; padding:0 15px; color:#fff; cursor:pointer}
+.pk10_tabs span.tab_2_2 { background:#fffcf5; height:38px; border:1px solid #fffcf5; border-bottom:0;  color:#000    } 
+.bg_fffc{ background:#fffcf5}
+.tit05_pk10{ height:36px; line-height:36px; border-bottom:1px solid #dbdbdb; padding-left:6px}
+.tit05_pk10 span{ width:58px; height:34px; border-bottom:2px solid #fff; display:block; float:left; text-align:center; cursor:pointer; font-weight:normal; font-size:13px; padding:0 15px;}
+.tit05_pk10 span.tab_2_2{ border-bottom:2px solid #df0000}
+
+.trend_tab2 { background:#fffcf5}
+.trend_tab2 td{ border:1px solid #f2c062; text-align:center; padding:3px 0}
+.c1a5{color:#1a59cc}
+
+.dwd .layA{ width:24px; line-height:20px; padding-top:5px; font-weight:bold; text-align:center}
+.dwd .layB{ width:279px;}
+.dwd .layB a{ display:block; height:40px; width:40px; background:url(../images/pk10.png); float:left; font-size:26px; text-align:center; line-height:40px; color:#fff; margin:8px 7px;text-shadow: 1px 1px 0px #000000, -1px -1px 0px #000000, 1px -1px 0px #000000, -1px 1px 0px #000000; }
+.dwd .layB a:hover,.dwd .layB a.on{ background:url(../images/pk10.png) 0 -50px; }
+.dwd .layC{ width:98px;}
+.dwd .layC p input{ border:0; background:none;background:url(../images/pk10.png) 0 -119px; width:22px; height:22px; margin:8px 10px 5px 0; float:left }
+.plus{ display:block; height:15px; width:15px;background:url(../images/pk10.png) -85px -91px; float:right; margin:10px 0 0 15px}
+
+.tijiao{ border:0; background:none;background:url(../images/pk10.png) 0 -168px; width:80px; height:25px; padding-left:20px}
+.copy,.stick,.empty{ display:block; height:22px; padding-left:20px;float:left; margin-right:10px; cursor:pointer}
+.copy{background:url(../images/icons.png) no-repeat 0 3px ; }
+.stick{background:url(../images/icons.png) no-repeat 0 -58px ;}
+.empty{background:url(../images/icons.png) no-repeat 0 -120px ;}
+.chengb{ border:0; background:none;background:url(../images/pk10.png) -49px -5px; width:133px; height:23px; padding-left:28px}
+
+/*---二星直选------*/
+.erxing_area{ border:0; background:none; border:1px solid #f2c266; height:134px; width:100%; background:#fff; overflow-x:hidden; line-height:24px;}
+
+
+
+/*---资讯列表------*/
+.newsList li{ height:40px; line-height:40px; overflow:hidden; font-size:14px; border-bottom:1px dashed #ccc; background:url(../images/dot.png) 0 17px no-repeat; padding-left:12px;}
+.newsList li span{ font-size:12px; color:#999}
+.newsList li a:hover,.dot_34 li a:hover{ color:#fc9c24; text-decoration:underline}
+
+.dot_34 li{ height:34px; line-height:34px; overflow:hidden; font-size:14px; border-bottom:1px dashed #ccc; background:url(../images/dot.png) 0 17px no-repeat; padding-left:10px }
+
+.head{ font-size:26px; text-align:center; font-weight:normal; border-bottom:1px solid #e4e4e4; margin-bottom:30px; padding-bottom:30px; line-height:45px;}
+.head p{ font-size:12px; color:#999;}
+.lh36{ line-height:36px}
+.f18{ font-size:18px}
+
+
+
+
+/*---页码------*/
+.pages{ margin:50px 0 30px 0; text-align:center}
+.pages span,.pages a{ display:block; height:35px; line-height:35px; padding:0 13px; font-size:12px; display:inline-block; border:1px solid #eaeaea; margin-right:10px; color:#999}
+.pages a:hover,.pages a.on{ background:#b9b9b9; color:#fff!important}
+
+/*---模版管理------*/
+.w321{ width:321px; overflow:hidden}
+.w671{ width:671px; overflow:hidden}
+.moban_tab2 td{ border:1px solid #dbdbdb; padding:5px 10px; font-size:14px}
+.moban_tab1 td{ border:1px solid #dbdbdb; padding:5px 20px; font-size:14px}
+.moban{ display:block; height:24px; line-height:24px;}
+.moban span{ display:block; float:left}
+.close{ display:block; height:9px; width:9px;background:url(../images/icons.png) 0px -274px; float:left; margin:8px 0 0 10px; cursor:pointer}
+.oprt a{ display:block; width:128px; height:30px;line-height:30px; overflow:hidden; font-size:14px; float:left; background:url(../images/pk10.png) -43px -38px; margin:20px auto; margin-right:10px; }
+.oprt a:hover{background:url(../images/pk10.png) -179px -39px; color:#fff  }
+
+.oprt a span{ display:block; height:15px; width:15px; float:left; margin:9px 10px 0 10px }
+.oprt a.a01 span{ background:url(../images/icons.png) 0px -451px;  }
+.oprt a.a02 span{ background:url(../images/icons.png) 0px -345px;  }
+.oprt a.a03 span{background:url(../images/icons.png) 0px -403px;  }
+.oprt a.a01:hover span{ background:url(../images/icons.png) 0px -518px;  }
+.oprt a.a02:hover span{ background:url(../images/icons.png) 0px -606px;  }
+.oprt a.a03:hover span{background:url(../images/icons.png) 0px -565px;  }
+
+.st_ipt{ border:0; background:#fff; height:30px; line-height:30px;}
+
+
+/*---时时彩------*/
+.wanfa3{border-left:1px solid #f2c062;}
+.wanfa3 span{ display:block; float:left; border:1px solid #f2c062; border-top:0; border-left:0; height:37px; font-size:13px; color:#666; text-align:center; width:73px; line-height:37px; cursor:pointer}
+.wanfa3 span.tab_2_2{ background:#8f63c4; color:#fff}
+.plan{ padding-top:10px}
+.plan a{ width:80px; height:28px; line-height:28px; text-align:center; background:#999999; color:#fff; display:block; float:left; margin-left:10px; margin-bottom:10px;}
+.plan a:hover,.plan a.on{background:#c5100c;}
+.plan a.ye{background:#f5a40a;}
+.fresh{ text-decoration:underline}
+.pages02 a:hover{ color:#c5100c}
+
+.clct_tab td{height:37px; line-height:37px; font-size:13px; color:#666;border:1px solid #f2c062; text-align:center}
+
+/*---开奖查询------*/
+.caiz{ height:84px; overflow:hidden; padding-top:3px;}
+.caiz img{ border-radius:43px; -moz-border-radius:43px; -webkit-border-radius:43px;}
+.caiz .layA{ width:86px;}
+.caiz .layB{ width:340px; margin-left:16px;}
+.caiz .layC{ width:300px; height:61px; background:#fffcf5; border:1px solid #f2c164; padding:15px 13px 0 13px; margin-top:2px; margin-left:20px}
+.caiz .layC em{ width:49px; height:48px; line-height:48px; text-align:center; background:url(../images/pk10.png) -121px -89px; display:block; float:left; font-size:24px; color:#fff;}
+.caiz .layD{ width:168px; margin-left:20px; }
+.caiz .layB p span{ display:block; float:left}
+.caiz .layB .num{ height:36px; background:#fffcf5; border:1px solid #f2c164; padding-top:8px; padding-left:10px; margin-top:10px}
+.caiz .layB .num span{ display:block; float:left; height:28px; width:28px; text-align:center; line-height:28px; color:#fff; font-size:18px; background:url(../images/blue.png); margin-left:10px; cursor:pointer}
+.c008{ color:#00802f}
+.caiz .layD ul li{ height:24px; line-height:24px;  width:84px; float:left; position:relative; margin:8px 0} 
+.caiz .layD ul li img{ position:absolute; top:-5px; left:36px }
+.caiz .layD ul li a:hover{color:#fc9c26; border-bottom:1px solid #fc9c26}
+.horn{ width:27px; height:27px; display:block; background:url(../images/pk10.png) -202px -99px;}
+.down_h{ background:url(../images/icons.png) 0px -768px no-repeat; padding-left:12px}
+
+.inqury_tab td{ padding:9px 0; border-bottom:1px solid #ccc}
+.inqury_tab th{ height:40px; background:#f8f8f8}
+.inqury_tab span,.inqury_tab2 span{ display:block; height:26px; width:26px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; margin:0 auto; text-align:center; line-height:26px; font-size:14px;text-shadow: 1px 1px 0px #000000, -1px -1px 0px #000000, 1px -1px 0px #000000, -1px 1px 0px #000000; color:#fff  }
+.inqury_tab2 span{ margin:0 3px; float:left}
+.caiz .layB .inqury_tab2{ height:36px; background:#fffcf5; border:1px solid #f2c164; padding-top:8px; padding-left:10px; margin-top:10px}
+.inqury_tab span.c1,.inqury_tab2 span.c1{  background:#f7d1f1;}
+.inqury_tab span.c2,.inqury_tab2 span.c2{  background:#dc56e0;}
+.inqury_tab span.c3,.inqury_tab2 span.c3{  background:#f7e5be;}
+.inqury_tab span.c4,.inqury_tab2 span.c4{  background:#8a9ab4;}
+.inqury_tab span.c5,.inqury_tab2 span.c5{  background:#67192a;}
+.inqury_tab span.c6,.inqury_tab2 span.c6{  background:#cdd14c;}
+.inqury_tab span.c7,.inqury_tab2 span.c7{  background:#6f0659;}
+.inqury_tab span.c8,.inqury_tab2 span.c8{  background:#20761a;}
+.inqury_tab span.c9,.inqury_tab2 span.c9{  background:#9dea4a;}
+.inqury_tab span.c10,.inqury_tab2 span.c10{  background:#cd1f19;}
+
+/*---开奖查询3D------*/
+.ccd1{ color:#cd1f19}
+.cff0{ color:#ff0000}
+.c003{ color:#0030e2}
+.ca30{ color:#a300f8}
+.c843{ color:#84333b}
+.ccd1{ color:#cd1f19}
+.c0e7{ color:#0e77c7}
+.c009{ color:#009bdb}
+
+/*---首页弹出层------*/
+.mydiv{background: #fff;-webkit-box-shadow: 2px 2px 2px #666;  
+  -moz-box-shadow: 2px 2px 2px #666;  
+  box-shadow: 2px 2px 2px #666;  z-index:999;width: 397px;height: 271px;left:48%;/*FF IE7*/top:38%;/*FF IE7*/margin-left:-150px!important;/*FF IE7 该值为本身宽的一半*/margin-top:-50px!important;/*FF IE7 该值为本身高的一半*/margin-top:0px;position:fixed!important;/*FF IE7*/position:absolute;/*IE6*/}
+.bg,.popIframe{background-color: #000;display:none;width: 100%;height: 100%;left:0;top:0;/*FF IE7*/filter:alpha(opacity=30);/*IE*/opacity:0.3;/*FF*/z-index:1;position:fixed!important;/*FF IE7*/position:absolute;/*IE6*/;/*IE5 IE5.5*/}
+.popIframe{filter:alpha(opacity=0);/*IE*/opacity:0;/*FF*/}
+
+.mydiv h5{ height:43px; background:#c5100c; padding:0 15px; line-height:43px; overflow:hidden; font-size:16px; color:#fff }
+.mydiv h5 a{ display:block; width:13px; height:13px; float:right; background:url(../images/close.png) no-repeat; margin-top:15px}
+.tab_login{ padding:40px 30px 0 30px}
+.txt02{ border:0; background:none; border:1px solid #d5d5d5; height:33px; line-height:33px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; width:247px;}
+.btn01{ border:0; background:none; background:#c5100c; color:#fff; width:110px; font-size:16px; text-align:center; height:38px; line-height:38px; font-family:"Microsoft Yahei"; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
+.c3f7{ color:#3f79d0}
+.f12{ font-size:12px}
+
+
+/*---重庆时时彩定位胆------*/
+.dwd2 .layA{ width:40px; line-height:30px;font-weight:bold; text-align:center}
+.dwd2 .layB{ width:263px;}
+.dwd2 .layB a{ display:block; height:20px; width:20px; background:url(../images/dwd.png) -26px 0px; float:left; font-size:13px; text-align:center; line-height:20px; color:#fff; margin:5px 3px;}
+.dwd2 .layB a:hover,.dwd2 .layB a.on{ background:url(../images/dwd.png); }
+.dwd2 .layC{ width:98px;}
+.dwd2 .layC p input{ border:0; background:none;background:url(../images/pk10.png) 0 -119px; width:22px; height:22px; margin:3px 10px 5px 0; float:left }
+
+/*---尾部------*/
+.trend_tab2 { background:#fffcf5}
+.trend_tab2 th{ border:1px solid #c5100c; }
+.trend_tab2 td{ border:1px solid #f2c062; text-align:center; padding:3px 0}
+
+/*---尾部------*/
+.ifm{ padding:40px 0 40px 0;  line-height:30px; border-top:4px solid #dbdbdb; margin-top:30px;}
+.ifm a{ padding:0 10px;}

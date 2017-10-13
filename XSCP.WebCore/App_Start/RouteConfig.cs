@@ -18,7 +18,9 @@ namespace XSCP.WebCore
                 url: "{controller}/{action}/{id}",
                 //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
                 //defaults: new { controller = "Xscp", action = "HightCharts", id = UrlParameter.Optional }
-                defaults: new { controller = "Xscp", action = "Index", id = UrlParameter.Optional }
+                //defaults: new { controller = "Xscp", action = "Index", id = UrlParameter.Optional }
+                //defaults: new { controller = "Xscp", action = "Main", id = UrlParameter.Optional }
+                defaults: new { controller = "Tendency", action = "Main", id = UrlParameter.Optional }
             );
         }
     }

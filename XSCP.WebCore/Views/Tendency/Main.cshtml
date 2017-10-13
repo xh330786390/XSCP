@@ -1,0 +1,917 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+      <style>
+    .tb_table { border: 1px solid #ccc; border-collapse: collapse; font-size: 12px; margin-bottom: 10px; }
+    */
+    .tb_table { border: 1px solid #CCCCCC; border-collapse: collapse; font-size: 12px; background-color: #f2f2f2;}
+    .tb_table td { border: 1px solid #CCCCCC; text-align: center; line-height:20px; }
+    </style> -->
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <link href="~/Source/new/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Source/new/css/red.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+    </title>
+
+    <script>
+        function fillZero(number, digits) {
+            number = String(number);
+            var length = number.length;
+            if (number.length < digits) {
+                for (var i = 0; i < digits - length; i++) {
+                    number = "0" + number;
+                }
+            }
+            return number;
+        }
+        $(document).ready(function () {
+            $(".wanfa2 a").each(function () {
+                if ($(this).attr("href").split("=")[1] == "2x012") {
+
+                    $(this).attr("class", "hover");
+                    //alert($(this).attr("class"));
+                }
+
+            });
+        });
+        var leftsecond = 0;
+        var interval = 1000;
+        var nextexpect = "100";
+        function showOpenCode() {
+            console.log("test");
+            $.ajax({
+                type: "GET",
+                url: "/open.aspx?callback=?",
+                dataType: "json",
+                success: function (res) {
+                    if (res) {
+                        var obj = jQuery.parseJSON(res);
+                        var last = $("#qhao").html();
+                        var newc = obj.currexpect.substring(6) + "期";
+                        $("#result").html("<span>" + obj.opencode[0] + "</span><span>" + obj.opencode[1] + "</span><span>" + obj.opencode[2] + "</span><span>" + obj.opencode[3] + "</span><span>" + obj.opencode[4] + "</span>")
+                        $("#qhao").html(newc)
+
+                        $("#qhao").attr("data", obj.currexpect + " " + obj.opencode);
+                        leftsecond = parseInt(obj.nextSec);
+                        $("#sy").html(120 - parseInt(obj.currexpect.substring(6)))
+                        nextexpect = obj.nextexpect.substring(6) + "期";
+
+                    }
+                }
+            });
+        }
+        window.setInterval(function () {
+            //leftsecond--;
+            //if (leftsecond <= 0 || leftsecond % 55 == 0) {
+            //    //showOpenCode();
+            //}
+            //if (leftsecond < 0) {
+            //    $("#djs").html("开奖中");
+            //} else {
+            var seconde = "";
+            var date = new Date();
+            var downSeconds = 60 - date.getSeconds();
+            if (downSeconds < 10)
+            {
+                seconde = "0" + String(downSeconds);
+            }
+            else
+            {
+                seconde = String(downSeconds);
+            }
+
+                //var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+                //var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+                //var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+                //var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+                $("#djs").html('<td><p class="c008">第' + nextexpect + '</p>距离下期开奖剩余</td><td width="49"><em>' + "00" + '</em></td><td width="29" align="center">分</td><td width="49"><em>' + seconde + '</em></td><td width="29" align="center">秒</td><td align="right"><span class="horn"></span></td>')
+            //}
+        }, interval);
+    </script>
+
+</head>
+<body>
+    <div class="nav_wrap">
+        <div class="nav">
+            <ul class="wrap">
+                <li class="on"><a href="/">首页</a></li>
+                <li><a href="planlist.html">时时彩计划</a></li>
+                <li><a href="kaijiang.aspx">开奖查询</a></li>
+                <li><a href="trend.aspx">走势图表</a></li>
+                <li><a href="top.aspx">计划排名</a></li>
+                <li><a href="/html/wzgg/">软件帮助</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="h10"></div>
+    <div class="wrap">
+        <script type="text/javascript" src="/new/ad/banner.js?v=211"></script>
+    </div>
+    <div class="h10"></div>
+    <div class="wrap">
+        <div class="wanfa">
+            <span class="tab_2_2">新生分分彩</span>
+            <span onclick="alert('近期开放，请期待！');">新生秒秒彩</span>
+            <span onclick="alert('近期开放，请期待！');">新生3D彩</span>
+            <span onclick="alert('近期开放，请期待！');">重庆时时彩</span>
+            <span onclick="alert('近期开放，请期待！');">江西时时彩</span>
+            <span onclick="alert('近期开放，请期待！');">新疆时时彩</span>
+            <span onclick="alert('近期开放，请期待！');">天津时时彩</span>
+            <div class="c"></div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="bor_f2c bg_fbf p10">
+            <div class="caiz">
+                <div class="layA l">
+                    <img src="~/Source/new/images/temp/ssc.jpg" width="86" height="86" />
+                </div>
+                <div class="layB l">
+                    <p> <span class="f14 mr20">当前开：<em class="cdf0" data="" id="qhao">0期</em></span> <a class="sch_btn mr10" href="#">开奖视频</a> <span>每日<strong class="cdf0">120</strong>期，今日剩余<strong class="cdf0" id="sy">0</strong>期</span> </p>
+                    <div class="c"></div>
+                    <p></p>
+                    <div class="num" id="result">
+                        <span>5</span>
+                        <span>9</span>
+                        <span>9</span>
+                        <span>3</span>
+                        <span>6</span>
+                    </div>
+                </div>
+                <div class="layC l">
+                    <div class="l">
+                    </div>
+                    <div class="l">
+                        <table width="294" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr id="djs">
+                                    <td><p class="c008">第061期</p>距离下期开奖剩余</td>
+                                    <td width="49"><em>03</em></td>
+                                    <td width="29" align="center">分</td>
+                                    <td width="49"><em>18</em></td>
+                                    <td width="29" align="center">秒</td>
+                                    <td align="right"><span class="horn"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="layD l">
+                    <ul>
+                        <li><a href="/">交流论坛</a></li>
+                        <li><a href="/" class="cdf0">调用开奖结果</a></li>
+                        <li> <a href="/">号码走势图</a> <img src="/new/images/new.gif" /> </li>
+                        <li><a href="/" class="down_h">下载历史记录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h10"></div>
+    <div class="wrap">
+        <div class="wanfa2">
+            <span class="tab_2_2">定位走势</span>
+            <a href="?type=wan"><span>万位走势</span></a>
+            <a href="?type=qian"><span>千位走势</span></a>
+            <a href="?type=bai"><span>百位走势</span></a>
+            <a href="?type=shi"><span>十位走势</span></a>
+            <a href="?type=ge"><span>个位走势</span></a>
+            <div class="c"></div>
+            <span class="tab_2_2">二星走势</span>
+            <a href="?type=2x012"><span>二星012路</span></a>
+            <a href="?type=2xdxds"><span>二星大小单双</span></a>
+            <a href="?type=2xdw"><span>二星定位</span></a>
+            <a href="?type=2xzx"><span>二星组选</span></a>
+            <a href="?type=2xhz"><span>二星和值</span></a>
+            <a href="?type=2xdxds"><span style="border-top: 1px solid #f2c062;">二星跨度</span></a>
+            <a href="?type=2xdxds"><span style="border-top: 1px solid #f2c062;">二星遗漏曲线</span></a>
+        </div>
+    </div>
+    <div class="wrap">
+        <table class="tb_table" id="tablessc" width="1001" border="1" cellpadding="0" cellspacing="0" bordercolorlight="#ABA79B" bordercolordark="#FFFFFF">
+            <tbody id="tbodyssc">
+                <tr>
+                    <td width="30" rowspan="2" class="z_bg_03_1">序号</td>
+                    <td width="120" rowspan="2" class="z_bg_03_2"> <span style="float:left; margin-left:8px; margin-top:1px;">期<br />号</span> <span onclick="sortAble('pagedata', '4', '9', 'z_bg_16');"> <img style="cursor:pointer; margin-top:10px;" class="img1" name="imgSort" id="imgSort" src="/new/images/trend/sort_xia.gif" alt="期号排序" /> </span> </td>
+                    <td width="45" rowspan="2" class="z_bg_03_2">奖号</td>
+                    <td width="45" rowspan="2" class="z_bg_03_2">类型</td>
+                    <td colspan="9" class="z_bg_04">012路</td>
+                </tr>
+                <tr>
+                    <td class="z_bg_03">00</td>
+                    <td class="z_bg_03">01</td>
+                    <td class="z_bg_03">02</td>
+                    <td class="z_bg_03">10</td>
+                    <td class="z_bg_03">11</td>
+                    <td class="z_bg_03">12</td>
+                    <td class="z_bg_03">20</td>
+                    <td class="z_bg_03">21</td>
+                    <td class="z_bg_03">22</td>
+                </tr>
+                <!--头部结束-->
+            </tbody>
+            <tbody id="pagedata">
+                <tr id="tr0" class="z_tr_hui" onmouseover="overClass('tr0')">
+                    <td class="z_bg_05">1</td>
+                    <td class="z_bg_05">20171013022</td>
+                    <td class="z_bg_13">538<span style="color:Red;">16</span></td>
+                    <td class="z_bg_05">10</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">5</td>
+                    <td id="0" class="z_bg_16">10</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">18</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">10</td>
+                    <td class="z_bg_14">4</td>
+                </tr>
+                <tr id="tr1" class="z_tr_fen" onmouseover="overClass('tr1')">
+                    <td class="z_bg_05">2</td>
+                    <td class="z_bg_05">20171013023</td>
+                    <td class="z_bg_13">926<span style="color:Red;">52</span></td>
+                    <td class="z_bg_05">22</td>
+                    <td class="z_bg_14">12</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">19</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">11</td>
+                    <td id="1" class="z_bg_16">22</td>
+                </tr>
+                <tr id="tr2" class="z_tr_hui" onmouseover="overClass('tr2')">
+                    <td class="z_bg_05">3</td>
+                    <td class="z_bg_05">20171013024</td>
+                    <td class="z_bg_13">452<span style="color:Red;">13</span></td>
+                    <td class="z_bg_05">10</td>
+                    <td class="z_bg_14">13</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">7</td>
+                    <td id="2" class="z_bg_16">10</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">20</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">12</td>
+                    <td class="z_bg_14">1</td>
+                </tr>
+                <tr id="tr3" class="z_tr_fen" onmouseover="overClass('tr3')">
+                    <td class="z_bg_05">4</td>
+                    <td class="z_bg_05">20171013025</td>
+                    <td class="z_bg_13">615<span style="color:Red;">18</span></td>
+                    <td class="z_bg_05">12</td>
+                    <td class="z_bg_14">14</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">6</td>
+                    <td id="3" class="z_bg_16">12</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">13</td>
+                    <td class="z_bg_14">2</td>
+                </tr>
+                <tr id="tr4" class="z_tr_hui" onmouseover="overClass('tr4')">
+                    <td class="z_bg_05">5</td>
+                    <td class="z_bg_05">20171013026</td>
+                    <td class="z_bg_13">080<span style="color:Red;">29</span></td>
+                    <td class="z_bg_05">20</td>
+                    <td class="z_bg_14">15</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">1</td>
+                    <td id="4" class="z_bg_16">20</td>
+                    <td class="z_bg_14">14</td>
+                    <td class="z_bg_14">3</td>
+                </tr>
+                <tr id="tr5" class="z_tr_fen" onmouseover="overClass('tr5')">
+                    <td class="z_bg_05">6</td>
+                    <td class="z_bg_05">20171013027</td>
+                    <td class="z_bg_13">100<span style="color:Red;">11</span></td>
+                    <td class="z_bg_05">11</td>
+                    <td class="z_bg_14">16</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">10</td>
+                    <td class="z_bg_14">3</td>
+                    <td id="5" class="z_bg_16">11</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">15</td>
+                    <td class="z_bg_14">4</td>
+                </tr>
+                <tr id="tr6" class="z_tr_hui" onmouseover="overClass('tr6')">
+                    <td class="z_bg_05">7</td>
+                    <td class="z_bg_05">20171013028</td>
+                    <td class="z_bg_13">864<span style="color:Red;">33</span></td>
+                    <td class="z_bg_05">00</td>
+                    <td id="6" class="z_bg_16">00</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">16</td>
+                    <td class="z_bg_14">5</td>
+                </tr>
+                <tr id="tr7" class="z_tr_fen" onmouseover="overClass('tr7')">
+                    <td class="z_bg_05">8</td>
+                    <td class="z_bg_05">20171013029</td>
+                    <td class="z_bg_13">921<span style="color:Red;">13</span></td>
+                    <td class="z_bg_05">10</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">12</td>
+                    <td id="7" class="z_bg_16">10</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">17</td>
+                    <td class="z_bg_14">6</td>
+                </tr>
+                <tr id="tr8" class="z_tr_hui" onmouseover="overClass('tr8')">
+                    <td class="z_bg_05">9</td>
+                    <td class="z_bg_05">20171013030</td>
+                    <td class="z_bg_13">257<span style="color:Red;">81</span></td>
+                    <td class="z_bg_05">21</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">10</td>
+                    <td class="z_bg_14">13</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">4</td>
+                    <td id="8" class="z_bg_16">21</td>
+                    <td class="z_bg_14">7</td>
+                </tr>
+                <tr id="tr9" class="z_tr_fen" onmouseover="overClass('tr9')">
+                    <td class="z_bg_05">10</td>
+                    <td class="z_bg_05">20171013031</td>
+                    <td class="z_bg_13">277<span style="color:Red;">84</span></td>
+                    <td class="z_bg_05">21</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">14</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">5</td>
+                    <td id="9" class="z_bg_16">21</td>
+                    <td class="z_bg_14">8</td>
+                </tr>
+                <tr id="tr10" class="z_tr_hui_top" onmouseover="overClass('tr10')">
+                    <td class="z_bg_05">11</td>
+                    <td class="z_bg_05">20171013032</td>
+                    <td class="z_bg_13">551<span style="color:Red;">24</span></td>
+                    <td class="z_bg_05">21</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">12</td>
+                    <td class="z_bg_14">15</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">6</td>
+                    <td id="10" class="z_bg_16">21</td>
+                    <td class="z_bg_14">9</td>
+                </tr>
+                <tr id="tr11" class="z_tr_fen" onmouseover="overClass('tr11')">
+                    <td class="z_bg_05">12</td>
+                    <td class="z_bg_05">20171013033</td>
+                    <td class="z_bg_13">872<span style="color:Red;">66</span></td>
+                    <td class="z_bg_05">00</td>
+                    <td id="11" class="z_bg_16">00</td>
+                    <td class="z_bg_14">13</td>
+                    <td class="z_bg_14">16</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">10</td>
+                </tr>
+                <tr id="tr12" class="z_tr_hui" onmouseover="overClass('tr12')">
+                    <td class="z_bg_05">13</td>
+                    <td class="z_bg_05">20171013034</td>
+                    <td class="z_bg_13">232<span style="color:Red;">97</span></td>
+                    <td class="z_bg_05">01</td>
+                    <td class="z_bg_14">1</td>
+                    <td id="12" class="z_bg_16">01</td>
+                    <td class="z_bg_14">17</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">11</td>
+                </tr>
+                <tr id="tr13" class="z_tr_fen" onmouseover="overClass('tr13')">
+                    <td class="z_bg_05">14</td>
+                    <td class="z_bg_05">20171013035</td>
+                    <td class="z_bg_13">400<span style="color:Red;">20</span></td>
+                    <td class="z_bg_05">20</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">18</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">10</td>
+                    <td id="13" class="z_bg_16">20</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">12</td>
+                </tr>
+                <tr id="tr14" class="z_tr_hui" onmouseover="overClass('tr14')">
+                    <td class="z_bg_05">15</td>
+                    <td class="z_bg_05">20171013036</td>
+                    <td class="z_bg_13">110<span style="color:Red;">90</span></td>
+                    <td class="z_bg_05">00</td>
+                    <td id="14" class="z_bg_16">00</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">19</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">13</td>
+                </tr>
+                <tr id="tr15" class="z_tr_fen" onmouseover="overClass('tr15')">
+                    <td class="z_bg_05">16</td>
+                    <td class="z_bg_05">20171013037</td>
+                    <td class="z_bg_13">010<span style="color:Red;">51</span></td>
+                    <td class="z_bg_05">21</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">20</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">10</td>
+                    <td class="z_bg_14">12</td>
+                    <td class="z_bg_14">2</td>
+                    <td id="15" class="z_bg_16">21</td>
+                    <td class="z_bg_14">14</td>
+                </tr>
+                <tr id="tr16" class="z_tr_hui" onmouseover="overClass('tr16')">
+                    <td class="z_bg_05">17</td>
+                    <td class="z_bg_05">20171013038</td>
+                    <td class="z_bg_13">194<span style="color:Red;">29</span></td>
+                    <td class="z_bg_05">20</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">21</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">13</td>
+                    <td id="16" class="z_bg_16">20</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">15</td>
+                </tr>
+                <tr id="tr17" class="z_tr_fen" onmouseover="overClass('tr17')">
+                    <td class="z_bg_05">18</td>
+                    <td class="z_bg_05">20171013039</td>
+                    <td class="z_bg_13">550<span style="color:Red;">11</span></td>
+                    <td class="z_bg_05">11</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">22</td>
+                    <td class="z_bg_14">10</td>
+                    <td id="17" class="z_bg_16">11</td>
+                    <td class="z_bg_14">14</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">16</td>
+                </tr>
+                <tr id="tr18" class="z_tr_hui" onmouseover="overClass('tr18')">
+                    <td class="z_bg_05">19</td>
+                    <td class="z_bg_05">20171013040</td>
+                    <td class="z_bg_13">178<span style="color:Red;">50</span></td>
+                    <td class="z_bg_05">20</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">23</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">15</td>
+                    <td id="18" class="z_bg_16">20</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">17</td>
+                </tr>
+                <tr id="tr19" class="z_tr_fen" onmouseover="overClass('tr19')">
+                    <td class="z_bg_05">20</td>
+                    <td class="z_bg_05">20171013041</td>
+                    <td class="z_bg_13">706<span style="color:Red;">86</span></td>
+                    <td class="z_bg_05">20</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">24</td>
+                    <td class="z_bg_14">12</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">16</td>
+                    <td id="19" class="z_bg_16">20</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">18</td>
+                </tr>
+                <tr id="tr20" class="z_tr_hui_top" onmouseover="overClass('tr20')">
+                    <td class="z_bg_05">21</td>
+                    <td class="z_bg_05">20171013042</td>
+                    <td class="z_bg_13">747<span style="color:Red;">45</span></td>
+                    <td class="z_bg_05">12</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">25</td>
+                    <td class="z_bg_14">13</td>
+                    <td class="z_bg_14">3</td>
+                    <td id="20" class="z_bg_16">12</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">19</td>
+                </tr>
+                <tr id="tr21" class="z_tr_fen" onmouseover="overClass('tr21')">
+                    <td class="z_bg_05">22</td>
+                    <td class="z_bg_05">20171013043</td>
+                    <td class="z_bg_13">383<span style="color:Red;">76</span></td>
+                    <td class="z_bg_05">10</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">26</td>
+                    <td id="21" class="z_bg_16">10</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">20</td>
+                </tr>
+                <tr id="tr22" class="z_tr_hui" onmouseover="overClass('tr22')">
+                    <td class="z_bg_05">23</td>
+                    <td class="z_bg_05">20171013044</td>
+                    <td class="z_bg_13">195<span style="color:Red;">04</span></td>
+                    <td class="z_bg_05">01</td>
+                    <td class="z_bg_14">8</td>
+                    <td id="22" class="z_bg_16">01</td>
+                    <td class="z_bg_14">27</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">21</td>
+                </tr>
+                <tr id="tr23" class="z_tr_fen" onmouseover="overClass('tr23')">
+                    <td class="z_bg_05">24</td>
+                    <td class="z_bg_05">20171013045</td>
+                    <td class="z_bg_13">411<span style="color:Red;">53</span></td>
+                    <td class="z_bg_05">20</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">28</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">3</td>
+                    <td id="23" class="z_bg_16">20</td>
+                    <td class="z_bg_14">8</td>
+                    <td class="z_bg_14">22</td>
+                </tr>
+                <tr id="tr24" class="z_tr_hui" onmouseover="overClass('tr24')">
+                    <td class="z_bg_05">25</td>
+                    <td class="z_bg_05">20171013046</td>
+                    <td class="z_bg_13">083<span style="color:Red;">75</span></td>
+                    <td class="z_bg_05">12</td>
+                    <td class="z_bg_14">10</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">29</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">7</td>
+                    <td id="24" class="z_bg_16">12</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">23</td>
+                </tr>
+                <tr id="tr25" class="z_tr_fen" onmouseover="overClass('tr25')">
+                    <td class="z_bg_05">26</td>
+                    <td class="z_bg_05">20171013047</td>
+                    <td class="z_bg_13">008<span style="color:Red;">48</span></td>
+                    <td class="z_bg_05">12</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">30</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">8</td>
+                    <td id="25" class="z_bg_16">12</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">10</td>
+                    <td class="z_bg_14">24</td>
+                </tr>
+                <tr id="tr26" class="z_tr_hui" onmouseover="overClass('tr26')">
+                    <td class="z_bg_05">27</td>
+                    <td class="z_bg_05">20171013048</td>
+                    <td class="z_bg_13">793<span style="color:Red;">54</span></td>
+                    <td class="z_bg_05">21</td>
+                    <td class="z_bg_14">12</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">31</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">9</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">3</td>
+                    <td id="26" class="z_bg_16">21</td>
+                    <td class="z_bg_14">25</td>
+                </tr>
+                <tr id="tr27" class="z_tr_fen" onmouseover="overClass('tr27')">
+                    <td class="z_bg_05">28</td>
+                    <td class="z_bg_05">20171013049</td>
+                    <td class="z_bg_13">835<span style="color:Red;">79</span></td>
+                    <td class="z_bg_05">10</td>
+                    <td class="z_bg_14">13</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">32</td>
+                    <td id="27" class="z_bg_16">10</td>
+                    <td class="z_bg_14">10</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">4</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">26</td>
+                </tr>
+                <tr id="tr28" class="z_tr_hui" onmouseover="overClass('tr28')">
+                    <td class="z_bg_05">29</td>
+                    <td class="z_bg_05">20171013050</td>
+                    <td class="z_bg_13">341<span style="color:Red;">30</span></td>
+                    <td class="z_bg_05">00</td>
+                    <td id="28" class="z_bg_16">00</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">33</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">11</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">5</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">27</td>
+                </tr>
+                <tr id="tr29" class="z_tr_fen" onmouseover="overClass('tr29')">
+                    <td class="z_bg_05">30</td>
+                    <td class="z_bg_05">20171013051</td>
+                    <td class="z_bg_13">586<span style="color:Red;">42</span></td>
+                    <td class="z_bg_05">12</td>
+                    <td class="z_bg_14">1</td>
+                    <td class="z_bg_14">7</td>
+                    <td class="z_bg_14">34</td>
+                    <td class="z_bg_14">2</td>
+                    <td class="z_bg_14">12</td>
+                    <td id="29" class="z_bg_16">12</td>
+                    <td class="z_bg_14">6</td>
+                    <td class="z_bg_14">3</td>
+                    <td class="z_bg_14">28</td>
+                </tr>
+                <!-- END -->
+            </tbody>
+            <!-- 模拟选号 -->
+            <tbody id="moxuan" style="display: ">
+                <tr id="mo1" class="z_bg_10" style="display:">
+                    <td colspan="3" class="z_bg_13">预测行一</td>
+                    <td class="SelectHtml1_disabledd">&nbsp;</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">00</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">01</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">02</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">10</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">11</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">12</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">20</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">21</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">22</td>
+                </tr>
+                <tr id="mo2" class="z_bg_10" style="display:">
+                    <td colspan="3" class="z_bg_13">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="mx_table">
+                            <tbody>
+                                <tr>
+                                    <td>预测行二</td>
+                                    <td width="25"><span onclick="moxuan_label_xia('1')"><img style="cursor:pointer;" name="moxuan2" id="moxuan2" alt="模拟选号" src="/new/images/trend/xia.gif" /></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td class="SelectHtml1_disabledd">&nbsp;</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">00</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">01</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">02</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">10</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">11</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">12</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">20</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">21</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">22</td>
+                </tr>
+                <tr id="mo3" class="z_bg_10" style="display:none">
+                    <td colspan="3" class="z_bg_13">预测行三</td>
+                    <td class="SelectHtml1_disabledd">&nbsp;</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">00</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">01</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">02</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">10</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">11</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">12</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">20</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">21</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">22</td>
+                </tr>
+                <tr id="mo4" class="z_bg_10" style="display:none">
+                    <td colspan="3" class="z_bg_13">预测行四</td>
+                    <td class="SelectHtml1_disabledd">&nbsp;</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">00</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">01</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">02</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">10</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">11</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">12</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">20</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">21</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">22</td>
+                </tr>
+                <tr id="mo5" class="z_bg_10" style="display:none">
+                    <td colspan="3" class="z_bg_13">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="mx_table">
+                            <tbody>
+                                <tr>
+                                    <td>预测行五</td>
+                                    <td width="25"><span onclick="moxuan_label_xia('0')"><img style="cursor:pointer;" name="moxuan5" id="moxuan5" alt="模拟选号" src="/new/images/trend/shang.gif" /></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td class="SelectHtml1_disabledd">&nbsp;</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">00</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">01</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">02</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">10</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">11</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">12</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">20</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">21</td>
+                    <td style="cursor: pointer" align="center" class="SelectHtml1" onclick="css(this,'SelectHtml1','SelectHtml2')">22</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td rowspan="2" class="z_bg_03_1">序号</td>
+                    <td rowspan="2" class="z_bg_03_2">期号</td>
+                    <td rowspan="2" class="z_bg_03_2">奖号</td>
+                    <td rowspan="2" class="z_bg_03_2">类型</td>
+                    <td class="z_bg_03">00</td>
+                    <td class="z_bg_03">01</td>
+                    <td class="z_bg_03">02</td>
+                    <td class="z_bg_03">10</td>
+                    <td class="z_bg_03">11</td>
+                    <td class="z_bg_03">12</td>
+                    <td class="z_bg_03">20</td>
+                    <td class="z_bg_03">21</td>
+                    <td class="z_bg_03">22</td>
+                </tr>
+                <tr>
+                    <td colspan="9" class="z_bg_04">012路</td>
+                </tr>
+            </tbody>
+            <tbody id="current">
+                <!--当前数据-->
+                <tr class="z_bg_10">
+                    <td colspan="3">出现次数</td>
+                    <td>0</td>
+                    <td class="">4</td>
+                    <td class="">2</td>
+                    <td class="">0</td>
+                    <td class="">5</td>
+                    <td class="">2</td>
+                    <td class="">5</td>
+                    <td class="">6</td>
+                    <td class="">5</td>
+                    <td class="">1</td>
+                </tr>
+                <tr class="z_bg_9">
+                    <td colspan="3">最大遗漏期数</td>
+                    <td>0</td>
+                    <td class="">16</td>
+                    <td class="">13</td>
+                    <td class="">34</td>
+                    <td class="">13</td>
+                    <td class="">12</td>
+                    <td class="">20</td>
+                    <td class="">8</td>
+                    <td class="">17</td>
+                    <td class="">28</td>
+                </tr>
+                <tr class="z_bg_10">
+                    <td colspan="3">最大连出期数</td>
+                    <td>0</td>
+                    <td class="">1</td>
+                    <td class="">1</td>
+                    <td class="">1</td>
+                    <td class="">1</td>
+                    <td class="">1</td>
+                    <td class="">2</td>
+                    <td class="">2</td>
+                    <td class="">3</td>
+                    <td class="">1</td>
+                </tr>
+                <tr class="z_bg_9">
+                    <td colspan="3">平均遗漏期数</td>
+                    <td>0</td>
+                    <td class="">5</td>
+                    <td class="">9</td>
+                    <td class="">30</td>
+                    <td class="">4</td>
+                    <td class="">9</td>
+                    <td class="">4</td>
+                    <td class="">3</td>
+                    <td class="">4</td>
+                    <td class="">14</td>
+                </tr>
+                <tr class="z_bg_10">
+                    <td colspan="3">当前遗漏期数</td>
+                    <td>0</td>
+                    <td class="">1</td>
+                    <td class="">7</td>
+                    <td class="">34</td>
+                    <td class="">2</td>
+                    <td class="">12</td>
+                    <td class="">0</td>
+                    <td class="">6</td>
+                    <td class="">3</td>
+                    <td class="">28</td>
+                </tr>
+            </tbody>
+            <tbody id="history" style="display:none">
+                <!--历史统计数据-->
+                <tr class="z_bg_10">
+                    <td colspan="3">出现次数</td>
+                    <td>0</td>
+                    <td class="">476</td>
+                    <td class="">354</td>
+                    <td class="">389</td>
+                    <td class="">363</td>
+                    <td class="">278</td>
+                    <td class="">275</td>
+                    <td class="">328</td>
+                    <td class="">274</td>
+                    <td class="">263</td>
+                </tr>
+                <tr class="z_bg_9">
+                    <td colspan="3">最大遗漏期数</td>
+                    <td>0</td>
+                    <td class="">33</td>
+                    <td class="">59</td>
+                    <td class="">48</td>
+                    <td class="">69</td>
+                    <td class="">62</td>
+                    <td class="">65</td>
+                    <td class="">50</td>
+                    <td class="">53</td>
+                    <td class="">72</td>
+                </tr>
+                <tr class="z_bg_10">
+                    <td colspan="3">最大连出期数</td>
+                    <td>0</td>
+                    <td class="">4</td>
+                    <td class="">5</td>
+                    <td class="">3</td>
+                    <td class="">4</td>
+                    <td class="">3</td>
+                    <td class="">3</td>
+                    <td class="">3</td>
+                    <td class="">3</td>
+                    <td class="">3</td>
+                </tr>
+                <tr class="z_bg_9">
+                    <td colspan="3">平均遗漏期数</td>
+                    <td>0</td>
+                    <td class="">5</td>
+                    <td class="">7</td>
+                    <td class="">6</td>
+                    <td class="">7</td>
+                    <td class="">9</td>
+                    <td class="">9</td>
+                    <td class="">8</td>
+                    <td class="">9</td>
+                    <td class="">10</td>
+                </tr>
+                <tr class="z_bg_10">
+                    <td colspan="3">当前遗漏期数</td>
+                    <td>0</td>
+                    <td class="">1</td>
+                    <td class="">7</td>
+                    <td class="">34</td>
+                    <td class="">2</td>
+                    <td class="">12</td>
+                    <td class="">0</td>
+                    <td class="">6</td>
+                    <td class="">3</td>
+                    <td class="">28</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

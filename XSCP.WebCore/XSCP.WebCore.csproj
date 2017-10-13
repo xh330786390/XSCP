@@ -174,10 +174,31 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Controllers\TendencyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Source\new\css\red.css" />
+    <Content Include="Source\new\css\style.css" />
+    <Content Include="Source\new\images\blue.png" />
+    <Content Include="Source\new\images\hover.png" />
+    <Content Include="Source\new\images\icons.png" />
+    <Content Include="Source\new\images\logo.png" />
+    <Content Include="Source\new\images\logo1.png" />
+    <Content Include="Source\new\images\new.gif" />
+    <Content Include="Source\new\images\pk10.png" />
+    <Content Include="Source\new\images\temp\banner1.jpg" />
+    <Content Include="Source\new\images\temp\ssc.jpg" />
+    <Content Include="Source\new\images\title_01.jpg" />
+    <Content Include="Source\new\images\title_02.jpg" />
+    <Content Include="Source\new\images\title_03.jpg" />
+    <Content Include="Source\new\images\title_04.jpg" />
+    <Content Include="Source\new\images\trend\shang.gif" />
+    <Content Include="Source\new\images\trend\sort_xia.gif" />
+    <Content Include="Source\new\images\trend\xia.gif" />
+    <Content Include="Source\new\js\jquery.js" />
+    <Content Include="Source\new\js\tabKang.js" />
     <Content Include="Views\favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -237,6 +258,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Xscp\HightCharts.cshtml" />
     <Content Include="Views\Xscp\Road012.cshtml" />
+    <Content Include="Views\Tendency\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
