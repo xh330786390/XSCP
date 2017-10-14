@@ -77,26 +77,38 @@
             var seconde = "";
             var date = new Date();
             var downSeconds = 60 - date.getSeconds();
-            if (downSeconds < 10)
-            {
+            if (downSeconds < 10) {
                 seconde = "0" + String(downSeconds);
             }
-            else
-            {
+            else {
                 seconde = String(downSeconds);
             }
 
-                //var day1 = Math.floor(leftsecond / (60 * 60 * 24));
-                //var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
-                //var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
-                //var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-                $("#djs").html('<td><p class="c008">第' + nextexpect + '</p>距离下期开奖剩余</td><td width="49"><em>' + "00" + '</em></td><td width="29" align="center">分</td><td width="49"><em>' + seconde + '</em></td><td width="29" align="center">秒</td><td align="right"><span class="horn"></span></td>')
+            //var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+            //var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+            //var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+            //var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+            $("#djs").html('<td><p class="c008">第' + nextexpect + '</p>距离下期开奖剩余</td><td width="49"><em>' + "00" + '</em></td><td width="29" align="center">分</td><td width="49"><em>' + seconde + '</em></td><td width="29" align="center">秒</td><td align="right"><span class="horn"></span></td>')
             //}
         }, interval);
     </script>
 
 </head>
 <body>
+    <!--注册弹出层end-->
+    <!------logo-------->
+    <div class="wrap">
+        <div class="logo">
+            <h1 class="l"><a href="#"><img src="~/Source/new/images/logo.png"></a></h1>
+            <div class="r">
+
+                <a href="#" class="blk"><img src="~/Source/new/images/temp/banner1.jpg"></a>
+            </div>
+            <div class="c"></div>
+        </div>
+    </div>
+
+
     <div class="nav_wrap">
         <div class="nav">
             <ul class="wrap">
@@ -109,10 +121,15 @@
             </ul>
         </div>
     </div>
+
     <div class="h10"></div>
     <div class="wrap">
         <script type="text/javascript" src="/new/ad/banner.js?v=211"></script>
+        @*<a href="https://www.yirentouzhu.com/Reg.aspx?ID=D95912746" target="_0">*@
+        <img border="0" src="~/Source/new/images/1000x90-1-copy.gif">
+        @*</a>*@
     </div>
+  
     <div class="h10"></div>
     <div class="wrap">
         <div class="wanfa">
