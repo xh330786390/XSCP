@@ -176,9 +176,15 @@ namespace XSCP.Common
 
                 tm.Big = At.BigNum(lm, preTendency1, index);//大大
                 tm.Small = At.SmallNum(lm, preTendency1, index);//小小
-
                 tm.Odd = At.OddPairNum(lm, preTendency1, index, 1);//奇奇
                 tm.Pair = At.OddPairNum(lm, preTendency1, index, 0);//偶偶
+
+                tm.Prime = At.Prime(lm, preTendency1, index);//质数
+                tm.Composite = At.Composite(lm, preTendency1, index);//合数
+
+                tm.Big_1 = At.Big_1(lm, preTendency1, index);//大
+                tm.Mid_1 = At.Mid_1(lm, preTendency1, index);//中
+                tm.Small_1 = At.Small_1(lm, preTendency1, index);//小
 
                 tm.No_0 = At.RoadNum012(lm, preTendency1, index, 0);//0路
                 tm.No_1 = At.RoadNum012(lm, preTendency1, index, 1);//1路
@@ -269,15 +275,45 @@ namespace XSCP.Common
                 tm.Lottery = lm.Lottery;
                 tm.Sno = lm.Sno;
 
+                //大、小
                 tm.Big = At.BigNum(lm, preTendency2, index1, index2);//大大
                 tm.Small = At.SmallNum(lm, preTendency2, index1, index2);//小小
                 tm.BigSmall = At.BigSmallNum(lm, preTendency2, index1, index2);//大小
                 tm.SmallBig = At.SmallBigNum(lm, preTendency2, index1, index2);//小大
 
+                //奇偶
                 tm.Odd = At.OddPairNum(lm, preTendency2, index1, index2, 1, 1);//奇奇
                 tm.Pair = At.OddPairNum(lm, preTendency2, index1, index2, 0, 0);//偶偶
                 tm.OddPair = At.OddPairNum(lm, preTendency2, index1, index2, 1, 0);//奇偶
                 tm.PairOdd = At.OddPairNum(lm, preTendency2, index1, index2, 0, 1);//偶奇
+
+                //质、合
+                tm.PrimePrime = At.PrimePrime(lm, preTendency2, index1, index2);//质质数
+                tm.PrimeComposite = At.PrimeComposite(lm, preTendency2, index1, index2);//质合数
+                tm.CompositePrime = At.CompositePrime(lm, preTendency2, index1, index2);//合质数
+                tm.CompositeComposite = At.CompositeComposite(lm, preTendency2, index1, index2);//合合数
+
+                //0、1、2路
+                tm.No_00 = At.RoadNum012(lm, preTendency2, index1, index2, 0, 0);//00路
+                tm.No_01 = At.RoadNum012(lm, preTendency2, index1, index2, 0, 1);//01路
+                tm.No_02 = At.RoadNum012(lm, preTendency2, index1, index2, 0, 2);//02路
+                tm.No_10 = At.RoadNum012(lm, preTendency2, index1, index2, 1, 0);//10路
+                tm.No_11 = At.RoadNum012(lm, preTendency2, index1, index2, 1, 1);//11路
+                tm.No_12 = At.RoadNum012(lm, preTendency2, index1, index2, 1, 2);//12路
+                tm.No_20 = At.RoadNum012(lm, preTendency2, index1, index2, 2, 0);//20路
+                tm.No_21 = At.RoadNum012(lm, preTendency2, index1, index2, 2, 1);//21路
+                tm.No_22 = At.RoadNum012(lm, preTendency2, index1, index2, 2, 2);//22路
+
+                //大、中、小
+                tm.Big1Big1 = At.Big1Big1(lm, preTendency2, index1, index2); //大大
+                tm.Big1Mid1 = At.Big1Mid1(lm, preTendency2, index1, index2);//大中
+                tm.Big1Small1 = At.Big1Small1(lm, preTendency2, index1, index2);//大小
+                tm.Mid1Big1 = At.Mid1Big1(lm, preTendency2, index1, index2);//中大
+                tm.Mid1Mid1 = At.Mid1Mid1(lm, preTendency2, index1, index2);//中中
+                tm.Mid1Small1 = At.Mid1Small1(lm, preTendency2, index1, index2);//中小
+                tm.Small1Big1 = At.Small1Big1(lm, preTendency2, index1, index2);//小大
+                tm.Small1Mid1 = At.Small1Mid1(lm, preTendency2, index1, index2);//小中
+                tm.Small1Small1 = At.Small1Small1(lm, preTendency2, index1, index2);//小小
 
                 tm.Dbl = At.DblNum(lm, preTendency2, index1, index2);//重数
                 tm.Dtime = lm.Dtime;

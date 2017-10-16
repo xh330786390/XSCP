@@ -329,18 +329,23 @@ namespace XSCP.Common
                 if (count == 0)
                 {
                     sql = string.Format("CREATE TABLE {0} ( " +
-                                   @"ID      int  auto_increment not null primary key,     " +
+                                   @"ID      int  auto_increment not null primary key," +
                                    @"Ymd     CHAR( 8 )      NOT NULL,	     " +
                                    @"Sno     CHAR( 4 )      NOT NULL,	     " +
                                    @"Lottery CHAR( 9 )      NOT NULL,	     " +
-                                   @"Big    INT            NOT NULL,	     " +
-                                   @"Small    INT            NOT NULL,	     " +
-                                   @"Odd    INT            NOT NULL,	     " +
+                                   @"Big     INT            NOT NULL,	     " +
+                                   @"Small   INT            NOT NULL,	     " +
+                                   @"Odd     INT            NOT NULL,	     " +
                                    @"Pair    INT            NOT NULL,	     " +
+                                   @"Prime   INT            NOT NULL,	     " +
+                                   @"Composite INT          NOT NULL,	     " +
+                                   @"Big_1   INT            NOT NULL,	     " +
+                                   @"Mid_1   INT            NOT NULL,	     " +
+                                   @"Small_1 INT            NOT NULL,	     " +
                                    @"No_0    INT            NOT NULL,	     " +
                                    @"No_1    INT            NOT NULL,	     " +
                                    @"No_2    INT            NOT NULL,	     " +
-                                   @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
+                                   @"Dtime   CHAR( 12 )     NOT NULL 	     )", tableName);
                     conn.Execute(sql);
 
                     CreateIndex(tableName);
@@ -373,15 +378,20 @@ namespace XSCP.Common
                         if (count == 0)
                         {
                             ///新增
-                            sql = string.Format("insert into {0}(Ymd      ," +
+                            sql = string.Format("insert into {0}         (Ymd      ," +
                                                                         @"Sno      ," +
                                                                         @"Lottery  ," +
                                                                         @"Big      ," +
                                                                         @"Small    ," +
                                                                         @"Odd      ," +
                                                                         @"Pair     ," +
-                                                                        @"No_0    ," +
-                                                                        @"No_1      ," +
+                                                                        @"Prime    ," +
+                                                                        @"Composite," +
+                                                                        @"Big_1    ," +
+                                                                        @"Mid_1    ," +
+                                                                        @"Small_1  ," +
+                                                                        @"No_0     ," +
+                                                                        @"No_1     ," +
                                                                         @"No_2     ," +
                                                                         @"Dtime     )" +
                                                         @" VALUES (" +
@@ -392,6 +402,11 @@ namespace XSCP.Common
                                                                         @"@Small    ," +
                                                                         @"@Odd      ," +
                                                                         @"@Pair     ," +
+                                                                        @"@Prime    ," +
+                                                                        @"@Composite," +
+                                                                        @"@Big_1    ," +
+                                                                        @"@Mid_1    ," +
+                                                                        @"@Small_1  ," +
                                                                         @"@No_0     ," +
                                                                         @"@No_1     ," +
                                                                         @"@No_2     ," +
@@ -405,6 +420,11 @@ namespace XSCP.Common
                                                                 "Small    =@Small    ," +
                                                                 "Odd      =@Odd      ," +
                                                                 "Pair     =@Pair     ," +
+                                                                "Prime    =@Prime    ," +
+                                                                "Composite=@Composite," +
+                                                                "Big_1    =@Big_1    ," +
+                                                                "Mid_1    =@Mid_1    ," +
+                                                                "Small_1  =@Small_1  ," +
                                                                 "No_0     =@No_0     ," +
                                                                 "No_1     =@No_1     ," +
                                                                 "No_2     =@No_2     " +
@@ -496,19 +516,41 @@ namespace XSCP.Common
                 {
                     sql = string.Format("CREATE TABLE {0} ( " +
                                    @"ID      int  auto_increment not null primary key,     " +
-                                   @"Ymd     CHAR( 8 )      NOT NULL,	     " +
-                                   @"Sno     CHAR( 4 )      NOT NULL,	     " +
-                                   @"Lottery CHAR( 9 )      NOT NULL,	     " +
-                                   @"Big    INT            NOT NULL,	     " +
-                                   @"Small    INT            NOT NULL,	     " +
-                                   @"BigSmall    INT            NOT NULL,	     " +
-                                   @"SmallBig    INT            NOT NULL,	     " +
-                                   @"Odd    INT            NOT NULL,	     " +
-                                   @"Pair    INT            NOT NULL,	     " +
+                                   @"Ymd        CHAR( 8 )      NOT NULL,	     " +
+                                   @"Sno        CHAR( 4 )      NOT NULL,	     " +
+                                   @"Lottery    CHAR( 9 )      NOT NULL,	     " +
+                                   @"Big        INT            NOT NULL,	     " +
+                                   @"Small      INT            NOT NULL,	     " +
+                                   @"BigSmall   INT            NOT NULL,	     " +
+                                   @"SmallBig   INT            NOT NULL,	     " +
+                                   @"Odd        INT            NOT NULL,	     " +
+                                   @"Pair       INT            NOT NULL,	     " +
                                    @"OddPair    INT            NOT NULL,	     " +
                                    @"PairOdd    INT            NOT NULL,	     " +
-                                   @"Dbl    INT            NOT NULL,	     " +
-                                   @"Dtime   CHAR( 12 )      NOT NULL 	     )", tableName);
+                                   @"PrimePrime			    INT            NOT NULL,	     " +
+                                   @"PrimeComposite		    INT            NOT NULL,	     " +
+                                   @"CompositePrime		    INT            NOT NULL,	     " +
+                                   @"CompositeComposite    INT            NOT NULL,	     " +
+                                   @"Big1Big1	    INT            NOT NULL,	     " +
+                                   @"Big1Mid1	    INT            NOT NULL,	     " +
+                                   @"Big1Small1	    INT            NOT NULL,	     " +
+                                   @"Mid1Big1	   INT            NOT NULL,	     " +
+                                   @"Mid1Mid1	    INT            NOT NULL,	     " +
+                                   @"Mid1Small1	    INT            NOT NULL,	     " +
+                                   @"Small1Big1	    INT            NOT NULL,	     " +
+                                   @"Small1Mid1	   INT            NOT NULL,	     " +
+                                   @"Small1Small1    INT            NOT NULL,	     " +
+                                   @"No_00    INT            NOT NULL,	     " +
+                                   @"No_01    INT            NOT NULL,	     " +
+                                   @"No_02   INT            NOT NULL,	     " +
+                                   @"No_10    INT            NOT NULL,	     " +
+                                   @"No_11    INT            NOT NULL,	     " +
+                                   @"No_12    INT            NOT NULL,	     " +
+                                   @"No_20   INT            NOT NULL,	     " +
+                                   @"No_21    INT            NOT NULL,	     " +
+                                   @"No_22    INT            NOT NULL,	     " +
+                                   @"Dbl        INT            NOT NULL,	     " +
+                                   @"Dtime      CHAR( 12 )      NOT NULL 	     )", tableName);
                     conn.Execute(sql);
 
                     CreateIndex(tableName);
@@ -551,6 +593,28 @@ namespace XSCP.Common
                                                                         @"Pair     ," +
                                                                         @"OddPair  ," +
                                                                         @"PairOdd  ," +
+                                                                        @"PrimePrime," +
+                                                                        @"PrimeComposite," +
+                                                                        @"CompositePrime," +
+                                                                        @"CompositeComposite," +
+                                                                        @"Big1Big1," +
+                                                                        @"Big1Mid1," +
+                                                                        @"Big1Small1," +
+                                                                        @"Mid1Big1," +
+                                                                        @"Mid1Mid1," +
+                                                                        @"Mid1Small1," +
+                                                                        @"Small1Big1," +
+                                                                        @"Small1Mid1," +
+                                                                        @"Small1Small1," +
+                                                                        @"No_00," +
+                                                                        @"No_01," +
+                                                                        @"No_02," +
+                                                                        @"No_10," +
+                                                                        @"No_11," +
+                                                                        @"No_12," +
+                                                                        @"No_20," +
+                                                                        @"No_21," +
+                                                                        @"No_22," +
                                                                         @"Dbl      ," +
                                                                         @"Dtime     )" +
                                                         @" VALUES (" +
@@ -565,6 +629,28 @@ namespace XSCP.Common
                                                                         @"@Pair     ," +
                                                                         @"@OddPair  ," +
                                                                         @"@PairOdd  ," +
+                                                                        @"@PrimePrime," +
+                                                                        @"@PrimeComposite," +
+                                                                        @"@CompositePrime," +
+                                                                        @"@CompositeComposite," +
+                                                                        @"@Big1Big1," +
+                                                                        @"@Big1Mid1," +
+                                                                        @"@Big1Small1," +
+                                                                        @"@Mid1Big1," +
+                                                                        @"@Mid1Mid1," +
+                                                                        @"@Mid1Small1," +
+                                                                        @"@Small1Big1," +
+                                                                        @"@Small1Mid1," +
+                                                                        @"@Small1Small1," +
+                                                                        @"@No_00," +
+                                                                        @"@No_01," +
+                                                                        @"@No_02," +
+                                                                        @"@No_10," +
+                                                                        @"@No_11," +
+                                                                        @"@No_12," +
+                                                                        @"@No_20," +
+                                                                        @"@No_21," +
+                                                                        @"@No_22," +
                                                                         @"@Dbl      ," +
                                                                         @"@Dtime     " +
                                                         @")", tableName);
@@ -581,6 +667,28 @@ namespace XSCP.Common
                                                                 "Pair     =@Pair     ," +
                                                                 "OddPair  =@OddPair  ," +
                                                                 "PairOdd  =@PairOdd  ," +
+                                                                "PrimePrime        		=@PrimePrime          ," +
+                                                                "PrimeComposite    		=@PrimeComposite      ," +
+                                                                "CompositePrime    		=@CompositePrime      ," +
+                                                                "CompositeComposite		=@CompositeComposite  ," +
+                                                                "Big1Big1          		=@Big1Big1            ," +
+                                                                "Big1Mid1          		=@Big1Mid1            ," +
+                                                                "Big1Small1        		=@Big1Small1          ," +
+                                                                "Mid1Big1          		=@Mid1Big1            ," +
+                                                                "Mid1Mid1          		=@Mid1Mid1            ," +
+                                                                "Mid1Small1        		=@Mid1Small1          ," +
+                                                                "Small1Big1        		=@Small1Big1          ," +
+                                                                "Small1Mid1        		=@Small1Mid1          ," +
+                                                                "Small1Small1      		=@Small1Small1        ," +
+                                                                "No_00             		=@No_00               ," +
+                                                                "No_01             		=@No_01               ," +
+                                                                "No_02             		=@No_02               ," +
+                                                                "No_10             		=@No_10               ," +
+                                                                "No_11             		=@No_11               ," +
+                                                                "No_12             		=@No_12               ," +
+                                                                "No_20             		=@No_20               ," +
+                                                                "No_21             		=@No_21               ," +
+                                                                "No_22             		=@No_22               ," +
                                                                 "Dbl      =@Dbl       " +
                                                                 "where Ymd = @Ymd and Sno=@Sno   ", tableName);
                         }
@@ -588,7 +696,7 @@ namespace XSCP.Common
                     }
                     trans.Commit();
                 }
-                catch (Exception)
+                catch (Exception er)
                 {
                     trans.Rollback();
                 }

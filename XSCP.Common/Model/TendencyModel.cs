@@ -1,8 +1,13 @@
 ﻿
+/*定位胆：各种走势
+ *  日期：2017-10-16
+ *  作者：xhteng
+ */
+
 namespace XSCP.Common.Model
 {
     /// <summary>
-    /// 奖号未中奖的次数模型
+    /// 奖号未中奖的次数实体
     /// </summary>
     public class TendencyModel
     {
@@ -35,6 +40,26 @@ namespace XSCP.Common.Model
         /// 偶数
         /// </summary>
         public int Pair { get; set; }
+        /// <summary>
+        /// 质数
+        /// </summary>
+        public int Prime { get; set; }
+        /// <summary>
+        /// 合数
+        /// </summary>
+        public int Composite { get; set; }
+        /// <summary>
+        /// 大
+        /// </summary>
+        public int Big_1 { get; set; }
+        /// <summary>
+        /// 中
+        /// </summary>
+        public int Mid_1 { get; set; }
+        /// <summary>
+        /// 小
+        /// </summary>
+        public int Small_1 { get; set; }
         /// <summary>
         /// 0路
         /// </summary>
