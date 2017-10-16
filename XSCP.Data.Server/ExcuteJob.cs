@@ -106,6 +106,10 @@ namespace XSCP.Data.Server
 
                         if (objs != null && objs.reslist != null && objs.reslist.Count > 0)
                         {
+                            //string sno = objs.reslist[0].issue.Replace("期", "");
+                            //bool bl = CompareNowTime(int.Parse(sno));
+                            //if()
+
                             objs.reslist.ForEach(item =>
                             {
                                 ltData.Add(item.issue + item.winnumber);
@@ -145,6 +149,32 @@ namespace XSCP.Data.Server
             {
                 action();
             }
+        }
+
+
+        /// <summary>
+        /// 对比，本次更新数据是否最新期号
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="sno"></param>
+        /// <returns></returns>
+        private bool CompareNowTime(int sno)
+        {
+            DateTime now = DateTime.Now;
+            int curSno = 0;
+            int hour = now.Hour;
+            int minute = now.Minute;
+            if (hour <= 7)
+            {
+                hour = 24 + now.Hour;
+            }
+
+            curSno = (hour - 8) * 60 + now.Minute;
+            if (curSno > sno + 1)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

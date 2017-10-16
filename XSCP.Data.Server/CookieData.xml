@@ -2,10 +2,10 @@
 <Root>
   <node-ffcp>
     <id>15</id>
-    <num>300</num>
+    <num>10</num>
   </node-ffcp>
   <!--Post-->
-  <cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=9EED774F246BD8BFBEF51E843AFDDA0D; sessionId=9EED774F246BD8BFBEF51E843AFDDA0D; pagesrc=/game/ssccs.html" cookie-path="/"  />
+  <cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=54548FA646E226511EC142BE564A5E3A; sessionId=54548FA646E226511EC142BE564A5E3A; pagesrc=/main.html" cookie-path="/" useragent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 BIDUBrowser/6.x Safari/537.36" />
 
   <!--<cookie url="http://www.xs8cp.info" domain-name="www.xs8cp.info" method="post" cookies="JSESSIONID=DDF7B00BD9754285670234E49501B7CD; sessionId=DDF7B00BD9754285670234E49501B7CD; pagesrc=/game/ssccs.html" cookie-path="/"  />
 

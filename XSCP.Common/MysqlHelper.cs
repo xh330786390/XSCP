@@ -414,7 +414,7 @@ namespace XSCP.Common
                     }
                     trans.Commit();
                 }
-                catch (Exception)
+                catch (Exception er)
                 {
                     trans.Rollback();
                 }

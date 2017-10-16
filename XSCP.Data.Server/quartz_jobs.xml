@@ -11,7 +11,7 @@
   <schedule>
 
     <!--ExcuteJob任务配置-->
-    <!--<job>
+    <job>
       <name>ExcuteJob</name>
       <group>JobGroup1</group>
       <description>Job1</description>
@@ -28,7 +28,7 @@
         <start-time>2016-11-18T00:00:00+08:00</start-time>
         <cron-expression>* 10 * * * ? *</cron-expression>
       </cron>
-    </trigger>-->
+    </trigger>
 
     <!--<job>
       <name>ExcuteJobMillon</name>
@@ -49,7 +49,7 @@
       </cron>
     </trigger>-->
 
-    <job>
+    <!--<job>
       <name>ExcuteJobTencent</name>
       <group>JobGroup1</group>
       <description>Job1</description>
@@ -66,7 +66,7 @@
         <start-time>2016-11-18T00:00:00+08:00</start-time>
         <cron-expression>16 * * * * ? *</cron-expression>
       </cron>
-    </trigger>
+    </trigger>-->
 
 
   </schedule>

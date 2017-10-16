@@ -62,6 +62,12 @@ namespace XSCP.Common.Model
         /// </summary>
         [XmlAttribute("method")]
         public string Method { get; set; }
+
+        /// <summary>
+        /// 交互模式
+        /// </summary>
+        [XmlAttribute("useragent")]
+        public string UserAgent { get; set; }
     }
 
     public class LotteryType
