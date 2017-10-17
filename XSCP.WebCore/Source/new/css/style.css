@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*通用样式*/
 * {	margin: 0px;	padding: 0px;}
 body{ padding:0; background:#fff; background-size:100% 100%; color:#000; font-family:"Microsoft YaHei";  font-size:12px; line-height:24px; }
@@ -282,11 +282,16 @@ dl dd{ float:right}
 .caiz .layA{ width:86px;}
 .caiz .layB{ width:340px; margin-left:16px;}
 .caiz .layC{ width:300px; height:61px; background:#fffcf5; border:1px solid #f2c164; padding:15px 13px 0 13px; margin-top:2px; margin-left:20px}
-.caiz .layC em{ width:49px; height:48px; line-height:48px; text-align:center; background:url(../images/pk10.png) -121px -89px; display:block; float:left; font-size:24px; color:#fff;}
+/*.caiz .layC em{ width:49px; height:48px; line-height:48px; text-align:center; background:url(../images/pk10.png) -121px -89px; display:block; float:left; font-size:24px; color:#fff;}*/
+.caiz .layC em{ border-radius:10px;width:49px; height:48px; line-height:48px; text-align:center;background-color:#3D4375; display:block; float:left; font-size:24px; color:#fff;}
 .caiz .layD{ width:168px; margin-left:20px; }
 .caiz .layB p span{ display:block; float:left}
 .caiz .layB .num{ height:36px; background:#fffcf5; border:1px solid #f2c164; padding-top:8px; padding-left:10px; margin-top:10px}
-.caiz .layB .num span{ display:block; float:left; height:28px; width:28px; text-align:center; line-height:28px; color:#fff; font-size:18px; background:url(../images/blue.png); margin-left:10px; cursor:pointer}
+/*.caiz .layB .num span{ display:block; float:left; height:28px; width:28px; text-align:center; line-height:28px; color:#fff; font-size:18px; background:url(../images/blue.png); margin-left:10px; cursor:pointer}*/
+
+.caiz .layB .num span{ border-radius:7px;display:block; float:left; height:28px; width:28px; text-align:center; line-height:28px; color:#fff; font-size:18px; background-color:#3D4375; margin-left:10px; cursor:pointer}
+
+
 .c008{ color:#00802f}
 .caiz .layD ul li{ height:24px; line-height:24px;  width:84px; float:left; position:relative; margin:8px 0} 
 .caiz .layD ul li img{ position:absolute; top:-5px; left:36px }

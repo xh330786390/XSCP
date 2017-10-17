@@ -21,8 +21,8 @@ namespace XSCP.WebCore.Controllers
         public ActionResult Load()
         {
             string strResult = null;
-            string date = "20171016";
-            int num = 100;
+            string date = "20171017";
+            int num = 30;
             //strResult = Road2Start012(date, num);
             //strResult = Road1Start012(date, num);
             strResult = Road2StartDxjo(date, num);
@@ -131,7 +131,7 @@ namespace XSCP.WebCore.Controllers
                 sb.Append(" <tr>");
                 sb.Append("<td class='z_bg_tendency'>" + (i + 1).ToString() + "</td>");
                 sb.Append("<td class='z_bg_tendency'>" + beforeData.Ymd + "-" + beforeData.Sno + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + "<span style='color:Red;font-weight:bold;'>" + lottery.Substring(0, 3) + "</span>" + lottery.Substring(4, 1) + "<span style='color:Red;font-weight:bold;'>" + lottery.Substring(3) + "</span></td>");
+                sb.Append("<td class='z_bg_tendency'>" + "<span style='color:Red;font-weight:bold;'>" + lottery.Substring(0, 3) + "</span>" + lottery.Substring(3, 3) + "<span style='color:Red;font-weight:bold;'>" + lottery.Substring(6) + "</span></td>");
                 sb.Append("<td class='z_bg_03'>" + "" + "</td>");
                 sb.Append(getBgcolor2Start(beforeData.Big));
                 sb.Append(getBgcolor2Start(beforeData.Small));
