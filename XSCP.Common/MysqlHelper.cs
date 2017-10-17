@@ -73,6 +73,31 @@ namespace XSCP.Common
         }
 
         /// <summary>
+        /// 创建连接
+        /// </summary>
+        /// <returns></returns>
+        public static MySqlConnection CreateConnection()
+        {
+            var connection = new MySqlConnection(mysqlConnectString);
+            //connection.Open();
+            return connection;
+        }
+
+        /// <summary>
+        /// 创建索引
+        /// </summary>
+        /// <param name="tableName"></param>
+        private static void CreateIndex(string tableName)
+        {
+            string sql = string.Format("CREATE UNIQUE INDEX {1}_index  USING BTREE ON {1} (ymd,sno)", tableName, tableName);
+            using (MySqlConnection conn = CreateConnection())
+            {
+                conn.Execute(sql);
+            }
+        }
+
+        #region 清除重复数据
+        /// <summary>
         ///  清除重复数据
         /// </summary>
         public static void ClearRepeatData()
@@ -136,57 +161,9 @@ namespace XSCP.Common
                 });
             }
         }
-
-        /// <summary>
-        /// 获取二星走势表名
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private static string getTendency1Table(Tendency1Enum type)
-        {
-            return "TendencyDigit" + (int)type + "_" + DateTime.Now.Year;
-        }
-
-        /// <summary>
-        /// 获取二星走势表名
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private static string getTendency2Table(Tendency2Enum type)
-        {
-            string tableName = null;
-            if (type == Tendency2Enum.Before)
-                tableName = TendencyBefore2TbName;
-            else
-                tableName = TendencyAfter2TbName;
-            return tableName;
-        }
-
-        /// <summary>
-        /// 创建索引
-        /// </summary>
-        /// <param name="tableName"></param>
-        private static void CreateIndex(string tableName)
-        {
-            string sql = string.Format("CREATE UNIQUE INDEX {1}_index  USING BTREE ON {1} (ymd,sno)", tableName, tableName);
-            using (MySqlConnection conn = CreateConnection())
-            {
-                conn.Execute(sql);
-            }
-        }
+        #endregion
 
         #region [开奖号码]
-        /// <summary>
-        /// 创建连接
-        /// </summary>
-        /// <returns></returns>
-        public static MySqlConnection CreateConnection()
-        {
-            var connection = new MySqlConnection(mysqlConnectString);
-            //connection.Open();
-            return connection;
-        }
-
         /// <summary>
         /// 创建奖号数据表
         /// </summary>
@@ -269,7 +246,7 @@ namespace XSCP.Common
         }
 
         /// <summary>
-        /// 
+        /// 查找指定日期期号
         /// </summary>
         /// <param name="date"></param>
         /// <param name="sno"></param>
@@ -315,6 +292,16 @@ namespace XSCP.Common
         #endregion
 
         #region [一星趋势]
+        /// <summary>
+        /// 获取星走势表名
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static string getTendency1Table(Tendency1Enum type)
+        {
+            return "TendencyDigit" + (int)type + "_" + DateTime.Now.Year;
+        }
+
         /// <summary>
         /// 创建一星趋势表
         /// </summary>
@@ -465,18 +452,35 @@ namespace XSCP.Common
         /// <param name="date"></param>
         /// <param name="sno"></param>
         /// <returns></returns>
-        public static Tendency2Model QueryTendency1(Tendency1Enum type, string date, string sno)
+        public static TendencyModel QueryTendency1(Tendency1Enum type, string date, string sno)
         {
             string tableName = getTendency1Table(type);
             using (MySqlConnection conn = CreateConnection())
             {
                 string sql = string.Format("select * from {0} where Ymd = '{1}' and sno='{2}'", tableName, date, sno);
-                return conn.Query<Tendency2Model>(sql).FirstOrDefault();
+                return conn.Query<TendencyModel>(sql).FirstOrDefault();
             }
         }
 
         /// <summary>
-        /// 获取一星指定日期最大走势
+        /// 通过日期区间查找1星走势图
+        /// </summary>
+        /// <param name="date">日期</param>
+        /// <param name="topNum">最近期数</param>
+        /// <returns></returns>
+        public static List<TendencyModel> QueryTendency2Range(Tendency1Enum type, string startDate, string endDate)
+        {
+            string tableName = getTendency1Table(type);
+            using (MySqlConnection conn = CreateConnection())
+            {
+                string sql = string.Format("select * from {0} where  Ymd  BETWEEN {1}  AND {2} order by ymd,Sno desc", tableName, startDate, endDate);
+                var lt = conn.Query<TendencyModel>(sql).ToList();
+                return lt;
+            }
+        }
+
+        /// <summary>
+        /// 一星最大走势
         /// </summary>
         /// <param name="type"></param>
         /// <param name="date"></param>
@@ -486,14 +490,19 @@ namespace XSCP.Common
             string tableName = getTendency1Table(type);
             using (MySqlConnection conn = CreateConnection())
             {
-                string sql = string.Format("select  max(Big) Big,    " +
-                                                    "max(Small) Small,       " +
-                                                    "max(Odd) Odd,           " +
-                                                    "max(Pair) Pair,      " +
-                                                    "max(No_0) No_0,      " +
-                                                    "max(No_1) No_1,      " +
-                                                    "max(No_2) No_2      " +
-                                                    "from {0} where Ymd = '{1}'", tableName, date);
+                string sql = string.Format("select   max(Big) Big,               " +
+                                                    "max(Small) Small,          " +
+                                                    "max(Odd) Odd,              " +
+                                                    "max(Pair) Pair,            " +
+                                                    "max(Prime) Prime,          " +
+                                                    "max(Composite) Composite,  " +
+                                                    "max(Big_1) Big_1,          " +
+                                                    "max(Mid_1) Mid_1,          " +
+                                                    "max(Small_1) Small_1,      " +
+                                                    "max(No_0) No_0,            " +
+                                                    "max(No_1) No_1,            " +
+                                                    "max(No_2) No_2             " +
+                                                    "from {0} where Ymd = '{1}' ", tableName, date);
                 return conn.Query<TendencyModel>(sql).FirstOrDefault();
             }
         }
@@ -501,6 +510,21 @@ namespace XSCP.Common
         #endregion
 
         #region [二星趋势]
+        /// <summary>
+        /// 获取二星走势表名
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static string getTendency2Table(Tendency2Enum type)
+        {
+            string tableName = null;
+            if (type == Tendency2Enum.Before)
+                tableName = TendencyBefore2TbName;
+            else
+                tableName = TendencyAfter2TbName;
+            return tableName;
+        }
+
         /// <summary>
         /// 创建二星趋势表
         /// </summary>
@@ -721,24 +745,7 @@ namespace XSCP.Common
         }
 
         /// <summary>
-        /// 通过日期查找二星走势
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public static List<Tendency2Model> QueryTendency2(Tendency2Enum type, string date)
-        {
-            string tableName = getTendency2Table(type);
-            using (MySqlConnection conn = CreateConnection())
-            {
-                string sql = string.Format("select * from {0} where Ymd = '{1}' order by Sno desc", tableName, date);
-                var lt = conn.Query<Tendency2Model>(sql).ToList();
-                return lt;
-            }
-        }
-
-        /// <summary>
-        /// 通过日期查找最近走势图
+        /// 近期走势
         /// </summary>
         /// <param name="date">日期</param>
         /// <param name="topNum">最近期数</param>
@@ -755,7 +762,7 @@ namespace XSCP.Common
         }
 
         /// <summary>
-        /// 通过日期区间查找走势图
+        /// 日期区间走势
         /// </summary>
         /// <param name="date">日期</param>
         /// <param name="topNum">最近期数</param>
@@ -772,7 +779,7 @@ namespace XSCP.Common
         }
 
         /// <summary>
-        /// 获取二星指定日期最大走势
+        /// 二星最大走势
         /// </summary>
         /// <param name="type"></param>
         /// <param name="date"></param>
@@ -782,15 +789,37 @@ namespace XSCP.Common
             string tableName = getTendency2Table(type);
             using (MySqlConnection conn = CreateConnection())
             {
-                string sql = string.Format("select  max(Big) Big,    " +
-                                                    "max(Small) Small,       " +
-                                                    "max(BigSmall) BigSmall, " +
-                                                    "max(SmallBig) SmallBig, " +
-                                                    "max(Odd) Odd,           " +
-                                                    "max(Pair) Pair,         " +
-                                                    "max(OddPair) OddPair,   " +
-                                                    "max(PairOdd) PairOdd,   " +
-                                                    "max(Dbl) Dbl            " +
+                string sql = string.Format("select  max(Big) Big,                                " +
+                                                    "max(Small) Small,                           " +
+                                                    "max(BigSmall) BigSmall,                     " +
+                                                    "max(SmallBig) SmallBig,                     " +
+                                                    "max(Odd) Odd,                               " +
+                                                    "max(Pair) Pair,                             " +
+                                                    "max(OddPair) OddPair,                       " +
+                                                    "max(PairOdd) PairOdd,                       " +
+                                                    "max(PrimePrime) PrimePrime,                 " +
+                                                    "max(PrimeComposite) PrimeComposite,         " +
+                                                    "max(CompositePrime) CompositePrime,         " +
+                                                    "max(CompositeComposite) CompositeComposite, " +
+                                                    "max(Big1Big1) Big1Big1,                     " +
+                                                    "max(Big1Mid1) Big1Mid1,                     " +
+                                                    "max(Big1Small1) Big1Small1,                 " +
+                                                    "max(Mid1Big1) Mid1Big1,                     " +
+                                                    "max(Mid1Mid1) Mid1Mid1,                     " +
+                                                    "max(Mid1Small1) Mid1Small1,                 " +
+                                                    "max(Small1Big1) Small1Big1,                 " +
+                                                    "max(Small1Mid1) Small1Mid1,                 " +
+                                                    "max(Small1Small1) Small1Small1,             " +
+                                                    "max(No_00) 	No_00 	,                    " +
+                                                    "max(No_01) 	No_01		,                " +
+                                                    "max(No_02) 	No_02		,                " +
+                                                    "max(No_10) 	No_10		,                " +
+                                                    "max(No_11) 	No_11		,                " +
+                                                    "max(No_12) 	No_12		,                " +
+                                                    "max(No_20) 	No_20		,                " +
+                                                    "max(No_21) 	No_21		,                " +
+                                                    "max(No_22) 	No_22		,                " +
+                                                    "max(Dbl) Dbl                                " +
                                                     " from {0} where Ymd = '{1}'", tableName, date);
 
                 return conn.Query<Tendency2Model>(sql).FirstOrDefault();

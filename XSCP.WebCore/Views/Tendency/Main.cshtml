@@ -31,6 +31,9 @@
             return number;
         }
         $(document).ready(function () {
+            request();
+            
+
             $(".wanfa2 a").each(function () {
                 if ($(this).attr("href").split("=")[1] == "2x012") {
 
@@ -40,6 +43,27 @@
 
             });
         });
+
+        function request() {
+            $.ajax({
+                type: 'post',
+                url: "/Tendency/Load",
+                data: {
+                    
+                },
+                async: false,
+                dataType: "text",
+                success: function (data) {
+                    $("#tablessc").html(data);
+                },
+                error: function () {
+                    $("#tablessc").html("失败");
+                }
+            });
+        }
+
+
+
         var leftsecond = 0;
         var interval = 1000;
         var nextexpect = "100";
@@ -88,7 +112,7 @@
             //var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
             //var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
             //var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-            $("#djs").html('<td><p class="c008">第' + nextexpect + '</p>距离下期开奖剩余</td><td width="49"><em>' + "00" + '</em></td><td width="29" align="center">分</td><td width="49"><em>' + seconde + '</em></td><td width="29" align="center">秒</td><td align="right"><span class="horn"></span></td>')
+            //$("#djs").html('<td><p class="c008">第' + nextexpect + '</p>距离下期开奖剩余</td><td width="49"><em>' + "00" + '</em></td><td width="29" align="center">分</td><td width="49"><em>' + seconde + '</em></td><td width="29" align="center">秒</td><td align="right"><span class="horn"></span></td>')
             //}
         }, interval);
     </script>
@@ -97,7 +121,7 @@
 <body>
     <!--注册弹出层end-->
     <!------logo-------->
-    <div class="wrap">
+    @*<div class="wrap">
         <div class="logo">
             <h1 class="l"><a href="#"><img src="~/Source/new/images/logo.png"></a></h1>
             <div class="r">
@@ -106,10 +130,10 @@
             </div>
             <div class="c"></div>
         </div>
-    </div>
+    </div>*@
 
 
-    <div class="nav_wrap">
+    @*<div class="nav_wrap">
         <div class="nav">
             <ul class="wrap">
                 <li class="on"><a href="/">首页</a></li>
@@ -120,17 +144,17 @@
                 <li><a href="/html/wzgg/">软件帮助</a></li>
             </ul>
         </div>
-    </div>
+    </div>*@
 
-    <div class="h10"></div>
-    <div class="wrap">
-        <script type="text/javascript" src="/new/ad/banner.js?v=211"></script>
+    @*<div class="h10"></div>*@
+    @*<div class="wrap">*@
+        @*<script type="text/javascript" src="/new/ad/banner.js?v=211"></script>*@
         @*<a href="https://www.yirentouzhu.com/Reg.aspx?ID=D95912746" target="_0">*@
-        <img border="0" src="~/Source/new/images/1000x90-1-copy.gif">
+        @*<img border="0" src="~/Source/new/images/1000x90-1-copy.gif">*@
         @*</a>*@
-    </div>
+    @*</div>*@
   
-    <div class="h10"></div>
+    @*<div class="h10"></div>
     <div class="wrap">
         <div class="wanfa">
             <span class="tab_2_2">新生分分彩</span>
@@ -143,6 +167,7 @@
             <div class="c"></div>
         </div>
     </div>
+
     <div class="wrap">
         <div class="bor_f2c bg_fbf p10">
             <div class="caiz">
@@ -209,10 +234,11 @@
             <a href="?type=2xdxds"><span style="border-top: 1px solid #f2c062;">二星跨度</span></a>
             <a href="?type=2xdxds"><span style="border-top: 1px solid #f2c062;">二星遗漏曲线</span></a>
         </div>
-    </div>
+    </div>*@
     <div class="wrap">
         <table class="tb_table" id="tablessc" width="1001" border="1" cellpadding="0" cellspacing="0" bordercolorlight="#ABA79B" bordercolordark="#FFFFFF">
-            <tbody id="tbodyssc">
+
+            @*<tbody id="tbodyssc">
                 <tr>
                     <td width="30" rowspan="2" class="z_bg_03_1">序号</td>
                     <td width="120" rowspan="2" class="z_bg_03_2"> <span style="float:left; margin-left:8px; margin-top:1px;">期<br />号</span> <span onclick="sortAble('pagedata', '4', '9', 'z_bg_16');"> <img style="cursor:pointer; margin-top:10px;" class="img1" name="imgSort" id="imgSort" src="/new/images/trend/sort_xia.gif" alt="期号排序" /> </span> </td>
@@ -230,10 +256,11 @@
                     <td class="z_bg_03">20</td>
                     <td class="z_bg_03">21</td>
                     <td class="z_bg_03">22</td>
-                </tr>
+                </tr>*@
                 <!--头部结束-->
-            </tbody>
-            <tbody id="pagedata">
+            @*</tbody>*@
+
+            @*<tbody id="pagedata">
                 <tr id="tr0" class="z_tr_hui" onmouseover="overClass('tr0')">
                     <td class="z_bg_05">1</td>
                     <td class="z_bg_05">20171013022</td>
@@ -684,10 +711,12 @@
                     <td class="z_bg_14">3</td>
                     <td class="z_bg_14">28</td>
                 </tr>
-                <!-- END -->
-            </tbody>
+            </tbody>*@
+         
+
             <!-- 模拟选号 -->
-            <tbody id="moxuan" style="display: ">
+            
+            @*<tbody id="moxuan" style="display: ">
                 <tr id="mo1" class="z_bg_10" style="display:">
                     <td colspan="3" class="z_bg_13">预测行一</td>
                     <td class="SelectHtml1_disabledd">&nbsp;</td>
@@ -791,10 +820,12 @@
                 <tr>
                     <td colspan="9" class="z_bg_04">012路</td>
                 </tr>
-            </tbody>
-            <tbody id="current">
+            </tbody>*@
+            
+            
+            @*<tbody id="current">*@
                 <!--当前数据-->
-                <tr class="z_bg_10">
+                @*<tr class="z_bg_10">
                     <td colspan="3">出现次数</td>
                     <td>0</td>
                     <td class="">4</td>
@@ -859,10 +890,10 @@
                     <td class="">3</td>
                     <td class="">28</td>
                 </tr>
-            </tbody>
-            <tbody id="history" style="display:none">
+            </tbody>*@
+            @*<tbody id="history" style="display:none">*@
                 <!--历史统计数据-->
-                <tr class="z_bg_10">
+                @*<tr class="z_bg_10">
                     <td colspan="3">出现次数</td>
                     <td>0</td>
                     <td class="">476</td>
@@ -927,7 +958,7 @@
                     <td class="">3</td>
                     <td class="">28</td>
                 </tr>
-            </tbody>
+            </tbody>*@
         </table>
     </div>
 </body>

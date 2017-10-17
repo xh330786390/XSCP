@@ -17,8 +17,12 @@
 .z_bg_02 { background-image:url(top_01.jpg);background-repeat: repeat-x;font-family:ºÚÌå;font-size:18px;color:#BA0001;padding-left:8px;padding-top:10px;}
 .z_bg_03_1 { font-size:12px; color:#FFFFFF; text-align:center; background-image: url(../images/title_01.jpg); }
 .z_bg_03_2 { font-size:12px; color:#FFFFFF; text-align:center; background-image: url(../images/title_02.jpg); }
-.z_bg_03 { font-size:12px; color:#FFFFFF; text-align:center; background-image: url(../images/title_04.jpg);  font-family: Arial, Helvetica, sans-serif;}
-.z_bg_04 { font-size:12px; color:#FFFFFF; text-align:center; background-image: url(../images/title_03.jpg); font-weight:bold;}
+/*.z_bg_03 { font-size:12px; color:#FFFFFF; text-align:center; background-image: url(../images/title_04.jpg);  font-family: Arial, Helvetica, sans-serif;}*/
+
+.z_bg_03 {font-size:12px; color:#FFFFFF; text-align:center;  background-color:#3D4375; font-family: Arial, Helvetica, sans-serif;}
+.z_bg_03_line {font-size:12px; color:#FFFFFF; text-align:center; color:#000000; background-color:#fff0d9; font-family: Arial, Helvetica, sans-serif;border-right:3px solid #3D4375;}
+
+.z_bg_04 { font-size:12px; color:#FFFFFF; text-align:center; background-image: url(../images/title_03.jpg); font-weight:bold; }
 .z_bg_05 { font-size:12px;color:#000000;text-align:center;}
 .z_bg_06 { background-color:#fff0d9; font-size:12px;color:#A8A8A8;text-align:center;}
 .z_bg_06_5 { background-color:#f8d59f;font-size:12px;color:#A8A8A8;text-align:center;}
@@ -48,6 +52,7 @@
 .z_bg_23 { background-color:#FCE0FC; font-size:12px;color:#349800;text-align:center;}
 .z_bg_24 { background-color:#F0FAFF; font-size:12px;color:#FE6400;text-align:center;}
 .z_bg_25 { background-color:#fff0d9; font-size:12px;color:#349800;text-align:center;}
+.z_bg_tendency { background-color:#fff0d9; font-size:12px;color:#000000;text-align:center;}
 .SelectHtml1 { background-color:#E3E3E3;font-size:12px;color:#E3E3E3;text-align:center;}
 .SelectHtml1_blue { background-color:#E3E3E3;font-size:12px;color:#E3E3E3;text-align:center;}
 .SelectHtml1_yellow { background-color:#E3E3E3;font-size:12px;color:#E3E3E3;text-align:center;}
