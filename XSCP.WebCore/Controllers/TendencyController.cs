@@ -18,14 +18,40 @@ namespace XSCP.WebCore.Controllers
             return View();
         }
 
-        public ActionResult Load()
+        public ActionResult LoadData(string type, string date, int num = 10)
         {
             string strResult = null;
-            string date = "20171017";
-            int num = 30;
-            //strResult = Road2Start012(date, num);
-            //strResult = Road1Start012(date, num);
-            strResult = Road2StartDxjo(date, num);
+            date = date.Replace("-", "");
+            switch (type)
+            {
+                case "x1wan":
+                    break;
+                case "x1qian":
+                    break;
+                case "x1bai":
+                    break;
+                case "x1shi":
+                    break;
+                case "x1ge":
+                    break;
+                case "x1dzx":
+                    break;
+                case "x1dx":
+                    break;
+                case "x1jo":
+                    break;
+                case "x1012":
+                    strResult = Road1Start012(date, num);
+                    break;
+                case "x2012":
+                    strResult = Road2Start012(date, num);
+                    break;
+                case "x2sdxds":
+                    strResult = Road2StartDxjo(date, num);
+                    break;
+                default:
+                    break;
+            }
             return Content(strResult);
         }
 
@@ -249,15 +275,26 @@ namespace XSCP.WebCore.Controllers
                 sb.Append("<td class='z_bg_tendency'>" + data.Ymd + "-" + data.Sno + "</td>");
                 sb.Append("<td class='z_bg_tendency'>" + data.Lottery.Replace(",", "") + "</td>");
                 sb.Append("<td class='z_bg_tendency'>" + "012" + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_00 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_01 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_02 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_10 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_11 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_12 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_20 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_21 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + data.No_22 + "</td>");
+
+                sb.Append(getBgcolor2Start(data.No_00));
+                sb.Append(getBgcolor2Start(data.No_01));
+                sb.Append(getBgcolor2Start(data.No_02));
+                sb.Append(getBgcolor2Start(data.No_10));
+                sb.Append(getBgcolor2Start(data.No_11));
+                sb.Append(getBgcolor2Start(data.No_12));
+                sb.Append(getBgcolor2Start(data.No_20));
+                sb.Append(getBgcolor2Start(data.No_21));
+                sb.Append(getBgcolor2Start(data.No_22));
+
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_00 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_01 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_02 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_10 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_11 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_12 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_20 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_21 + "</td>");
+                //sb.Append("<td class='z_bg_tendency'>" + data.No_22 + "</td>");
                 sb.Append("<td class='z_bg_tendency'>" + data.Dtime.Substring(6) + "</td>");
                 sb.Append(" </tr>");
             }
@@ -378,26 +415,21 @@ namespace XSCP.WebCore.Controllers
                 sb.Append("<td class='z_bg_tendency'>" + wan.Lottery.Replace(",", "") + "</td>");
                 sb.Append("<td class='z_bg_tendency'>" + "012" + "</td>");
 
-                sb.Append("<td class='z_bg_tendency'>" + wan.No_0 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + wan.No_1 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + wan.No_2 + "</td>");
-
-                sb.Append("<td class='z_bg_tendency'>" + qian.No_0 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + qian.No_1 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + qian.No_2 + "</td>");
-
-                sb.Append("<td class='z_bg_tendency'>" + bai.No_0 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + bai.No_1 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + bai.No_2 + "</td>");
-
-                sb.Append("<td class='z_bg_tendency'>" + shi.No_0 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + shi.No_1 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + shi.No_2 + "</td>");
-
-                sb.Append("<td class='z_bg_tendency'>" + ge.No_0 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + ge.No_1 + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + ge.No_2 + "</td>");
-
+                sb.Append(getBgcolor1Start(wan.No_0));
+                sb.Append(getBgcolor1Start(wan.No_1));
+                sb.Append(getBgcolor1Start(wan.No_2));
+                sb.Append(getBgcolor1Start(qian.No_0));
+                sb.Append(getBgcolor1Start(qian.No_1));
+                sb.Append(getBgcolor1Start(qian.No_2));
+                sb.Append(getBgcolor1Start(bai.No_0));
+                sb.Append(getBgcolor1Start(bai.No_1));
+                sb.Append(getBgcolor1Start(bai.No_2));
+                sb.Append(getBgcolor1Start(shi.No_0));
+                sb.Append(getBgcolor1Start(shi.No_1));
+                sb.Append(getBgcolor1Start(shi.No_2));
+                sb.Append(getBgcolor1Start(ge.No_0));
+                sb.Append(getBgcolor1Start(ge.No_1));
+                sb.Append(getBgcolor1Start(ge.No_2));
                 sb.Append("<td class='z_bg_tendency'>" + wan.Dtime.Substring(6) + "</td>");
                 sb.Append(" </tr>");
             }
@@ -443,7 +475,6 @@ namespace XSCP.WebCore.Controllers
             var list = XscpMysqlBLL.QueryTendency1(tendency1Enum, date, num);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
 
         private TendencyDwdModel GetTendencyDwdValue(TendencyModel tm1, TendencyModel tm2)
         {
@@ -531,3 +562,4 @@ namespace XSCP.WebCore.Controllers
         #endregion
     }
 }
+

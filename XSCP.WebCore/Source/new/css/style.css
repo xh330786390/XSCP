@@ -148,12 +148,15 @@ dl dd{ float:right}
 .wanfa span,.wanfa2 span{ display:block; float:left; border:1px solid #f2c062; border-top:0; border-left:0; height:37px; font-size:13px; color:#666; text-align:center; width:99px; line-height:37px; cursor:pointer}
 .wanfa span.tab_2_2,.wanfa2 span.tab_2_2{ background:#df0000; color:#fff}
 .wanfa2 span.tab_2_2{ background:#8f63c4; }
+.lotter_type{ background-color:#ff0000;color:#fff;}
 
 .tit06{ height:36px; background:#fbf0dd; border:1px solid #f2c062; line-height:36px; overflow:hidden}
 .sch_btn{ background:none; border:0; height:20px; line-height:20px; padding:0 6px; background:#c5100c; color:#fff; font-size:13px; float:left}
 .t_underl{ text-decoration:underline }
 .check1{ height:38px; line-height:38px; background:#f1f1f1; padding:0 10px}
-.txt01{ height:20px; line-height:20px; border:1px solid #ddd; width:100px; }
+.txt01{ height:20px; line-height:20px; border:1px solid #ddd; width:30px; }
+.txt02{ height:20px; line-height:20px;  width:20px; }
+
 .ml10{ margin-left:10px}
 .check1 input{ margin:12px 5px 0 10px; float:left}
 .check1 span{ float:left; display:block}
