@@ -2,7 +2,7 @@
 <Root>
   <node-ffcp>
     <id>15</id>
-    <num>2000</num>
+    <num>10</num>
   </node-ffcp>
   <!--Post-->
   <!--<cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=A084ABB95014E2ABB59EC513E04C5DB9; sessionId=A084ABB95014E2ABB59EC513E04C5DB9; pagesrc=/game/ssccs.html" cookie-path="/" useragent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 BIDUBrowser/6.x Safari/537.36" />-->
