@@ -283,8 +283,13 @@ dl dd{ float:right}
 .caiz{ height:84px; overflow:hidden; padding-top:3px;}
 .caiz img{ border-radius:43px; -moz-border-radius:43px; -webkit-border-radius:43px;}
 .caiz .layA{ width:86px;}
-.caiz .layB{ width:340px; margin-left:16px;}
-.caiz .layC{ width:300px; height:61px; background:#fffcf5; border:1px solid #f2c164; padding:15px 13px 0 13px; margin-top:2px; margin-left:20px}
+.caiz .layB{ width:300px; margin-left:16px;}
+.caiz .layC{ width:300px; height:61px; background:#fffcf5; border:1px solid #f2c164; padding:15px 13px 0 13px; margin-top:2px; margin-left:100px}
+
+/*.caiz .layB{ width:340px; margin-left:16px;}
+.caiz .layC{ width:300px; height:61px; background:#fffcf5; border:1px solid #f2c164; padding:15px 13px 0 13px; margin-top:2px; margin-left:20px}*/
+
+
 /*.caiz .layC em{ width:49px; height:48px; line-height:48px; text-align:center; background:url(../images/pk10.png) -121px -89px; display:block; float:left; font-size:24px; color:#fff;}*/
 .caiz .layC em{ border-radius:10px;width:49px; height:48px; line-height:48px; text-align:center;background-color:#3D4375; display:block; float:left; font-size:24px; color:#fff;}
 .caiz .layD{ width:168px; margin-left:20px; }
