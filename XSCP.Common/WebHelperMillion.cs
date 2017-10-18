@@ -67,7 +67,7 @@ namespace XSCP.Common
 
                 using (Stream stream = res.GetResponseStream())
                 {
-                    byte[] bytes = ungzip(stream);
+                    byte[] bytes = CommonHelper.Ungzip(stream);
                     return Encoding.UTF8.GetString(bytes);
                 }
             }

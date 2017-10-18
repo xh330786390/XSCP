@@ -82,15 +82,12 @@ namespace XSCP.Common
             httpWebRequest.GetRequestStream().Write(btBodys, 0, btBodys.Length);
 
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream());
-            string responseContent = streamReader.ReadToEnd();
-
-            httpWebResponse.Close();
-            streamReader.Close();
-            httpWebRequest.Abort();
-            httpWebResponse.Close();
-
-            return responseContent;
+            //string head = httpWebResponse.Headers["Content-Encoding"];//查看返回数据的 压缩格式
+            using (Stream stream = httpWebResponse.GetResponseStream())
+            {
+                byte[] bytes = CommonHelper.Ungzip(stream);
+                return Encoding.UTF8.GetString(bytes);
+            }
         }
 
         /// <summary>

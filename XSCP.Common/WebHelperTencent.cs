@@ -67,7 +67,7 @@ namespace XSCP.Common
 
                 using (Stream stream = res.GetResponseStream())
                 {
-                    byte[] bytes = ungzip(stream);
+                    byte[] bytes = CommonHelper.Ungzip(stream);
                     return Encoding.UTF8.GetString(bytes);
                 }
             }
@@ -76,61 +76,6 @@ namespace XSCP.Common
 
             return null;
         }
-
-        /// <summary>
-        /// Gzip 解压
-        /// </summary>
-        /// <param name="streamSource"></param>
-        /// <returns></returns>
-        private static byte[] ungzip(Stream streamSource)
-        {
-            using (GZipStream stream = new GZipStream(streamSource, CompressionMode.Decompress))
-            {
-                using (MemoryStream mStream = new MemoryStream())
-                {
-                    int data;
-                    while ((data = stream.ReadByte()) != -1)
-                    {
-                        mStream.WriteByte((byte)data);
-                    }
-                    return mStream.ToArray();
-                }
-            }
-        }
-
-        ///// <summary>
-        ///// 解压数据
-        ///// </summary>
-        ///// <param name="Source"></param>
-        public static byte[] Decompress(byte[] Source)
-        {
-            if (Source == null)
-                return null;
-
-            MemoryStream stream = new MemoryStream();
-            GZipStream gZipStream = new GZipStream(new MemoryStream(Source), CompressionMode.Decompress);
-
-            byte[] b = new byte[4096];
-            int count = 0;
-            while (true)
-            {
-                int n = gZipStream.Read(b, 0, b.Length);
-
-                if (n > 0)
-                {
-                    stream.Write(b, 0, n);
-                    count += n;
-                }
-                else
-                {
-                    gZipStream.Close();
-                    break;
-                }
-            }
-
-            return stream.ToArray().Take(count).ToArray();
-        }
-
 
         /// <summary>
         /// Post方法
@@ -158,7 +103,7 @@ namespace XSCP.Common
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             using (Stream stream = httpWebResponse.GetResponseStream())
             {
-                byte[] bytes = ungzip(stream);
+                byte[] bytes = CommonHelper.Ungzip(stream);
                 return Encoding.UTF8.GetString(bytes);
             }
 

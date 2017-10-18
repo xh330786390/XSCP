@@ -2,10 +2,10 @@
 <Root>
   <node-ffcp>
     <id>15</id>
-    <num>10</num>
+    <num>2000</num>
   </node-ffcp>
   <!--Post-->
-  <cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=A084ABB95014E2ABB59EC513E04C5DB9; sessionId=A084ABB95014E2ABB59EC513E04C5DB9; pagesrc=/game/ssccs.html" cookie-path="/" useragent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 BIDUBrowser/6.x Safari/537.36" />
+  <!--<cookie url="http://www.xs8cp.com" domain-name="www.xs8cp.com" method="post" cookies="JSESSIONID=A084ABB95014E2ABB59EC513E04C5DB9; sessionId=A084ABB95014E2ABB59EC513E04C5DB9; pagesrc=/game/ssccs.html" cookie-path="/" useragent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 BIDUBrowser/6.x Safari/537.36" />-->
 
   <!--<cookie url="http://www.xs8cp.info" domain-name="www.xs8cp.info" method="post" cookies="JSESSIONID=DDF7B00BD9754285670234E49501B7CD; sessionId=DDF7B00BD9754285670234E49501B7CD; pagesrc=/game/ssccs.html" cookie-path="/"  />
 
@@ -13,7 +13,7 @@
 
   <cookie url="http://www.xs6868.com" domain-name="www.xs6868.com" method="post" cookies="JSESSIONID=312E07E86476046E980FF867F37F5F47; sessionId=312E07E86476046E980FF867F37F5F47; pagesrc=/game/ssccs.html" cookie-path="/"  />-->
 
-  <!--<cookie url="http://www.run88.co" domain-name="www.run88.co" method="post" cookies="visid_incap_1064974=aF8epxRFRzOqp2JhcHRq5oV0W1kAAAAAQUIPAAAAAAAkzj9ZPSqVU+YqHL5H5imG; incap_ses_431_1064974=cBUzZU8hODzpmsx2vjj7BU5vjlkAAAAAFnIMdEhWYzOSMYTAHDksLQ==; JSESSIONID=A8B967FCAE2E2AD7A54C7E22BC61FF79; pagesrc=/main.html; sessionId=A8B967FCAE2E2AD7A54C7E22BC61FF79" cookie-path="/"  />-->
+  <cookie url="http://www.run88.co" domain-name="www.run88.co" method="post" cookies="visid_incap_1064974=SIUiZJE8Rmy7vZhPbGH9Gpca51kAAAAAQUIPAAAAAAA6VpZeP60lp3+3Pgw9JDzF; incap_ses_574_1064974=ptwLV47O2GeDT58vc0L3B5ca51kAAAAA36ynuSum70R+KMX16byVjQ==; JSESSIONID=3729BA9D52E6E36996CEB6E6E3D4BFE8; sessionId=3729BA9D52E6E36996CEB6E6E3D4BFE8; pagesrc=/main.html" useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36" cookie-path="/"  />
 
   <!--Get-->
   <!--<cookie url="http://www.goxs.co" domain-name="www.goxs.co" method="get" cookies="JSESSIONID=A28DC59AE5BE0FAC6FC006A3F98BAAF8" cookie-path="/"/>-->
