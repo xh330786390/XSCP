@@ -18,7 +18,14 @@ namespace XSCP.WebCore.Controllers
             return View();
         }
 
-        public ActionResult LoadData(string type, string date, int num = 10)
+        /// <summary>
+        /// 加载走势数据
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="date"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public ActionResult LoadTendencyData(string type, string date, int num = 10)
         {
             string strResult = null;
             date = date.Replace("-", "");
@@ -68,6 +75,23 @@ namespace XSCP.WebCore.Controllers
                     break;
             }
             return Content(strResult);
+        }
+
+        /// <summary>
+        /// 获取当前开奖号码
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public JsonResult LoadOpenCode(string date)
+        {
+            date = date.Replace("-", "");
+            LotteryModel lm = null;
+            var lt_lottery = XscpMysqlBLL.QueryLottery(date, 1);
+            if (lt_lottery != null && lt_lottery.Count > 0)
+            {
+                lm = lt_lottery[0];
+            }
+            return Json(lm, JsonRequestBehavior.AllowGet);
         }
 
         #region [二星]
