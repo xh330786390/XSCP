@@ -86,7 +86,7 @@
                 url: "/Tendency/LoadData",
                 data: {
                     type: lotterType,
-                    date: $("#id_date").val(),
+                    date: "20171016",//$("#id_date").val(),
                     num: $("#id_num").val()
                 },
                 async: true,
@@ -184,7 +184,7 @@
                             <tbody>
                                 <tr id="djs">
                                     <td><p class="c008">第061期</p>距离下期开奖剩余</td>
-                                    <td width="49"><em>03</em></td>
+                                    <td width="49"><em>00</em></td>
                                     <td width="29" align="center">分</td>
                                     <td width="49"><em>18</em></td>
                                     <td width="29" align="center">秒</td>
@@ -209,12 +209,11 @@
             <span id="x1ge">个位走势</span>
             <span id="x1012">012路走势</span>
             <span id="x1dzx">大中小走势</span>
-            <span id="x1dx">大小走势</span>
-            <span id="x1jo">奇偶走势</span>
+            <span id="x1dxjo">大小奇偶走势</span>
             <div class="c"></div>
             <span class="tab_2_2">二星走势</span>
             <span id="x2012">012路走势</span>
-            <span id="x2sdxds" style="background-color:#ff0000;color:#fff;">大小单双走势</span>
+            <span id="x2sdxds" style="background-color:#ff0000;color:#fff;">大小奇偶走势</span>
         </div>
     </div>
 
