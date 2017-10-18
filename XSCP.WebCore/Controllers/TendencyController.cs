@@ -24,33 +24,43 @@ namespace XSCP.WebCore.Controllers
             date = date.Replace("-", "");
             switch (type)
             {
+                //万
                 case "x1wan":
                     strResult = Dwd1Start(Tendency1Enum.TenThousand, date, num);
                     break;
+                //千
                 case "x1qian":
                     strResult = Dwd1Start(Tendency1Enum.Thousand, date, num);
                     break;
+                //百
                 case "x1bai":
                     strResult = Dwd1Start(Tendency1Enum.Hundred, date, num);
                     break;
+                //十
                 case "x1shi":
                     strResult = Dwd1Start(Tendency1Enum.Ten, date, num);
                     break;
+                //个
                 case "x1ge":
                     strResult = Dwd1Start(Tendency1Enum.One, date, num);
                     break;
+                //大中小
                 case "x1dzx":
                     strResult = Road1StartDzx(date, num);
                     break;
+                //大小奇偶
                 case "x1dxjo":
                     strResult = Road1StartDxjo(date, num);
                     break;
+                //012路
                 case "x1012":
                     strResult = Road1Start012(date, num);
                     break;
+                //二星012路
                 case "x2012":
                     strResult = Road2Start012(date, num);
                     break;
+                //二星大小奇偶
                 case "x2sdxds":
                     strResult = Road2StartDxjo(date, num);
                     break;
