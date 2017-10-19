@@ -205,7 +205,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.OddPair + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.PairOdd + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.Dbl + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             //定位胆最大遗漏
@@ -233,7 +233,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.OddPair + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.PairOdd + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.Dbl + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             //当前定位胆遗漏
@@ -261,7 +261,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append(getBgcolor1Dwd(afterDwd.OddPair));
             sb.Append(getBgcolor1Dwd(afterDwd.PairOdd));
             sb.Append(getBgcolor1Dwd(afterDwd.Dbl));
-            sb.Append("<td class='z_bg_03'></td>");
+            sb.Append("<td class='z_bg_tendency'>-</td>");
             sb.Append(" </tr>");
 
             for (int i = 0; i < lt_BeforeData.Count; i++)
@@ -325,7 +325,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append(getBgcolor1Dwd(afterDwd.OddPair));
             sb.Append(getBgcolor1Dwd(afterDwd.PairOdd));
             sb.Append(getBgcolor1Dwd(afterDwd.Dbl));
-            sb.Append("<td class='z_bg_03'></td>");
+            sb.Append("<td class='z_bg_tendency'>-</td>");
             sb.Append(" </tr>");
 
             //定位胆最大遗漏
@@ -353,7 +353,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.OddPair + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.PairOdd + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.Dbl + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             //二星最大遗漏
@@ -381,7 +381,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.OddPair + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.PairOdd + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.Dbl + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             sb.Append("</tbody>");
@@ -501,7 +501,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.No_20 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.No_21 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.No_22 + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             //定位胆最大遗漏
@@ -531,7 +531,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.No_20 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.No_21 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.No_22 + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             //当前定位胆遗漏
@@ -561,7 +561,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append(getBgcolor1Dwd(afterDwd.No_20));
             sb.Append(getBgcolor1Dwd(afterDwd.No_21));
             sb.Append(getBgcolor1Dwd(afterDwd.No_22));
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             for (int i = 0; i < lt_BeforeData.Count; i++)
@@ -630,7 +630,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append(getBgcolor1Dwd(afterDwd.No_20));
             sb.Append(getBgcolor1Dwd(afterDwd.No_21));
             sb.Append(getBgcolor1Dwd(afterDwd.No_22));
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             //定位胆最大遗漏
@@ -660,7 +660,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.No_20 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.No_21 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + afterMaxDwd.No_22 + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
             //二星最大遗漏
@@ -690,7 +690,7 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.No_20 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.No_21 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxAfterData.No_22 + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
             sb.Append("</tbody>");
             return sb.ToString();
@@ -864,16 +864,16 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td width='30' rowspan='3' class='z_bg_03'>序号</td>");
             sb.Append("<td width='120' rowspan='3' class='z_bg_03'> 期号 </td>");
             sb.Append("<td width='45' rowspan='3' class='z_bg_03'>奖号</td>");
-            sb.Append("<td width='45' rowspan='3' class='z_bg_03'>类型</td>");
-            sb.Append("<td colspan='15' class='z_bg_03'>012路</td>");
+            sb.Append("<td width='15' rowspan='3' class='z_bg_03'></td>");
+            sb.Append("<td colspan='19' class='z_bg_03'>012路</td>");
             sb.Append("<td width='50' rowspan='3' class='z_bg_03'>时间</td>");
             sb.Append("</tr>");
 
             sb.Append("<tr>");
-            sb.Append("<td colspan='3' class='z_bg_03'>万</td>");
-            sb.Append("<td colspan='3' class='z_bg_03'>千</td>");
-            sb.Append("<td colspan='3' class='z_bg_03'>百</td>");
-            sb.Append("<td colspan='3' class='z_bg_03'>十</td>");
+            sb.Append("<td colspan='4' class='z_bg_03'>万</td>");
+            sb.Append("<td colspan='4' class='z_bg_03'>千</td>");
+            sb.Append("<td colspan='4' class='z_bg_03'>百</td>");
+            sb.Append("<td colspan='4' class='z_bg_03'>十</td>");
             sb.Append("<td colspan='3' class='z_bg_03'>个</td>");
             sb.Append("</tr>");
 
@@ -881,15 +881,19 @@ namespace XSCP.WebCore.Controllers
             sb.Append("<td class='z_bg_03'>0</td>");
             sb.Append("<td class='z_bg_03'>1</td>");
             sb.Append("<td class='z_bg_03'>2</td>");
+            sb.Append("<td width='10' class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_03'>0</td>");
             sb.Append("<td class='z_bg_03'>1</td>");
             sb.Append("<td class='z_bg_03'>2</td>");
+            sb.Append("<td width='10' class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_03'>0</td>");
             sb.Append("<td class='z_bg_03'>1</td>");
             sb.Append("<td class='z_bg_03'>2</td>");
+            sb.Append("<td width='10' class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_03'>0</td>");
             sb.Append("<td class='z_bg_03'>1</td>");
             sb.Append("<td class='z_bg_03'>2</td>");
+            sb.Append("<td width='10' class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_03'>0</td>");
             sb.Append("<td class='z_bg_03'>1</td>");
             sb.Append("<td class='z_bg_03'>2</td>");
@@ -912,23 +916,27 @@ namespace XSCP.WebCore.Controllers
 
             sb.Append(" <tr>");
             sb.Append("<td class='z_bg_tendency' colspan='3'>最大遗漏</td>");
-            sb.Append("<td class='z_bg_tendency'>0</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxWan.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxWan.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxWan.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxQian.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxQian.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxQian.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxBai.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxBai.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxBai.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxShi.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxShi.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxShi.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxGe.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxGe.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxGe.No_2 + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
 
 
@@ -944,20 +952,24 @@ namespace XSCP.WebCore.Controllers
                 sb.Append("<td class='z_bg_tendency'>" + (i + 1).ToString() + "</td>");
                 sb.Append("<td class='z_bg_tendency'>" + wan.Ymd + "-" + wan.Sno + "</td>");
                 sb.Append("<td class='z_bg_tendency'>" + wan.Lottery + "</td>");
-                sb.Append("<td class='z_bg_tendency'>" + "012" + "</td>");
+                sb.Append("<td class='z_bg_03'></td>");
 
                 sb.Append(getBgcolor1Start(wan.No_0));
                 sb.Append(getBgcolor1Start(wan.No_1));
                 sb.Append(getBgcolor1Start(wan.No_2));
+                sb.Append("<td class='z_bg_03'></td>");
                 sb.Append(getBgcolor1Start(qian.No_0));
                 sb.Append(getBgcolor1Start(qian.No_1));
                 sb.Append(getBgcolor1Start(qian.No_2));
+                sb.Append("<td class='z_bg_03'></td>");
                 sb.Append(getBgcolor1Start(bai.No_0));
                 sb.Append(getBgcolor1Start(bai.No_1));
                 sb.Append(getBgcolor1Start(bai.No_2));
+                sb.Append("<td class='z_bg_03'></td>");
                 sb.Append(getBgcolor1Start(shi.No_0));
                 sb.Append(getBgcolor1Start(shi.No_1));
                 sb.Append(getBgcolor1Start(shi.No_2));
+                sb.Append("<td class='z_bg_03'></td>");
                 sb.Append(getBgcolor1Start(ge.No_0));
                 sb.Append(getBgcolor1Start(ge.No_1));
                 sb.Append(getBgcolor1Start(ge.No_2));
@@ -967,24 +979,29 @@ namespace XSCP.WebCore.Controllers
 
             sb.Append(" <tr>");
             sb.Append("<td class='z_bg_tendency' colspan='3'>最大遗漏</td>");
-            sb.Append("<td class='z_bg_tendency'>0</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxWan.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxWan.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxWan.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxQian.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxQian.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxQian.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxBai.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxBai.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxBai.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxShi.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxShi.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxShi.No_2 + "</td>");
+            sb.Append("<td class='z_bg_03'></td>");
             sb.Append("<td class='z_bg_tendency'>" + maxGe.No_0 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxGe.No_1 + "</td>");
             sb.Append("<td class='z_bg_tendency'>" + maxGe.No_2 + "</td>");
-            sb.Append("<td class='z_bg_tendency'>" + "" + "</td>");
+            sb.Append("<td class='z_bg_tendency'>" + "-" + "</td>");
             sb.Append(" </tr>");
+
 
             sb.Append("</tbody>");
 
