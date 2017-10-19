@@ -179,6 +179,22 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Scripts\jquery-3.2.1\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1\www.jq22.com.txt" />
+    <Content Include="Scripts\need\laydate.css" />
+    <Content Include="Scripts\skins\dahong\icon.png" />
+    <Content Include="Scripts\skins\dahong\laydate.css" />
+    <Content Include="Scripts\skins\danlan\icon.png" />
+    <Content Include="Scripts\skins\danlan\laydate.css" />
+    <Content Include="Scripts\skins\default\icon.png" />
+    <Content Include="Scripts\skins\default\laydate.css" />
+    <Content Include="Scripts\skins\qianhuang\icon.png" />
+    <Content Include="Scripts\skins\qianhuang\laydate.css" />
+    <Content Include="Scripts\skins\yahui\icon.png" />
+    <Content Include="Scripts\skins\yahui\laydate.css" />
+    <Content Include="Scripts\skins\yalan\icon.png" />
+    <Content Include="Scripts\skins\yalan\laydate.css" />
     <Content Include="Source\new\css\red.css" />
     <Content Include="Source\new\css\style.css" />
     <Content Include="Source\new\images\blue.png" />
@@ -211,6 +227,7 @@
     <Content Include="Scripts\highstock.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.2.1\jquery插件库.url" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
