@@ -44,10 +44,14 @@
             });
 
             $(".wanfa2 span").bind('click', function () {
-                $(this).attr("style", "background-color:#ff0000;color:#fff;");
-                $('.wanfa2 span').not($(this)).removeAttr("style");
-                lotterType = $(this).attr("id");
-                request();
+                if ($(this).attr("class") != "tab_2_2") {
+                    $(this).attr("style", "background-color:#ff0000;color:#fff;");
+                    $('.wanfa2 span').not($(this)).removeAttr("style");
+                    lotterType = $(this).attr("id");
+                    var txt_value = $(this).text();
+                    $("#id_lottery_type_name").text(txt_value);
+                    request();
+                }
             });
 
             $(".wanfa2 a").each(function () {
@@ -198,7 +202,7 @@
                     </div>
                 </div>
 
-                <div >
+                <div>
                     <a href="/Xscp/Index" style="float:right; font-size: 15px; color: #020763; text-decoration: underline;">切回旧版本</a>
                 </div>
             </div>
@@ -228,7 +232,7 @@
                 <table width="55%" border="0" cellspacing="0" cellpadding="0">
                     <tbody>
                         <tr>
-                            <td align="center" class="f14 cdf0">新生分分彩二星走势走势图</td>
+                            <td align="center" class="f14 cdf0">新生分分彩【<span id="id_lottery_type_name" style="font-size:16px;color:#020763;">大小奇偶</span>】走势图</td>
                             <td width="30px" align="right"></td>
                             <td align="right">日期：<input id="id_date" style="width:80px;" onclick="laydate()" /></td>
                             <td width="30px"></td>
